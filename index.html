@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en" style="background:#08080A !important;">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="dark">
+<title>Trailmark Ops — AI Operations for Growing Businesses</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48.81 47.61'%3E%3Cstyle%3E.a%7Bfill:%23C8FF00%7D%3C/style%3E%3Cpath class='a' d='M32.17,18.69v2.45h-4.84v10.92h-3.33v-10.92h-4.84v-2.45h13.02Z'/%3E%3Cpolygon class='a' points='16.29 17.39 13.78 15.2 13.44 15.61 7.08 23.29 6.68 23.77 6.7 23.81 6.68 23.84 7.08 24.33 13.44 32.01 13.78 32.41 16.25 30.18 10.97 23.81 16.29 17.39'/%3E%3Cpolygon class='a' points='35.03 30.22 37.54 32.41 37.88 32.01 44.24 24.33 44.64 23.84 44.62 23.81 44.64 23.77 44.24 23.29 37.88 15.61 37.54 15.2 35.07 17.43 40.35 23.81 35.03 30.22'/%3E%3Cpolygon class='a' points='32.07 14.43 34.27 11.92 33.86 11.59 26.18 5.22 25.7 4.82 25.66 4.85 25.62 4.82 25.14 5.22 17.46 11.59 17.05 11.92 19.29 14.4 25.66 9.12 32.07 14.43'/%3E%3Cpolygon class='a' points='19.25 33.18 17.05 35.69 17.46 36.03 25.14 42.39 25.62 42.79 25.66 42.76 25.7 42.79 26.18 42.39 33.86 36.03 34.27 35.69 32.03 33.21 25.66 38.5 19.25 33.18'/%3E%3C/svg%3E">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root { color-scheme: dark; }
+html, body { background: #08080A !important; color: #EEEEE8; font-family: 'DM Sans', Helvetica, Arial, sans-serif; line-height: 1.6; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+a { text-decoration: none; color: inherit; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 40px; }
+.section { padding: 120px 0; background: #08080A !important; }
+.section-alt { background: #0E0E12 !important; }
+.tag { display: inline-block; font-size: 11px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase; color: #C8FF00; padding: 8px 16px; border: 1px solid rgba(200,255,0,0.25); border-radius: 100px; margin-bottom: 24px; }
+.section-heading { font-family: 'Playfair Display', Georgia, serif; font-size: clamp(36px, 5vw, 56px); font-weight: 400; line-height: 1.15; margin-bottom: 20px; color: #EEEEE8; }
+.section-heading em { font-style: italic; color: #C8FF00; }
+.section-sub { font-size: 18px; color: #9999A0; max-width: 560px; line-height: 1.7; }
+
+/* NAV */
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 16px 0; background: rgba(8,8,10,0.85) !important; backdrop-filter: blur(20px); border-bottom: 1px solid #1E1E26; }
+nav .container { display: flex; align-items: center; justify-content: space-between; }
+.nav-logo svg { height: 30px; width: auto; display: block; }
+.nav-links { display: flex; gap: 36px; align-items: center; }
+.nav-links a { font-size: 14px; font-weight: 500; color: #9999A0; transition: color 0.2s; }
+.nav-links a:hover { color: #EEEEE8; }
+.btn { display: inline-flex; align-items: center; justify-content: center; font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 14px; border: none; cursor: pointer; transition: all 0.25s; }
+.btn-primary { background: #C8FF00 !important; color: #080808 !important; padding: 14px 32px; border-radius: 100px; }
+.btn-primary:hover { background: #D4FF33 !important; transform: translateY(-1px); box-shadow: 0 8px 30px rgba(200,255,0,0.2); }
+.btn-outline { border: 1px solid #1E1E26; color: #EEEEE8; padding: 13px 32px; border-radius: 100px; background: transparent !important; }
+.btn-outline:hover { border-color: #C8FF00; color: #C8FF00; }
+.btn-arrow { margin-left: 8px; transition: transform 0.2s; }
+.btn:hover .btn-arrow { transform: translateX(3px); }
+
+/* HERO */
+.hero { min-height: 100vh; display: flex; align-items: center; position: relative; overflow: hidden; padding-top: 80px; background: #08080A !important; }
+.hero::before { content: ''; position: absolute; top: -200px; right: -200px; width: 700px; height: 700px; background: radial-gradient(circle, rgba(200,255,0,0.12) 0%, transparent 70%); pointer-events: none; }
+.hero::after { content: ''; position: absolute; bottom: -100px; left: -100px; width: 500px; height: 500px; background: radial-gradient(circle, rgba(200,255,0,0.05) 0%, transparent 70%); pointer-events: none; }
+.hero-content { position: relative; z-index: 2; max-width: 800px; }
+.hero-tag { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 500; color: #C8FF00; margin-bottom: 32px; padding: 10px 20px; background: rgba(200,255,0,0.12); border-radius: 100px; border: 1px solid rgba(200,255,0,0.15); }
+.hero-tag .dot { width: 6px; height: 6px; background: #C8FF00; border-radius: 50%; animation: pulse 2s ease infinite; }
+@keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
+.hero h1 { font-family: 'Playfair Display', Georgia, serif; font-size: clamp(44px, 6.5vw, 80px); font-weight: 400; line-height: 1.08; margin-bottom: 28px; letter-spacing: -1px; color: #EEEEE8; }
+.hero h1 em { font-style: italic; color: #C8FF00; }
+.hero p { font-size: 20px; color: #9999A0; max-width: 520px; line-height: 1.7; margin-bottom: 44px; }
+.hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; }
+.hero-stats { display: flex; gap: 48px; margin-top: 80px; padding-top: 40px; border-top: 1px solid #1E1E26; }
+.hero-stat h3 { font-family: 'Playfair Display', Georgia, serif; font-size: 40px; font-weight: 400; color: #C8FF00; }
+.hero-stat p { font-size: 13px; color: #5C5C64; margin-top: 4px; font-weight: 500; text-transform: uppercase; letter-spacing: 1px; }
+
+/* LOGO BAR */
+.logo-bar { padding: 60px 0; border-top: 1px solid #1E1E26; border-bottom: 1px solid #1E1E26; background: #08080A !important; }
+.logo-bar p { text-align: center; font-size: 13px; color: #5C5C64; text-transform: uppercase; letter-spacing: 2px; font-weight: 500; margin-bottom: 32px; }
+.logo-row { display: flex; justify-content: center; align-items: center; gap: 60px; flex-wrap: wrap; }
+.logo-item { font-size: 18px; font-weight: 600; color: #5C5C64; letter-spacing: 1px; opacity: 0.5; }
+
+/* SERVICES */
+.services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 56px; }
+.service-card { background: #14141A !important; border: 1px solid #1E1E26; border-radius: 16px; padding: 40px 32px; transition: all 0.3s ease; position: relative; overflow: hidden; }
+.service-card:hover { background: #1A1A22 !important; border-color: rgba(200,255,0,0.25); transform: translateY(-4px); }
+.service-card::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: #C8FF00; opacity: 0; transition: opacity 0.3s; }
+.service-card:hover::after { opacity: 1; }
+.service-icon { width: 48px; height: 48px; background: rgba(200,255,0,0.12); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 24px; font-size: 22px; }
+.service-card h3 { font-family: 'Playfair Display', Georgia, serif; font-size: 24px; margin-bottom: 12px; font-weight: 400; color: #EEEEE8; }
+.service-card p { font-size: 15px; color: #9999A0; line-height: 1.7; }
+
+/* STEPS */
+.steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; margin-top: 56px; }
+.step { position: relative; }
+.step-num { font-family: 'Playfair Display', Georgia, serif; font-size: 64px; color: #C8FF00; opacity: 0.2; line-height: 1; margin-bottom: 16px; }
+.step h3 { font-size: 18px; font-weight: 600; margin-bottom: 8px; color: #EEEEE8; }
+.step p { font-size: 14px; color: #9999A0; line-height: 1.7; }
+.step-line { position: absolute; top: 32px; right: -16px; width: 32px; height: 1px; background: #1E1E26; }
+.step:last-child .step-line { display: none; }
+
+/* CASES */
+.cases-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-top: 56px; }
+.case-card { background: #14141A !important; border: 1px solid #1E1E26; border-radius: 16px; padding: 48px 40px; transition: all 0.3s; }
+.case-card:hover { border-color: rgba(200,255,0,0.25); transform: translateY(-2px); }
+.case-industry { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; color: #C8FF00; margin-bottom: 16px; }
+.case-card h3 { font-family: 'Playfair Display', Georgia, serif; font-size: 28px; font-weight: 400; margin-bottom: 16px; line-height: 1.3; color: #EEEEE8; }
+.case-card > p { font-size: 15px; color: #9999A0; line-height: 1.7; margin-bottom: 32px; }
+.case-results { display: flex; gap: 32px; padding-top: 24px; border-top: 1px solid #1E1E26; }
+.case-result h4 { font-family: 'Playfair Display', Georgia, serif; font-size: 32px; color: #C8FF00; font-weight: 400; }
+.case-result p { font-size: 12px; color: #5C5C64; text-transform: uppercase; letter-spacing: 1px; margin-top: 2px; }
+
+/* TESTIMONIAL */
+.testimonial-block { background: #14141A !important; border: 1px solid #1E1E26; border-radius: 20px; padding: 64px; margin-top: 56px; position: relative; }
+.testimonial-block::before { content: '\201C'; font-family: 'Playfair Display', Georgia, serif; font-size: 120px; color: #C8FF00; opacity: 0.15; position: absolute; top: 20px; left: 40px; line-height: 1; }
+.testimonial-block blockquote { font-family: 'Playfair Display', Georgia, serif; font-size: 28px; font-weight: 400; font-style: italic; line-height: 1.5; margin-bottom: 32px; position: relative; z-index: 1; color: #EEEEE8; }
+.testimonial-author { display: flex; align-items: center; gap: 16px; }
+.testimonial-avatar { width: 48px; height: 48px; background: rgba(200,255,0,0.12); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; color: #C8FF00; font-size: 16px; }
+.testimonial-name { font-weight: 600; font-size: 15px; color: #EEEEE8; }
+.testimonial-role { font-size: 13px; color: #5C5C64; }
+
+/* ABOUT */
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; margin-top: 56px; }
+.about-text p { font-size: 16px; color: #9999A0; line-height: 1.8; margin-bottom: 20px; }
+.about-text p:first-of-type { font-size: 18px; color: #EEEEE8; }
+.about-values { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.value-card { background: #14141A !important; border: 1px solid #1E1E26; border-radius: 12px; padding: 28px 24px; }
+.value-card h4 { font-size: 15px; font-weight: 600; margin-bottom: 6px; color: #EEEEE8; }
+.value-card p { font-size: 13px; color: #9999A0; line-height: 1.6; }
+
+/* BLOG */
+.blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 56px; }
+.blog-card { background: #14141A !important; border: 1px solid #1E1E26; border-radius: 16px; overflow: hidden; transition: all 0.3s; }
+.blog-card:hover { border-color: rgba(200,255,0,0.25); transform: translateY(-3px); }
+.blog-img { height: 200px; background: #0E0E12 !important; display: flex; align-items: center; justify-content: center; border-bottom: 1px solid #1E1E26; }
+.blog-img-placeholder { width: 60px; height: 60px; border: 2px solid #1E1E26; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #5C5C64; font-size: 24px; }
+.blog-body { padding: 28px 24px; }
+.blog-date { font-size: 12px; color: #5C5C64; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 12px; }
+.blog-card h3 { font-family: 'Playfair Display', Georgia, serif; font-size: 20px; font-weight: 400; margin-bottom: 10px; line-height: 1.35; color: #EEEEE8; }
+.blog-card p { font-size: 14px; color: #9999A0; line-height: 1.6; }
+.blog-link { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; color: #C8FF00; margin-top: 16px; }
+
+/* CTA */
+.cta-section { padding: 120px 0; text-align: center; position: relative; overflow: hidden; background: #08080A !important; }
+.cta-section::before { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 800px; height: 800px; background: radial-gradient(circle, rgba(200,255,0,0.12) 0%, transparent 60%); pointer-events: none; }
+.cta-content { position: relative; z-index: 2; }
+.cta-content h2 { font-family: 'Playfair Display', Georgia, serif; font-size: clamp(36px, 5vw, 56px); font-weight: 400; margin-bottom: 20px; color: #EEEEE8; }
+.cta-content h2 em { font-style: italic; color: #C8FF00; }
+.cta-content p { font-size: 18px; color: #9999A0; max-width: 480px; margin: 0 auto 40px; }
+
+/* FOOTER */
+footer { border-top: 1px solid #1E1E26; padding: 60px 0 40px; background: #08080A !important; }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+.footer-logo svg { height: 24px; width: auto; }
+.footer-brand p { font-size: 14px; color: #5C5C64; line-height: 1.7; margin-top: 12px; max-width: 280px; }
+.footer-col h4 { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; color: #5C5C64; margin-bottom: 16px; }
+.footer-col a { display: block; font-size: 14px; color: #9999A0; margin-bottom: 10px; transition: color 0.2s; }
+.footer-col a:hover { color: #C8FF00; }
+.footer-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 32px; border-top: 1px solid #1E1E26; }
+.footer-bottom p { font-size: 13px; color: #5C5C64; }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .container { padding: 0 24px; }
+  .section { padding: 80px 0; }
+  .services-grid { grid-template-columns: 1fr; }
+  .steps { grid-template-columns: 1fr 1fr; }
+  .step-line { display: none; }
+  .cases-grid { grid-template-columns: 1fr; }
+  .blog-grid { grid-template-columns: 1fr; }
+  .about-grid { grid-template-columns: 1fr; gap: 40px; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .hero-stats { gap: 32px; flex-wrap: wrap; }
+  .nav-links .nav-link-text { display: none; }
+  .testimonial-block { padding: 40px 28px; }
+  .testimonial-block blockquote { font-size: 22px; }
+}
+@media (max-width: 600px) {
+  .steps { grid-template-columns: 1fr; }
+  .case-results { flex-wrap: wrap; gap: 20px; }
+  .hero-buttons { flex-direction: column; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .about-values { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body style="background:#08080A !important;">
+
+<!-- NAV -->
+<nav>
+  <div class="container">
+    <a href="#" class="nav-logo">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 288.47 47.61" style="height:30px;width:auto;">
+        <style>.l1{fill:#fff}.l2{fill:#C8FF00}</style>
+        <path class="l1" d="M36.62,12.46v4.12h-8.15v18.39h-5.61v-18.39h-8.15v-4.12h21.91Z"/>
+        <path class="l1" d="M38.94,12.46h10.05c2.18,0,3.95.63,5.32,1.89s2.05,2.79,2.05,4.58c0,2.48-1.29,4.32-3.87,5.51,1.13.51,2.2,1.9,3.22,4.15s2,4.38,2.95,6.38h-6.15c-.37-.74-1.01-2.15-1.92-4.24-.91-2.08-1.69-3.42-2.34-4.01-.65-.59-1.35-.89-2.09-.89h-1.61v9.14h-5.61V12.46ZM44.55,16.59v5.12h2.96c.95,0,1.69-.22,2.25-.67.55-.45.83-1.08.83-1.91,0-1.7-1.07-2.55-3.21-2.55h-2.84Z"/>
+        <path class="l1" d="M75.74,12.05l11.51,25.92h-6.94l-2.14-5.12h-11.61l-1.94,5.12h-6.84l10.47-25.92h7.48ZM76.28,28.33l-4.2-10.08-3.81,10.08h8.01Z"/>
+        <path class="l1" d="M95.66,12.05v25.92h-6.46V12.05h6.46Z"/>
+        <path class="l1" d="M117.16,30.85v4.12h-17.16V12.46h5.61v18.39h11.55Z"/>
+        <path class="l1" d="M131.33,20.81l7.23-8.35h4.87v22.51h-5.61v-14.05l-6.08,7.06h-.84l-6.08-7.06v14.05h-5.61V12.46h4.87l7.24,8.35Z"/>
+        <path class="l1" d="M160.5,12.46l10,22.51h-6.03l-1.85-4.45h-10.08l-1.68,4.45h-5.94l9.09-22.51h6.5ZM160.97,26.6l-3.65-8.75-3.31,8.75h6.96Z"/>
+        <path class="l1" d="M172,12.46h10.05c2.18,0,3.95.63,5.32,1.89s2.05,2.79,2.05,4.58c0,2.48-1.29,4.32-3.87,5.51,1.13.51,2.2,1.9,3.22,4.15s2,4.38,2.95,6.38h-6.15c-.37-.74-1.01-2.15-1.92-4.24s-1.69-3.42-2.34-4.01c-.65-.59-1.35-.89-2.09-.89h-1.61v9.14h-5.61V12.46ZM177.61,16.59v5.12h2.96c.95,0,1.69-.22,2.25-.67.55-.45.83-1.08.83-1.91,0-1.7-1.07-2.55-3.21-2.55h-2.84Z"/>
+        <path class="l1" d="M212.15,12.46l-7.33,10.59,9.94,11.92h-7.01l-8.93-10.55v10.55h-5.61V12.46h5.61v10.14l7.16-10.14h6.17Z"/>
+        <path class="l2" d="M226.35,35.37c-2.27,0-4.26-.51-5.97-1.52-1.72-1.01-3.06-2.41-4.04-4.21-.98-1.79-1.47-3.87-1.47-6.22s.49-4.43,1.47-6.22c.98-1.79,2.33-3.2,4.04-4.21,1.72-1.01,3.71-1.52,5.97-1.52s4.27.51,6.01,1.52c1.74,1.01,3.09,2.41,4.04,4.21.96,1.79,1.44,3.87,1.44,6.22s-.48,4.43-1.44,6.22c-.96,1.79-2.3,3.2-4.04,4.21-1.74,1.01-3.74,1.52-6.01,1.52ZM226.35,30.92c1.34,0,2.49-.31,3.45-.92.96-.62,1.7-1.48,2.23-2.59.53-1.11.79-2.44.79-3.98s-.26-2.87-.79-3.98c-.53-1.11-1.27-1.97-2.23-2.57-.96-.6-2.11-.91-3.45-.91s-2.43.3-3.4.91c-.97.61-1.72,1.46-2.24,2.57-.53,1.11-.79,2.44-.79,3.98s.26,2.87.79,3.98c.53,1.11,1.28,1.98,2.24,2.59.97.62,2.1.92,3.4.92Z"/>
+        <path class="l2" d="M240.44,34.97V11.87h8.98c1.89,0,3.46.32,4.7.96,1.24.64,2.17,1.51,2.79,2.62.62,1.11.92,2.36.92,3.75,0,1.3-.3,2.5-.89,3.6s-1.51,1.99-2.74,2.67c-1.23.68-2.83,1.02-4.79,1.02h-4.03v8.48h-4.95ZM245.39,22.53h3.7c1.3,0,2.24-.3,2.82-.91.58-.6.87-1.41.87-2.43s-.29-1.84-.87-2.43c-.58-.58-1.52-.87-2.82-.87h-3.7v6.63Z"/>
+        <path class="l2" d="M268.06,35.37c-1.65,0-3.14-.28-4.47-.84s-2.38-1.39-3.15-2.49c-.77-1.1-1.19-2.45-1.25-4.06h5.28c.02.64.19,1.2.49,1.68.31.48.73.86,1.25,1.14.53.28,1.14.41,1.85.41.59,0,1.12-.09,1.57-.28.45-.19.81-.46,1.07-.83.26-.36.4-.82.4-1.37s-.15-1.06-.46-1.47c-.31-.41-.73-.76-1.25-1.06-.53-.3-1.14-.57-1.83-.82s-1.44-.5-2.23-.74c-1.83-.59-3.23-1.4-4.21-2.41-.98-1.01-1.47-2.36-1.47-4.06,0-1.41.35-2.61,1.04-3.61.69-1,1.64-1.77,2.85-2.29,1.21-.53,2.58-.79,4.12-.79s2.98.27,4.17.81c1.2.54,2.16,1.32,2.87,2.34.71,1.02,1.09,2.24,1.14,3.65h-5.31c-.02-.48-.16-.92-.41-1.32s-.59-.71-1.02-.96c-.43-.24-.93-.36-1.5-.36-.51-.02-.97.05-1.39.21-.42.17-.75.42-.99.76-.24.34-.36.76-.36,1.27s.13.91.38,1.27c.25.36.6.67,1.06.92.45.25.98.49,1.58.71.6.22,1.27.44,2,.66,1.17.4,2.24.86,3.22,1.4s1.77,1.24,2.38,2.11c.61.87.91,2.02.91,3.45,0,1.25-.32,2.41-.97,3.46-.65,1.06-1.58,1.9-2.81,2.54-1.22.64-2.73.96-4.54.96Z"/>
+        <rect class="l2" x="13.79" y="38.64" width="42.5" height="1"/>
+        <rect class="l2" x="100.21" y="38.64" width="115.1" height="1"/>
+      </svg>
+    </a>
+    <div class="nav-links">
+      <a href="#services" class="nav-link-text">Services</a>
+      <a href="#work" class="nav-link-text">Work</a>
+      <a href="#about" class="nav-link-text">About</a>
+      <a href="#blog" class="nav-link-text">Insights</a>
+      <a href="tel:7402742424"><button class="btn btn-primary">Book a Call <span class="btn-arrow">→</span></button></a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-tag"><span class="dot"></span> Now booking Q2 2026 engagements</div>
+      <h1>Your business runs on effort.<br><em>It should run on intelligence.</em></h1>
+      <p>We help small and mid-sized businesses implement AI-powered systems that cut busywork, surface insights, and put you back in control of your time.</p>
+      <div class="hero-buttons">
+        <a href="tel:7402742424"><button class="btn btn-primary">Book Your Free Strategy Call <span class="btn-arrow">→</span></button></a>
+        <a href="#work"><button class="btn btn-outline">See Our Work</button></a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat"><h3>12+</h3><p>Businesses Transformed</p></div>
+        <div class="hero-stat"><h3>850</h3><p>Hours Saved Monthly</p></div>
+        <div class="hero-stat"><h3>3x</h3><p>Avg. Reporting Speed</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOGO BAR -->
+<section class="logo-bar">
+  <div class="container">
+    <p>Tools We Deploy &amp; Integrate</p>
+    <div class="logo-row">
+      <span class="logo-item">Zapier</span>
+      <span class="logo-item">OpenAI</span>
+      <span class="logo-item">Anthropic</span>
+      <span class="logo-item">HubSpot</span>
+      <span class="logo-item">QuickBooks</span>
+      <span class="logo-item">Slack</span>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="section section-alt" id="services">
+  <div class="container">
+    <span class="tag">What We Do</span>
+    <h2 class="section-heading">Strategy. Transformation.<br><em>Education.</em></h2>
+    <p class="section-sub">We don't just advise — we build, implement, and teach your team to own it.</p>
+    <div class="services-grid">
+      <div class="service-card"><div class="service-icon">🔭</div><h3>AI Strategy</h3><p>We assess your business, map your workflows, and identify where AI creates the most leverage — before a single tool is installed. You get a roadmap tied to real ROI.</p></div>
+      <div class="service-card"><div class="service-icon">⚡</div><h3>Process Automation</h3><p>From CRM data entry to scheduling to invoice follow-up — we build the systems that handle the busywork so your team can focus on what actually grows the business.</p></div>
+      <div class="service-card"><div class="service-icon">📊</div><h3>CEO Dashboards</h3><p>We connect your existing tools into a single intelligent dashboard. Ask it questions. Get custom reports. See your business clearly — without digging through spreadsheets.</p></div>
+      <div class="service-card"><div class="service-icon">🔗</div><h3>System Integration</h3><p>Your POS, CRM, email, accounting, and scheduling tools should talk to each other. We wire them together so data flows automatically — no copy-pasting between tabs.</p></div>
+      <div class="service-card"><div class="service-icon">🎓</div><h3>Team Training</h3><p>We don't just build and leave. We coach your team to use, maintain, and expand what we've built — so you never become dependent on us to keep the lights on.</p></div>
+      <div class="service-card"><div class="service-icon">🤖</div><h3>AI Assistants</h3><p>Always-on digital teammates that handle review responses, customer follow-ups, reporting, and routine communication — 24/7 without adding headcount.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section" id="process">
+  <div class="container">
+    <span class="tag">How It Works</span>
+    <h2 class="section-heading">From first call to <em>full deployment</em></h2>
+    <p class="section-sub">Most engagements go from kickoff to measurable results in 30 days.</p>
+    <div class="steps">
+      <div class="step"><div class="step-num">01</div><h3>Discovery Call</h3><p>We learn your business, your pain points, and where your time and money disappear. Free, no obligation, 30 minutes.</p><div class="step-line"></div></div>
+      <div class="step"><div class="step-num">02</div><h3>Assessment &amp; Roadmap</h3><p>We map your workflows, audit your tools, and deliver a prioritized AI implementation plan with clear ROI projections.</p><div class="step-line"></div></div>
+      <div class="step"><div class="step-num">03</div><h3>Build &amp; Deploy</h3><p>We build automations, dashboards, and integrations — testing with your team every step of the way. No black boxes.</p><div class="step-line"></div></div>
+      <div class="step"><div class="step-num">04</div><h3>Train &amp; Optimize</h3><p>Your team learns to run everything we've built. We stay on as a fractional AI partner for ongoing optimization.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CASE STUDIES -->
+<section class="section section-alt" id="work">
+  <div class="container">
+    <span class="tag">Our Work</span>
+    <h2 class="section-heading">Real results for <em>real businesses</em></h2>
+    <p class="section-sub">Every engagement starts with the same question: where is this business leaving money on the table?</p>
+    <div class="cases-grid">
+      <div class="case-card">
+        <div class="case-industry">Medical Aesthetics</div>
+        <h3>Automated patient data migration for a growing med spa</h3>
+        <p>Their legacy system had no bulk export. We built a custom automation that extracted 350+ patient records — files, history, documents — and prepared them for migration to their new platform.</p>
+        <div class="case-results">
+          <div class="case-result"><h4>350+</h4><p>Records Migrated</p></div>
+          <div class="case-result"><h4>40hrs</h4><p>Manual Work Saved</p></div>
+          <div class="case-result"><h4>$0</h4><p>Data Lost</p></div>
+        </div>
+      </div>
+      <div class="case-card">
+        <div class="case-industry">Restaurant Group</div>
+        <h3>AI-powered scheduling and food cost intelligence for a 3-location restaurant</h3>
+        <p>Connected their POS, payroll, and inventory systems into one dashboard. Deployed AI-driven staff scheduling and automated weekly P&L summaries sent directly to the owner.</p>
+        <div class="case-results">
+          <div class="case-result"><h4>3.2%</h4><p>Food Cost Reduction</p></div>
+          <div class="case-result"><h4>6hrs</h4><p>Saved Weekly</p></div>
+          <div class="case-result"><h4>$4,800</h4><p>Monthly Savings</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIAL -->
+<section class="section">
+  <div class="container">
+    <div class="testimonial-block">
+      <blockquote>"We were drowning in spreadsheets and didn't even know what questions to ask. Trailmark came in, connected everything, and now I check one dashboard every morning instead of digging through five systems. It changed how I run my business."</blockquote>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar">MR</div>
+        <div><div class="testimonial-name">Practice Owner</div><div class="testimonial-role">Medical Aesthetics — Columbus, OH</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section section-alt" id="about">
+  <div class="container">
+    <span class="tag">About Us</span>
+    <h2 class="section-heading">We're operators, <em>not academics.</em></h2>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>Trailmark Ops was built for business owners who know AI matters but don't have time to figure it out themselves.</p>
+        <p>We're not a dev shop. We're not a strategy firm that hands you a PDF and walks away. We sit in the trenches with you — learning your business, building real systems, and making sure your team can own them long after we leave.</p>
+        <p>Based in Columbus, Ohio, we work with small and mid-sized businesses across industries — from restaurants and medical practices to professional services and local retail. If your business runs on people doing repetitive work that software should handle, we can help.</p>
+      </div>
+      <div class="about-values">
+        <div class="value-card"><h4>Build to Hand Off</h4><p>Everything we build, your team learns to run. We're coaches, not crutches.</p></div>
+        <div class="value-card"><h4>ROI First</h4><p>Every recommendation ties to a number. We don't chase shiny tech for its own sake.</p></div>
+        <div class="value-card"><h4>No Black Boxes</h4><p>You'll understand what we build and why. Transparency isn't optional.</p></div>
+        <div class="value-card"><h4>Local &amp; Invested</h4><p>We're in your city, in your corner. Not a faceless agency across the country.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BLOG -->
+<section class="section" id="blog">
+  <div class="container">
+    <span class="tag">Insights</span>
+    <h2 class="section-heading">Thinking out loud <em>about AI</em></h2>
+    <p class="section-sub">Practical perspectives on how small businesses can use AI today — no hype, no jargon.</p>
+    <div class="blog-grid">
+      <div class="blog-card"><div class="blog-img"><div class="blog-img-placeholder">📋</div></div><div class="blog-body"><div class="blog-date">April 2026</div><h3>The $8,000 employee that never clocks out</h3><p>Most businesses are about to hire someone they don't need. Here's how AI handles the job for a fraction of the cost.</p><span class="blog-link">Read more →</span></div></div>
+      <div class="blog-card"><div class="blog-img"><div class="blog-img-placeholder">📊</div></div><div class="blog-body"><div class="blog-date">April 2026</div><h3>Why your CRM is empty (and what to do about it)</h3><p>Your sales team hates data entry. AI doesn't. Here's the system that keeps your pipeline honest without nagging anyone.</p><span class="blog-link">Read more →</span></div></div>
+      <div class="blog-card"><div class="blog-img"><div class="blog-img-placeholder">🔮</div></div><div class="blog-body"><div class="blog-date">March 2026</div><h3>5 questions every CEO should ask about AI (but won't)</h3><p>It's not "should we use AI?" anymore. It's "how far behind are we?" A framework for honest self-assessment.</p><span class="blog-link">Read more →</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="cta">
+  <div class="container">
+    <div class="cta-content">
+      <span class="tag">Get Started</span>
+      <h2>Ready to see what's <em>possible?</em></h2>
+      <p>Book a free 30-minute strategy call. No pitch deck, no pressure — just a conversation about your business and where AI can make a real difference.</p>
+      <a href="tel:7402742424"><button class="btn btn-primary" style="padding: 18px 40px; font-size: 16px;">Book Your Free Strategy Call <span class="btn-arrow">→</span></button></a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 288.47 47.61" style="height:24px;width:auto;">
+            <style>.f1{fill:#fff}.f2{fill:#C8FF00}</style>
+            <path class="f1" d="M36.62,12.46v4.12h-8.15v18.39h-5.61v-18.39h-8.15v-4.12h21.91Z"/>
+            <path class="f1" d="M38.94,12.46h10.05c2.18,0,3.95.63,5.32,1.89s2.05,2.79,2.05,4.58c0,2.48-1.29,4.32-3.87,5.51,1.13.51,2.2,1.9,3.22,4.15s2,4.38,2.95,6.38h-6.15c-.37-.74-1.01-2.15-1.92-4.24-.91-2.08-1.69-3.42-2.34-4.01-.65-.59-1.35-.89-2.09-.89h-1.61v9.14h-5.61V12.46ZM44.55,16.59v5.12h2.96c.95,0,1.69-.22,2.25-.67.55-.45.83-1.08.83-1.91,0-1.7-1.07-2.55-3.21-2.55h-2.84Z"/>
+            <path class="f1" d="M75.74,12.05l11.51,25.92h-6.94l-2.14-5.12h-11.61l-1.94,5.12h-6.84l10.47-25.92h7.48ZM76.28,28.33l-4.2-10.08-3.81,10.08h8.01Z"/>
+            <path class="f1" d="M95.66,12.05v25.92h-6.46V12.05h6.46Z"/>
+            <path class="f1" d="M117.16,30.85v4.12h-17.16V12.46h5.61v18.39h11.55Z"/>
+            <path class="f1" d="M131.33,20.81l7.23-8.35h4.87v22.51h-5.61v-14.05l-6.08,7.06h-.84l-6.08-7.06v14.05h-5.61V12.46h4.87l7.24,8.35Z"/>
+            <path class="f1" d="M160.5,12.46l10,22.51h-6.03l-1.85-4.45h-10.08l-1.68,4.45h-5.94l9.09-22.51h6.5ZM160.97,26.6l-3.65-8.75-3.31,8.75h6.96Z"/>
+            <path class="f1" d="M172,12.46h10.05c2.18,0,3.95.63,5.32,1.89s2.05,2.79,2.05,4.58c0,2.48-1.29,4.32-3.87,5.51,1.13.51,2.2,1.9,3.22,4.15s2,4.38,2.95,6.38h-6.15c-.37-.74-1.01-2.15-1.92-4.24s-1.69-3.42-2.34-4.01c-.65-.59-1.35-.89-2.09-.89h-1.61v9.14h-5.61V12.46ZM177.61,16.59v5.12h2.96c.95,0,1.69-.22,2.25-.67.55-.45.83-1.08.83-1.91,0-1.7-1.07-2.55-3.21-2.55h-2.84Z"/>
+            <path class="f1" d="M212.15,12.46l-7.33,10.59,9.94,11.92h-7.01l-8.93-10.55v10.55h-5.61V12.46h5.61v10.14l7.16-10.14h6.17Z"/>
+            <path class="f2" d="M226.35,35.37c-2.27,0-4.26-.51-5.97-1.52-1.72-1.01-3.06-2.41-4.04-4.21-.98-1.79-1.47-3.87-1.47-6.22s.49-4.43,1.47-6.22c.98-1.79,2.33-3.2,4.04-4.21,1.72-1.01,3.71-1.52,5.97-1.52s4.27.51,6.01,1.52c1.74,1.01,3.09,2.41,4.04,4.21.96,1.79,1.44,3.87,1.44,6.22s-.48,4.43-1.44,6.22c-.96,1.79-2.3,3.2-4.04,4.21-1.74,1.01-3.74,1.52-6.01,1.52ZM226.35,30.92c1.34,0,2.49-.31,3.45-.92.96-.62,1.7-1.48,2.23-2.59.53-1.11.79-2.44.79-3.98s-.26-2.87-.79-3.98c-.53-1.11-1.27-1.97-2.23-2.57-.96-.6-2.11-.91-3.45-.91s-2.43.3-3.4.91c-.97.61-1.72,1.46-2.24,2.57-.53,1.11-.79,2.44-.79,3.98s.26,2.87.79,3.98c.53,1.11,1.28,1.98,2.24,2.59.97.62,2.1.92,3.4.92Z"/>
+            <path class="f2" d="M240.44,34.97V11.87h8.98c1.89,0,3.46.32,4.7.96,1.24.64,2.17,1.51,2.79,2.62.62,1.11.92,2.36.92,3.75,0,1.3-.3,2.5-.89,3.6s-1.51,1.99-2.74,2.67c-1.23.68-2.83,1.02-4.79,1.02h-4.03v8.48h-4.95ZM245.39,22.53h3.7c1.3,0,2.24-.3,2.82-.91.58-.6.87-1.41.87-2.43s-.29-1.84-.87-2.43c-.58-.58-1.52-.87-2.82-.87h-3.7v6.63Z"/>
+            <path class="f2" d="M268.06,35.37c-1.65,0-3.14-.28-4.47-.84s-2.38-1.39-3.15-2.49c-.77-1.1-1.19-2.45-1.25-4.06h5.28c.02.64.19,1.2.49,1.68.31.48.73.86,1.25,1.14.53.28,1.14.41,1.85.41.59,0,1.12-.09,1.57-.28.45-.19.81-.46,1.07-.83.26-.36.4-.82.4-1.37s-.15-1.06-.46-1.47c-.31-.41-.73-.76-1.25-1.06-.53-.3-1.14-.57-1.83-.82s-1.44-.5-2.23-.74c-1.83-.59-3.23-1.4-4.21-2.41-.98-1.01-1.47-2.36-1.47-4.06,0-1.41.35-2.61,1.04-3.61.69-1,1.64-1.77,2.85-2.29,1.21-.53,2.58-.79,4.12-.79s2.98.27,4.17.81c1.2.54,2.16,1.32,2.87,2.34.71,1.02,1.09,2.24,1.14,3.65h-5.31c-.02-.48-.16-.92-.41-1.32s-.59-.71-1.02-.96c-.43-.24-.93-.36-1.5-.36-.51-.02-.97.05-1.39.21-.42.17-.75.42-.99.76-.24.34-.36.76-.36,1.27s.13.91.38,1.27c.25.36.6.67,1.06.92.45.25.98.49,1.58.71.6.22,1.27.44,2,.66,1.17.4,2.24.86,3.22,1.4s1.77,1.24,2.38,2.11c.61.87.91,2.02.91,3.45,0,1.25-.32,2.41-.97,3.46-.65,1.06-1.58,1.9-2.81,2.54-1.22.64-2.73.96-4.54.96Z"/>
+            <rect class="f2" x="13.79" y="38.64" width="42.5" height="1"/>
+            <rect class="f2" x="100.21" y="38.64" width="115.1" height="1"/>
+          </svg>
+        </div>
+        <p>AI operations for growing businesses. Based in Columbus, Ohio — serving businesses everywhere.</p>
+      </div>
+      <div class="footer-col"><h4>Services</h4><a href="#services">AI Strategy</a><a href="#services">Process Automation</a><a href="#services">CEO Dashboards</a><a href="#services">Team Training</a></div>
+      <div class="footer-col"><h4>Company</h4><a href="#about">About</a><a href="#work">Case Studies</a><a href="#blog">Blog</a><a href="#cta">Contact</a></div>
+      <div class="footer-col"><h4>Connect</h4><a href="#">LinkedIn</a><a href="#">Email</a><a href="tel:7402742424">Schedule a Call</a></div>
+    </div>
+    <div class="footer-bottom"><p>&copy; 2026 Trailmark Ops. All rights reserved.</p><p>Columbus, Ohio</p></div>
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', function(e) { e.preventDefault(); const t = document.querySelector(this.getAttribute('href')); if(t) t.scrollIntoView({behavior:'smooth',block:'start'}); });
+});
+const obs = new IntersectionObserver(entries => { entries.forEach(e => { if(e.isIntersecting){e.target.style.opacity='1';e.target.style.transform='translateY(0)';} }); }, {threshold:0.1});
+document.querySelectorAll('.service-card,.step,.case-card,.blog-card,.value-card').forEach(el => { el.style.opacity='0';el.style.transform='translateY(20px)';el.style.transition='opacity 0.6s ease,transform 0.6s ease';obs.observe(el); });
+</script>
+
+</body>
+</html>
