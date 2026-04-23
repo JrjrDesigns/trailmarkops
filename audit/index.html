@@ -1,1 +1,1098 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Opportunity Audit — Trailmark Ops</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #08080A;
+    --surface: #111114;
+    --surface2: #18181C;
+    --border: #222228;
+    --lime: #C8FF00;
+    --lime-dim: rgba(200,255,0,0.12);
+    --lime-glow: rgba(200,255,0,0.25);
+    --white: #F5F5F0;
+    --muted: #6B6B75;
+    --text: #DEDEDA;
+  }
 
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    min-height: 100%;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* Background grid texture */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(200,255,0,0.015) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(200,255,0,0.015) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Ambient glow top */
+  body::after {
+    content: '';
+    position: fixed;
+    top: -200px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    height: 400px;
+    background: radial-gradient(ellipse, rgba(200,255,0,0.06) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .wrapper {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px 80px;
+  }
+
+  /* Header */
+  .header {
+    width: 100%;
+    max-width: 680px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 60px;
+  }
+
+  .logo {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .logo span { color: var(--lime); }
+
+  .logo-icon {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    color: var(--lime);
+    border: 1px solid var(--border);
+    padding: 4px 10px;
+    border-radius: 4px;
+    letter-spacing: 0.05em;
+  }
+
+  /* Progress bar */
+  .progress-wrap {
+    width: 100%;
+    max-width: 680px;
+    margin-bottom: 48px;
+  }
+
+  .progress-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
+  .progress-label {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .progress-step {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--lime);
+    letter-spacing: 0.05em;
+  }
+
+  .progress-track {
+    height: 2px;
+    background: var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: var(--lime);
+    border-radius: 2px;
+    transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 0 12px var(--lime-glow);
+  }
+
+  /* Card */
+  .card {
+    width: 100%;
+    max-width: 680px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 52px 56px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--lime-dim), transparent);
+  }
+
+  /* Section tag */
+  .section-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--lime);
+    background: var(--lime-dim);
+    border: 1px solid rgba(200,255,0,0.2);
+    padding: 5px 12px;
+    border-radius: 4px;
+    margin-bottom: 24px;
+  }
+
+  .section-tag::before {
+    content: '';
+    width: 5px; height: 5px;
+    background: var(--lime);
+    border-radius: 50%;
+    box-shadow: 0 0 6px var(--lime);
+  }
+
+  /* Question */
+  .question-number {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    margin-bottom: 10px;
+  }
+
+  .question-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 600;
+    color: var(--white);
+    line-height: 1.3;
+    margin-bottom: 10px;
+  }
+
+  .question-sub {
+    font-size: 14px;
+    color: var(--muted);
+    margin-bottom: 36px;
+    line-height: 1.5;
+  }
+
+  /* Options grid */
+  .options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 40px;
+  }
+
+  .option {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 20px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+  }
+
+  .option:hover {
+    border-color: rgba(200,255,0,0.35);
+    background: rgba(200,255,0,0.04);
+  }
+
+  .option.selected {
+    border-color: var(--lime);
+    background: var(--lime-dim);
+  }
+
+  .option.selected .option-dot {
+    background: var(--lime);
+    border-color: var(--lime);
+    box-shadow: 0 0 10px var(--lime-glow);
+  }
+
+  .option.selected .option-dot::after {
+    opacity: 1;
+  }
+
+  .option-dot {
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--border);
+    border-radius: 50%;
+    flex-shrink: 0;
+    position: relative;
+    transition: all 0.2s;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .option-dot::after {
+    content: '';
+    width: 7px; height: 7px;
+    background: var(--bg);
+    border-radius: 50%;
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  .option-label {
+    font-size: 15px;
+    font-weight: 400;
+    color: var(--text);
+    transition: color 0.2s;
+    flex: 1;
+  }
+
+  .option.selected .option-label {
+    color: var(--white);
+    font-weight: 500;
+  }
+
+  /* Multi-select checkbox style */
+  .option-check {
+    width: 18px; height: 18px;
+    border: 2px solid var(--border);
+    border-radius: 4px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+  }
+
+  .option.selected .option-check {
+    background: var(--lime);
+    border-color: var(--lime);
+    box-shadow: 0 0 10px var(--lime-glow);
+  }
+
+  .option.selected .option-check::after {
+    content: '✓';
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--bg);
+  }
+
+  /* Text input */
+  .text-input {
+    width: 100%;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 20px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    color: var(--white);
+    outline: none;
+    transition: border-color 0.2s;
+    resize: none;
+    min-height: 100px;
+    margin-bottom: 40px;
+  }
+
+  .text-input::placeholder { color: var(--muted); }
+
+  .text-input:focus {
+    border-color: rgba(200,255,0,0.5);
+    background: rgba(200,255,0,0.03);
+  }
+
+  /* Form fields (lead gate) */
+  .field-group {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 40px;
+  }
+
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .field label {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .field input {
+    width: 100%;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 18px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    color: var(--white);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .field input::placeholder { color: var(--muted); }
+  .field input:focus { border-color: rgba(200,255,0,0.5); }
+
+  .field .optional {
+    font-size: 11px;
+    color: var(--muted);
+    font-weight: 400;
+    text-transform: none;
+    letter-spacing: 0;
+    margin-left: 6px;
+  }
+
+  /* Navigation */
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .btn-back {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 20px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .btn-back:hover {
+    border-color: var(--muted);
+    color: var(--text);
+  }
+
+  .btn-next {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--lime);
+    border: none;
+    border-radius: 8px;
+    padding: 14px 28px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--bg);
+    cursor: pointer;
+    transition: all 0.2s;
+    letter-spacing: 0.01em;
+    box-shadow: 0 0 30px rgba(200,255,0,0.2);
+  }
+
+  .btn-next:hover {
+    background: #d4ff1a;
+    box-shadow: 0 0 40px rgba(200,255,0,0.35);
+    transform: translateY(-1px);
+  }
+
+  .btn-next:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
+
+  .btn-next.loading {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+
+  /* Slide animation */
+  .step { display: none; }
+  .step.active {
+    display: block;
+    animation: slideIn 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateX(20px); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
+
+  /* Intro screen */
+  .intro-eyebrow {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--lime);
+    margin-bottom: 20px;
+  }
+
+  .intro-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 38px;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.2;
+    margin-bottom: 20px;
+  }
+
+  .intro-title em {
+    font-style: italic;
+    color: var(--lime);
+  }
+
+  .intro-body {
+    font-size: 16px;
+    color: var(--muted);
+    line-height: 1.7;
+    margin-bottom: 36px;
+    max-width: 520px;
+  }
+
+  .intro-stats {
+    display: flex;
+    gap: 32px;
+    margin-bottom: 40px;
+    padding: 24px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+  }
+
+  .stat { flex: 1; }
+  .stat-val {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--lime);
+    display: block;
+  }
+  .stat-label {
+    font-size: 12px;
+    color: var(--muted);
+    font-weight: 400;
+  }
+
+  .btn-start {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--lime);
+    border: none;
+    border-radius: 10px;
+    padding: 18px 36px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--bg);
+    cursor: pointer;
+    transition: all 0.2s;
+    letter-spacing: 0.01em;
+    box-shadow: 0 0 40px rgba(200,255,0,0.25);
+  }
+
+  .btn-start:hover {
+    background: #d4ff1a;
+    box-shadow: 0 0 60px rgba(200,255,0,0.4);
+    transform: translateY(-2px);
+  }
+
+  .disclaimer {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 16px;
+  }
+
+  /* Thank you screen */
+  .ty-icon {
+    width: 64px; height: 64px;
+    background: var(--lime-dim);
+    border: 1px solid rgba(200,255,0,0.3);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 28px;
+    font-size: 28px;
+  }
+
+  .ty-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 16px;
+    line-height: 1.2;
+  }
+
+  .ty-body {
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.7;
+    margin-bottom: 32px;
+    max-width: 480px;
+  }
+
+  .ty-next {
+    padding: 20px 24px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    margin-bottom: 28px;
+  }
+
+  .ty-next-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--lime);
+    margin-bottom: 8px;
+  }
+
+  .ty-next-text {
+    font-size: 14px;
+    color: var(--text);
+    line-height: 1.5;
+  }
+
+  .error-msg {
+    font-size: 13px;
+    color: #ff6b6b;
+    margin-top: -28px;
+    margin-bottom: 20px;
+    display: none;
+  }
+
+  /* Footer */
+  .footer {
+    margin-top: 40px;
+    font-size: 12px;
+    color: var(--muted);
+    text-align: center;
+  }
+
+  .footer a { color: var(--muted); text-decoration: none; }
+  .footer a:hover { color: var(--lime); }
+
+  @media (max-width: 640px) {
+    .card { padding: 36px 28px; }
+    .intro-title { font-size: 28px; }
+    .question-text { font-size: 22px; }
+    .intro-stats { flex-direction: column; gap: 16px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- Header -->
+  <header class="header">
+    <div class="logo">TRAILMARK <span>OPS</span></div>
+    <div class="logo-icon">[T]</div>
+  </header>
+
+  <!-- Progress (hidden on intro/thank you) -->
+  <div class="progress-wrap" id="progressWrap" style="display:none;">
+    <div class="progress-meta">
+      <span class="progress-label">AI Opportunity Audit</span>
+      <span class="progress-step" id="progressStep">Question 1 of 14</span>
+    </div>
+    <div class="progress-track">
+      <div class="progress-fill" id="progressFill" style="width:0%"></div>
+    </div>
+  </div>
+
+  <!-- Card -->
+  <div class="card">
+
+    <!-- ─── STEP 0: INTRO ─── -->
+    <div class="step active" id="step-intro">
+      <div class="intro-eyebrow">Free — Takes 5 Minutes</div>
+      <h1 class="intro-title">Find out where AI can make your business <em>more money.</em></h1>
+      <p class="intro-body">Answer 13 questions about your business. We'll generate a personalized AI Opportunity Report showing exactly where you're losing time and money — and what to do about it.</p>
+      <div class="intro-stats">
+        <div class="stat">
+          <span class="stat-val">~5 min</span>
+          <span class="stat-label">To complete</span>
+        </div>
+        <div class="stat">
+          <span class="stat-val">100%</span>
+          <span class="stat-label">Personalized to your business</span>
+        </div>
+        <div class="stat">
+          <span class="stat-val">Free</span>
+          <span class="stat-label">No strings attached</span>
+        </div>
+      </div>
+      <button class="btn-start" onclick="startAudit()">
+        Start My Audit
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+      <p class="disclaimer">Your report will be emailed to you. We don't sell your information.</p>
+    </div>
+
+    <!-- ─── STEP 1: Industry ─── -->
+    <div class="step" id="step-1">
+      <div class="section-tag">Your Business</div>
+      <div class="question-number">Question 1 of 13</div>
+      <h2 class="question-text">What industry are you in?</h2>
+      <p class="question-sub">This helps us give you relevant examples and accurate ROI estimates.</p>
+      <div class="options" id="opts-1">
+        <div class="option" onclick="selectOption(1, 'Healthcare / Med Spa')"><div class="option-dot"></div><span class="option-label">Healthcare / Med Spa</span></div>
+        <div class="option" onclick="selectOption(1, 'Restaurant / Food Service')"><div class="option-dot"></div><span class="option-label">Restaurant / Food Service</span></div>
+        <div class="option" onclick="selectOption(1, 'Retail')"><div class="option-dot"></div><span class="option-label">Retail</span></div>
+        <div class="option" onclick="selectOption(1, 'Professional Services')"><div class="option-dot"></div><span class="option-label">Professional Services</span></div>
+        <div class="option" onclick="selectOption(1, 'Real Estate')"><div class="option-dot"></div><span class="option-label">Real Estate</span></div>
+        <div class="option" onclick="selectOption(1, 'Construction / Trades')"><div class="option-dot"></div><span class="option-label">Construction / Trades</span></div>
+        <div class="option" onclick="selectOption(1, 'Other')"><div class="option-dot"></div><span class="option-label">Other</span></div>
+      </div>
+      <div class="nav">
+        <button class="btn-back" onclick="goBack()">← Back</button>
+        <button class="btn-next" id="next-1" onclick="goNext(1)" disabled>Continue →</button>
+      </div>
+    </div>
+
+    <!-- ─── STEP 2: Company size ─── -->
+    <div class="step" id="step-2">
+      <div class="section-tag">Your Business</div>
+      <div class="question-number">Question 2 of 13</div>
+      <h2 class="question-text">How many people work at your company, including you?</h2>
+      <p class="question-sub">Helps us recommend solutions that fit your scale.</p>
+      <div class="options" id="opts-2">
+        <div class="option" onclick="selectOption(2, '1–5 people')"><div class="option-dot"></div><span class="option-label">1–5 people</span></div>
+        <div class="option" onclick="selectOption(2, '6–15 people')"><div class="option-dot"></div><span class="option-label">6–15 people</span></div>
+        <div class="option" onclick="selectOption(2, '16–50 people')"><div class="option-dot"></div><span class="option-label">16–50 people</span></div>
+        <div class="option" onclick="selectOption(2, '51–150 people')"><div class="option-dot"></div><span class="option-label">51–150 people</span></div>
+      </div>
+      <div class="nav">
+        <button class="btn-back" onclick="goBack()">← Back</button>
+        <button class="btn-next" id="next-2" onclick="goNext(2)" disabled>Continue →</button>
+      </div>
+    </div>
+
+    <!-- ─── STEP 3: Revenue ─── -->
+    <div class="step" id="step-3">
+      <div class="section-tag">Your Business</div>
+      <div class="question-number">Question 3 of 13</div>
+      <h2 class="question-text">Roughly what's your annual revenue?</h2>
+      <p class="question-sub">We use this to calibrate ROI estimates — we won't share it.</p>
+      <div class="options" id="opts-3">
+        <div class="option" onclick="selectOption(3, 'Under $500K')"><div class="option-dot"></div><span class="option-label">Under $500K</span></div>
+        <div class="option" onclick="selectOption(3, '$500K – $2M')"><div class="option-dot"></div><span class="option-label">$500K – $2M</span></div>
+        <div class="option" onclick="selectOption(3, '$2M – $10M')"><div class="option-dot"></div><span class="option-label">$2M – $10M</span></div>
+        <div class="option" onclick="selectOption(3, 'Over $10M')"><div class="option-dot"></div><span class="option-label">Over $10M</span></div>
+      </div>
+      <div class="nav">
+        <button class="btn-back" onclick="goBack()">← Back</button>
+        <button class="btn-next" id="next-3" onclick="goNext(3)" disabled>Continue →</button>
+      </div>
+    </div>
+
+    <!-- ─── STEP 4: Painful task (open text) ─── -->
+    <div class="step" id="step-4">
+      <div class="section-tag">Where Time Goes</div>
+      <div class="question-number">Question 4 of 13</div>
+      <h2 class="question-text">What's the most time-consuming task your team does that feels like it shouldn't be?</h2>
+      <p class="question-sub">Be specific — this will appear in your report.</p>
+      <textarea class="text-input" id="input-4" placeholder="e.g. We manually enter new patient info into three different systems every morning…" oninput="checkTextInput(4)"></textarea>
+      <div class="nav">
+        <button class="btn-back" onclick="goBack()">← Back</button>
+        <button class="btn-next" id="next-4" onclick="goNext(4)" disabled>Continue →</button>
+      </div>
+    </div>
+
+    <!-- ─── STEP 5: Manual hours ─── -->
+    <div class="step" id="step-5">
+      <div class="section-tag">Where Time Goes</div>
+      <div class="question-number">Question 5 of 13</div>
+      <h2 class="question-text">How many hours per week does your team spend on repetitive manual tasks?</h2>
+      <p class="question-sub">Data entry, reporting, scheduling, follow-ups — anything that feels like it could be automated.</p>
+      <div class="options" id="opts-5">
+        <div class="option" onclick="selectOption(5, 'Less than 5 hours')"><div class="option-dot"></div><span class="option-label">Less than 5 hours</span></div>
+        <div class="option" onclick="selectOption(5, '5–15 hours')"><div class="option-dot"></div><span class="option-label">5–15 hours</span></div>
+        <div class="option" onclick="selectOption(5, '15–30 hours')"><div class="option-dot"></div><span class="option-label">15–30 hours</span></div>
+        <div class="option" onclick="selectOption(5, '30+ hours')"><div class="option-dot"></div><span class="option-label">30+ hours</span></div>
+      </div>
+      <div class="nav">
+        <button class="btn-back" onclick="goBack()">← Back</button>
+        <button class="btn-next" id="next-5" onclick="goNext(5)" disabled>Continue →</button>
+      </div>
+    </div>
+
+    <!-- ─── STEP 6: Biggest bottleneck ─── -->
+    <div class="step" id="step-6">
+      <div class="section-tag">Where Time Goes</div>
+      <div class="question-number">Question 6 of 13</div>
+      <h2 class="question-text">Which of these is your biggest operational bottleneck?</h2>
+      <p class="question-sub">Pick the one that stings most right now.</p>
+      <div class="options" id="opts-6">
+        <div class="option" onclick="selectOption(6, 'Customer follow-up and communication')"><div class="option-dot"></div><span class="option-label">Customer follow-up and communication</span></div>
+        <div class="option" onclick="selectOption(6, 'Scheduling and coordination')"><div class="option-dot"></div><span class="option-label">Scheduling and coordination</span></div>
+        <div class="option" onclick="selectOption(6, 'Tracking performance and reporting')"><div class="option-dot"></div><span class="option-label">Tracking performance and reporting</span></div>
+        <div class="option" onclick="selectOption(6, 'Staff onboarding and training')"><div class="option-dot"></div><span class="option-label">Staff onboarding and training</span></div>
+        <div class="option" onclick="selectOption(6, 'Inventory or order management')"><div class="option-dot"></div><span class="option-label">Inventory or order management</span></div>
+        <div class="option" onclick="selectOption(6, 'None — operations run smoothly')"><div class="option-dot"></div><span class="option-label">None — operations run smoothly</span></div>
+      </div>
+      <div class="nav">
+        <button class="btn-back" onclick="goBack()">← Back</button>
+        <button class="btn-next" id="next-6" onclick="goNext(6)" disabled>Continue →</button>
+      </div>
+    </div>
+
+    <!-- ─── STEP 7: How they track performance ─── -->
+    <div class="step" id="step-7">
+      <div class="section-tag">Data & Technology</div>
+      <div class="question-number">Question 7 of 13</div>
+      <h2 class="question-text">How does your business currently track performance?</h2>
+      <p class="question-sub">Sales, appointments, customer activity, revenue — however you keep score.</p>
+      <div class="options" id="opts-7">
+        <div class="option" onclick="selectOption(7, 'Spreadsheets or manual notes')"><div class="option-dot"></div><span class="option-label">Spreadsheets or manual notes</span></div>
+        <div class="option" onclick="selectOption(7, 'Basic software (QuickBooks, simple CRM, etc.)')"><div class="option-dot"></div><span class="option-label">Basic software (QuickBooks, simple CRM, etc.)</span></div>
+        <div class="option" onclick="selectOption(7, 'Industry-specific software (Jane App, Toast, etc.)')"><div class="option-dot"></div><span class="option-label">Industry-specific software (Jane App, Toast, etc.)</span></div>
+        <div class="option" onclick="selectOption(7, 'Multiple systems that don\'t talk to each other')"><div class="option-dot"></div><span class="option-label">Multiple systems that don't talk to each other</span></div>
+        <div class="option" onclick="selectOption(7, 'A dashboard we actually use and trust')"><div class="option-dot"></div><span class="option-label">A dashboard we actually use and trust</span></div>
+      </div>
+      <div class="nav">
+        <button class="btn-back" onclick="goBack()">← Back</button>
+        <button class="btn-next" id="next-7" onclick="goNext(7)" disabled>Continue →</button>
+      </div>
+    </div>
+
+    <!-- ─── STEP 8: Current AI usage ─── -->
+    <div class="step" id="step-8">
+      <div class="section-tag">Data & Technology</div>
+      <div class="question-number">Question 8 of 13</div>
+      <h2 class="question-text">Are you currently using any AI tools in your business?</h2>
+      <p class="question-sub">No judgment either way — this just helps us calibrate where to start.</p>
+      <div class="options" id="opts-8">
+        <div class="option" onclick="selectOption(8, 'No — not sure where to start')"><div class="option-dot"></div><span class="option-label">No — not sure where to start</span></div>
+        <div class="option" onclick="selectOption(8, 'Tried a couple things but nothing stuck')"><div class="option-dot"></div><span class="option-label">Tried a couple things but nothing stuck</span></div>
+        <div class="option" onclick="selectOption(8, 'Yes, informally (ChatGPT occasionally, etc.)')"><div class="option-dot"></div><span class="option-label">Yes, informally (ChatGPT occasionally, etc.)</span></div>
+        <div class="option" onclick="selectOption(8, 'Yes — we have real AI workflows in place')"><div class="option-dot"></div><span class="option-label">Yes — we have real AI workflows in place</span></div>
+      </div>
+      <div class="nav">
+        <button class="btn-back" onclick="goBack()">← Back</button>
+        <button class="btn-next" id="next-8" onclick="goNext(8)" disabled>Continue →</button>
+      </div>
+    </div>
+
+    <!-- ─── STEP 9: Tech stack (multi-select) ─── -->
+    <div class="step" id="step-9">
+      <div class="section-tag">Data & Technology</div>
+      <div class="question-number">Question 9 of 13</div>
+      <h2 class="question-text">What does your current tech stack look like day-to-day?</h2>
+      <p class="question-sub">Select all that apply.</p>
+      <div class="options" id="opts-9">
+        <div class="option multi" onclick="toggleMulti(9, this, 'Google Workspace (Gmail, Sheets, Drive)')"><div class="option-check"></div><span class="option-label">Google Workspace (Gmail, Sheets, Drive)</span></div>
+        <div class="option multi" onclick="toggleMulti(9, this, 'Microsoft 365')"><div class="option-check"></div><span class="option-label">Microsoft 365</span></div>
+        <div class="option multi" onclick="toggleMulti(9, this, 'A CRM (HubSpot, Salesforce, etc.)')"><div class="option-check"></div><span class="option-label">A CRM (HubSpot, Salesforce, etc.)</span></div>
+        <div class="option multi" onclick="toggleMulti(9, this, 'Industry-specific software')"><div class="option-check"></div><span class="option-label">Industry-specific software</span></div>
+        <div class="option multi" onclick="toggleMulti(9, this, 'Mostly manual / pen and paper')"><div class="option-check"></div><span class="option-label">Mostly manual / pen and paper</span></div>
+        <div class="option multi" onclick="toggleMulti(9, this, 'I don\'t know what half my team uses')"><div class="option-check"></div><span class="option-label">I honestly don't know what half my team uses</span></div>
+      </div>
+      <div class="nav">
+        <button class="btn-back" onclick="goBack()">← Back</button>
+        <button class="btn-next" id="next-9" onclick="goNext(9)" disabled>Continue →</button>
+      </div>
+    </div>
+
+    <!-- ─── STEP 10: Decision maker ─── -->
+    <div class="step" id="step-10">
+      <div class="section-tag">Decision Making</div>
+      <div class="question-number">Question 10 of 13</div>
+      <h2 class="question-text">When it comes to adopting new technology, who has the final say?</h2>
+      <p class="question-sub">This helps us frame recommendations appropriately for your situation.</p>
+      <div class="options" id="opts-10">
+        <div class="option" onclick="selectOption(10, 'Me — I make the call')"><div class="option-dot"></div><span class="option-label">Me — I make the call</span></div>
+        <div class="option" onclick="selectOption(10, 'Me, but I\'d want input from a partner or key employee')"><div class="option-dot"></div><span class="option-label">Me, but I'd want input from a partner or key employee</span></div>
+        <div class="option" onclick="selectOption(10, 'I\'d need to bring it to ownership or a board')"><div class="option-dot"></div><span class="option-label">I'd need to bring it to ownership or a board</span></div>
+        <div class="option" onclick="selectOption(10, 'It\'s complicated')"><div class="option-dot"></div><span class="option-label">It's complicated</span></div>
+      </div>
+      <div class="nav">
+        <button class="btn-back" onclick="goBack()">← Back</button>
+        <button class="btn-next" id="next-10" onclick="goNext(10)" disabled>Continue →</button>
+      </div>
+    </div>
+
+    <!-- ─── STEP 11: Urgency ─── -->
+    <div class="step" id="step-11">
+      <div class="section-tag">Decision Making</div>
+      <div class="question-number">Question 11 of 13</div>
+      <h2 class="question-text">If you found a solution that demonstrably saved your team 10 hours a week, how quickly could you realistically move on it?</h2>
+      <p class="question-sub">Be honest — there's no wrong answer here.</p>
+      <div class="options" id="opts-11">
+        <div class="option" onclick="selectOption(11, 'Within a month if the ROI was clear')"><div class="option-dot"></div><span class="option-label">Within a month if the ROI was clear</span></div>
+        <div class="option" onclick="selectOption(11, '1–3 months — need to think it through')"><div class="option-dot"></div><span class="option-label">1–3 months — need to think it through</span></div>
+        <div class="option" onclick="selectOption(11, 'Longer — budget or buy-in takes time')"><div class="option-dot"></div><span class="option-label">Longer — budget or buy-in takes time</span></div>
+        <div class="option" onclick="selectOption(11, 'Not sure — depends on cost')"><div class="option-dot"></div><span class="option-label">Not sure — depends on cost</span></div>
+      </div>
+      <div class="nav">
+        <button class="btn-back" onclick="goBack()">← Back</button>
+        <button class="btn-next" id="next-11" onclick="goNext(11)" disabled>Continue →</button>
+      </div>
+    </div>
+
+    <!-- ─── STEP 12: 12-month priority ─── -->
+    <div class="step" id="step-12">
+      <div class="section-tag">Vision</div>
+      <div class="question-number">Question 12 of 13</div>
+      <h2 class="question-text">What's your #1 business priority for the next 12 months?</h2>
+      <p class="question-sub">This will open your personalized report.</p>
+      <div class="options" id="opts-12">
+        <div class="option" onclick="selectOption(12, 'Grow revenue / bring in more customers')"><div class="option-dot"></div><span class="option-label">Grow revenue / bring in more customers</span></div>
+        <div class="option" onclick="selectOption(12, 'Improve margins / reduce costs')"><div class="option-dot"></div><span class="option-label">Improve margins / reduce costs</span></div>
+        <div class="option" onclick="selectOption(12, 'Scale without hiring more people')"><div class="option-dot"></div><span class="option-label">Scale without hiring more people</span></div>
+        <div class="option" onclick="selectOption(12, 'Get my time back / stop being the bottleneck')"><div class="option-dot"></div><span class="option-label">Get my time back / stop being the bottleneck</span></div>
+        <div class="option" onclick="selectOption(12, 'Improve the customer experience')"><div class="option-dot"></div><span class="option-label">Improve the customer experience</span></div>
+        <div class="option" onclick="selectOption(12, 'Just stabilize — it\'s been a rough stretch')"><div class="option-dot"></div><span class="option-label">Just stabilize — it's been a rough stretch</span></div>
+      </div>
+      <div class="nav">
+        <button class="btn-back" onclick="goBack()">← Back</button>
+        <button class="btn-next" id="next-12" onclick="goNext(12)" disabled>Continue →</button>
+      </div>
+    </div>
+
+    <!-- ─── STEP 13: Vision open text ─── -->
+    <div class="step" id="step-13">
+      <div class="section-tag">Vision</div>
+      <div class="question-number">Question 13 of 13</div>
+      <h2 class="question-text">What would it honestly mean for your business if your team got 20% of their time back?</h2>
+      <p class="question-sub">Your answer will appear in your report's closing section. Be specific.</p>
+      <textarea class="text-input" id="input-13" placeholder="e.g. I could finally focus on growing our second location instead of putting out fires every day…" oninput="checkTextInput(13)"></textarea>
+      <div class="nav">
+        <button class="btn-back" onclick="goBack()">← Back</button>
+        <button class="btn-next" id="next-13" onclick="goNext(13)" disabled>Continue →</button>
+      </div>
+    </div>
+
+    <!-- ─── STEP 14: LEAD GATE ─── -->
+    <div class="step" id="step-14">
+      <div class="section-tag">Almost There</div>
+      <div class="question-number">Your Report</div>
+      <h2 class="question-text">Where should we send your AI Opportunity Report?</h2>
+      <p class="question-sub">Your personalized report will be in your inbox within a couple of minutes. We don't sell your information.</p>
+      <div class="field-group">
+        <div class="field">
+          <label>First Name</label>
+          <input type="text" id="lead-name" placeholder="James" oninput="checkLeadGate()">
+        </div>
+        <div class="field">
+          <label>Business Name</label>
+          <input type="text" id="lead-business" placeholder="Acme Medspa" oninput="checkLeadGate()">
+        </div>
+        <div class="field">
+          <label>Email Address</label>
+          <input type="email" id="lead-email" placeholder="you@yourbusiness.com" oninput="checkLeadGate()">
+        </div>
+        <div class="field">
+          <label>Phone Number <span class="optional">(optional — for your free 20-min consult)</span></label>
+          <input type="tel" id="lead-phone" placeholder="(614) 555-0100">
+        </div>
+      </div>
+      <div class="error-msg" id="error-msg">Please fill in your name, business name, and a valid email address.</div>
+      <div class="nav">
+        <button class="btn-back" onclick="goBack()">← Back</button>
+        <button class="btn-next" id="next-14" onclick="submitAudit()" disabled>
+          <span id="submit-label">Generate My Report →</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- ─── THANK YOU ─── -->
+    <div class="step" id="step-thanks">
+      <div class="ty-icon">✦</div>
+      <h2 class="ty-title">Your report is being generated.</h2>
+      <p class="ty-body">Check your inbox in the next couple of minutes. We've analyzed your answers and your personalized AI Opportunity Report is on its way.</p>
+      <div class="ty-next">
+        <div class="ty-next-label">What Happens Next</div>
+        <div class="ty-next-text">James Francis from Trailmark Ops will personally review your results and follow up within 24 hours with a specific recommendation based on what you shared today.</div>
+      </div>
+      <p class="disclaimer">Questions in the meantime? Reach us at <a href="mailto:hello@trailmarkops.com" style="color:var(--lime)">hello@trailmarkops.com</a></p>
+    </div>
+
+  </div><!-- /card -->
+
+  <div class="footer">
+    <a href="https://trailmarkops.com">trailmarkops.com</a> &nbsp;·&nbsp; © 2025 Trailmark Ops
+  </div>
+
+</div><!-- /wrapper -->
+
+<script>
+  // ─── State ───
+  const answers = {};
+  const multiAnswers = { 9: [] };
+  let currentStep = 'intro';
+  const stepOrder = ['intro', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 'thanks'];
+  const totalQuestions = 13;
+
+  // ─── REPLACE THIS with your n8n webhook URL ───
+  const N8N_WEBHOOK_URL = 'https://your-n8n-webhook-url-here.com/webhook/trailmark-audit';
+
+  function showStep(step) {
+    document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+    document.getElementById(`step-${step}`).classList.add('active');
+    currentStep = step;
+
+    const progressWrap = document.getElementById('progressWrap');
+    if (step === 'intro' || step === 'thanks') {
+      progressWrap.style.display = 'none';
+    } else {
+      progressWrap.style.display = 'block';
+      const qNum = typeof step === 'number' ? step : 13;
+      const pct = ((qNum - 1) / totalQuestions) * 100;
+      document.getElementById('progressFill').style.width = pct + '%';
+      const label = step === 14 ? 'Your Info' : `Question ${step} of ${totalQuestions}`;
+      document.getElementById('progressStep').textContent = label;
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function startAudit() { showStep(1); }
+
+  function goBack() {
+    const idx = stepOrder.indexOf(currentStep);
+    if (idx > 0) showStep(stepOrder[idx - 1]);
+  }
+
+  function goNext(step) {
+    const idx = stepOrder.indexOf(step);
+    if (idx < stepOrder.length - 1) showStep(stepOrder[idx + 1]);
+  }
+
+  // ─── Single-select ───
+  function selectOption(step, value) {
+    answers[step] = value;
+    const opts = document.querySelectorAll(`#opts-${step} .option`);
+    opts.forEach(o => o.classList.remove('selected'));
+    event.currentTarget.classList.add('selected');
+    const nextBtn = document.getElementById(`next-${step}`);
+    if (nextBtn) nextBtn.disabled = false;
+  }
+
+  // ─── Multi-select ───
+  function toggleMulti(step, el, value) {
+    el.classList.toggle('selected');
+    const arr = multiAnswers[step] || [];
+    const i = arr.indexOf(value);
+    if (i === -1) arr.push(value);
+    else arr.splice(i, 1);
+    multiAnswers[step] = arr;
+    answers[step] = arr.join(', ');
+    document.getElementById(`next-${step}`).disabled = arr.length === 0;
+  }
+
+  // ─── Text inputs ───
+  function checkTextInput(step) {
+    const val = document.getElementById(`input-${step}`).value.trim();
+    answers[step] = val;
+    document.getElementById(`next-${step}`).disabled = val.length < 3;
+  }
+
+  // ─── Lead gate validation ───
+  function checkLeadGate() {
+    const name = document.getElementById('lead-name').value.trim();
+    const biz  = document.getElementById('lead-business').value.trim();
+    const email = document.getElementById('lead-email').value.trim();
+    const valid = name.length > 0 && biz.length > 0 && /\S+@\S+\.\S+/.test(email);
+    document.getElementById('next-14').disabled = !valid;
+  }
+
+  // ─── Submit ───
+  async function submitAudit() {
+    const name  = document.getElementById('lead-name').value.trim();
+    const biz   = document.getElementById('lead-business').value.trim();
+    const email = document.getElementById('lead-email').value.trim();
+    const phone = document.getElementById('lead-phone').value.trim();
+
+    if (!name || !biz || !/\S+@\S+\.\S+/.test(email)) {
+      document.getElementById('error-msg').style.display = 'block';
+      return;
+    }
+    document.getElementById('error-msg').style.display = 'none';
+
+    const btn = document.getElementById('next-14');
+    btn.classList.add('loading');
+    document.getElementById('submit-label').textContent = 'Generating…';
+    btn.disabled = true;
+
+    const payload = {
+      lead: { name, business: biz, email, phone },
+      answers: {
+        q1_industry:         answers[1]  || '',
+        q2_company_size:     answers[2]  || '',
+        q3_revenue:          answers[3]  || '',
+        q4_painful_task:     answers[4]  || '',
+        q5_manual_hours:     answers[5]  || '',
+        q6_bottleneck:       answers[6]  || '',
+        q7_performance_tracking: answers[7] || '',
+        q8_ai_usage:         answers[8]  || '',
+        q9_tech_stack:       answers[9]  || '',
+        q10_decision_maker:  answers[10] || '',
+        q11_urgency:         answers[11] || '',
+        q12_priority:        answers[12] || '',
+        q13_vision:          answers[13] || '',
+      },
+      submitted_at: new Date().toISOString()
+    };
+
+    try {
+      await fetch(N8N_WEBHOOK_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+        mode: 'no-cors'
+      });
+    } catch (e) {
+      console.error('Webhook error:', e);
+    }
+
+    showStep('thanks');
+  }
+</script>
+</body>
+</html>
