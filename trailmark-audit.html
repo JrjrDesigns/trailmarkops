@@ -1081,15 +1081,15 @@
     };
 
     try {
-      await fetch(N8N_WEBHOOK_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
-        mode: 'no-cors'
-      });
-    } catch (e) {
-      console.error('Webhook error:', e);
-    }
+  await fetch(N8N_WEBHOOK_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  });
+} catch (e) {
+  console.error('Webhook error:', e);
+}
+
 
     showStep('thanks');
   }
