@@ -971,7 +971,7 @@
   const totalQuestions = 13;
 
   // ─── REPLACE THIS with your n8n webhook URL ───
-  const N8N_WEBHOOK_URL = 'https://your-n8n-webhook-url-here.com/webhook/trailmark-audit';
+  const N8N_WEBHOOK_URL = 'https://james-francis.app.n8n.cloud/webhook/trailmarkops_audit';
 
   function showStep(step) {
     document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
@@ -1081,15 +1081,15 @@
     };
 
     try {
-      await fetch(N8N_WEBHOOK_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
-        mode: 'no-cors'
-      });
-    } catch (e) {
-      console.error('Webhook error:', e);
-    }
+  await fetch(N8N_WEBHOOK_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  });
+} catch (e) {
+  console.error('Webhook error:', e);
+}
+
 
     showStep('thanks');
   }
