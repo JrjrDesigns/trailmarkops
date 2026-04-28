@@ -3,37 +3,551 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Trailmark Ops — AI Operations for Growing Businesses</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<title>Trailmark Ops — AI Operations Consulting</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,200;0,300;0,400;0,500;1,300&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
-:root {
-  --bg: #08080A;
-  --bg-section: #0E0E12;
-  --bg-card: #14141A;
-  --bg-card-hover: #1A1A22;
-  --text: #EEEEE8;
-  --text-mid: #9999A0;
-  --text-dim: #5C5C64;
-  --accent: #C8FF00;
-  --accent-soft: rgba(200,255,0,0.10);
-  --accent-mid: rgba(200,255,0,0.22);
-  --border: #1E1E26;
-  --serif: 'Playfair Display', Georgia, serif;
-  --sans: 'DM Sans', Helvetica, Arial, sans-serif;
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --bg:#0A0A0A;
+  --bg2:#0F0F0F;
+  --border:rgba(255,255,255,0.07);
+  --border2:rgba(255,255,255,0.12);
+  --text:#F0F0ED;
+  --text2:rgba(255,255,255,0.68);
+  --text3:rgba(255,255,255,0.50);
+  --accent:#2B7FFF;
+  --accent-dim:rgba(43,127,255,0.08);
+  --accent-mid:rgba(43,127,255,0.22);
+  --sans:'DM Sans',sans-serif;
+  --mono:'DM Mono',monospace;
 }
+html{scroll-behavior:smooth;}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+a{text-decoration:none;color:inherit;}
+.container{max-width:1140px;margin:0 auto;padding:0 40px;}
 
-html { scroll-behavior: smooth; }
-body { font-family: var(--sans); background: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
-a { text-decoration: none; color: inherit; }
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;border-bottom:0.5px solid var(--border);background:rgba(10,10,10,0.92);backdrop-filter:blur(16px);}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:56px;}
+.logo{font-size:14px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--text);}
+.logo span{color:var(--accent);}
+.nav-links{display:flex;align-items:center;gap:36px;}
+.nav-links a{font-size:13px;color:var(--text2);transition:color 0.2s;font-weight:300;}
+.nav-links a:hover{color:var(--text);}
+.nav-cta{font-size:13px;font-weight:400;color:var(--text);border:0.5px solid var(--border2);border-radius:4px;padding:7px 16px;transition:all 0.2s;cursor:pointer;background:transparent;font-family:var(--sans);}
+.nav-cta:hover{border-color:rgba(255,255,255,0.3);}
 
-/* ── UTILITY ── */
-.container { max-width: 1200px; margin: 0 auto; padding: 0 40px; }
-.section { padding: 120px 0; }
-.section-alt { background: var(--bg-section); }
-.tag { display: inline-block; font-size: 11px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase; color: var(--accent); padding: 8px 16px; border: 1px solid var(--accent-mid); border-radius: 100px; margin-bottom: 24px; }
-.section-heading { font-family: var(--serif); font-size: clamp(34px, 4.5vw, 52px); font-weight: 400; line-height: 1.15; margin-bottom: 20px; }
+/* HERO */
+.hero{padding:140px 0 100px;border-bottom:0.5px solid var(--border);}
+.hero-inner{display:grid;grid-template-columns:1fr 400px;gap:80px;align-items:start;}
+.hero-tag{font-family:var(--mono);font-size:12px;font-weight:300;letter-spacing:0.14em;text-transform:uppercase;color:var(--text3);margin-bottom:32px;display:flex;align-items:center;gap:12px;}
+.hero-tag::before{content:'';width:20px;height:0.5px;background:var(--text3);}
+h1{font-size:clamp(36px,4.8vw,58px);font-weight:300;line-height:1.06;letter-spacing:-0.025em;color:var(--text);margin-bottom:24px;}
+h1 em{font-style:italic;color:var(--text2);}
+.hero-sub{font-size:16px;font-weight:300;color:var(--text2);line-height:1.75;margin-bottom:44px;max-width:440px;}
+.hero-btns{display:flex;gap:12px;align-items:center;margin-bottom:48px;}
+.btn-primary{background:var(--accent);color:#fff;border:none;border-radius:4px;padding:12px 24px;font-family:var(--sans);font-size:14px;font-weight:500;cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:all 0.2s;}
+.btn-primary:hover{background:#1a6ef0;}
+.btn-ghost{background:transparent;color:var(--text2);border:0.5px solid var(--border2);border-radius:4px;padding:12px 24px;font-family:var(--sans);font-size:14px;font-weight:300;cursor:pointer;transition:all 0.2s;}
+.btn-ghost:hover{border-color:rgba(255,255,255,0.3);color:var(--text);}
+.hero-proof{display:flex;gap:28px;border-top:0.5px solid var(--border);padding-top:28px;}
+.proof-item{font-size:12px;color:var(--text3);font-weight:300;display:flex;align-items:center;gap:8px;letter-spacing:0.02em;}
+.proof-dot{width:3px;height:3px;background:var(--accent);border-radius:50%;flex-shrink:0;}
+
+/* AUDIT CARD */
+.audit-card{background:var(--bg2);border:0.5px solid var(--border2);border-radius:8px;overflow:hidden;position:relative;}
+.audit-card::before{content:'';position:absolute;top:0;left:15%;right:15%;height:0.5px;background:linear-gradient(90deg,transparent,var(--accent),transparent);}
+.ac-header{padding:24px 24px 18px;border-bottom:0.5px solid var(--border);}
+.ac-label{font-family:var(--mono);font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--accent);margin-bottom:10px;}
+.ac-title{font-size:17px;font-weight:300;color:var(--text);margin-bottom:5px;letter-spacing:-0.01em;}
+.ac-sub{font-size:13px;color:var(--text3);line-height:1.5;font-weight:300;}
+.ac-body{padding:16px 24px 8px;}
+.ac-q{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:0.5px solid var(--border);}
+.ac-q:last-of-type{border-bottom:none;}
+.ac-qn{font-family:var(--mono);font-size:10px;color:var(--accent);flex-shrink:0;margin-top:2px;opacity:0.8;letter-spacing:0.04em;}
+.ac-qt{font-size:13px;color:var(--text3);line-height:1.4;font-weight:300;}
+.ac-footer{padding:16px 24px 22px;}
+.ac-stats{display:flex;border:0.5px solid var(--border);border-radius:4px;overflow:hidden;margin-bottom:14px;}
+.ac-stat{flex:1;padding:11px 12px;text-align:center;border-right:0.5px solid var(--border);}
+.ac-stat:last-child{border-right:none;}
+.ac-stat-val{display:block;font-size:18px;font-weight:300;color:var(--text);line-height:1;margin-bottom:3px;letter-spacing:-0.02em;}
+.ac-stat-label{font-family:var(--mono);font-size:9px;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;}
+.ac-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;background:var(--accent);color:#fff;border:none;border-radius:4px;padding:12px;font-family:var(--sans);font-size:13px;font-weight:500;cursor:pointer;transition:all 0.2s;}
+.ac-btn:hover{background:#1a6ef0;}
+.ac-disclaimer{text-align:center;font-size:11px;color:var(--text3);margin-top:10px;font-weight:300;letter-spacing:0.02em;}
+
+/* PROOF BAR */
+.proof-bar{padding:20px 0;border-bottom:0.5px solid var(--border);}
+.pb-inner{display:flex;align-items:center;gap:36px;}
+.pb-label{font-family:var(--mono);font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--text3);white-space:nowrap;}
+.pb-div{width:0.5px;height:14px;background:var(--border2);flex-shrink:0;}
+.pb-items{display:flex;gap:32px;flex-wrap:wrap;}
+.pb-item{font-size:13px;font-weight:300;color:var(--text3);display:flex;align-items:center;gap:8px;}
+.pb-item::before{content:'';width:3px;height:3px;background:var(--accent);border-radius:50%;opacity:0.6;}
+
+/* FIGS */
+.figs{padding:120px 0;border-bottom:0.5px solid var(--border);}
+.figs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:0.5px solid var(--border);overflow:visible;}
+.fig-cell{padding:48px 40px 52px;position:relative;border-right:0.5px solid var(--border);overflow:visible;}
+.fig-cell:last-child{border-right:none;}
+.fig-label{font-family:var(--mono);font-size:11px;font-weight:300;color:var(--text3);letter-spacing:0.1em;margin-bottom:40px;}
+.fig-illustration{margin-bottom:40px;display:flex;justify-content:center;overflow:visible;}
+.fig-title{font-size:16px;font-weight:400;color:var(--text);margin-bottom:10px;letter-spacing:-0.01em;}
+.fig-desc{font-size:14px;font-weight:300;color:var(--text2);line-height:1.7;}
+
+/* SERVICES */
+.services{padding:120px 0;border-bottom:0.5px solid var(--border);}
+.services-header{margin-bottom:80px;}
+.section-label{font-family:var(--mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--text3);margin-bottom:20px;}
+h2{font-size:clamp(28px,3.8vw,46px);font-weight:300;line-height:1.1;letter-spacing:-0.02em;color:var(--text);}
+h2 em{font-style:italic;color:var(--text2);}
+.services-grid{display:flex;flex-direction:column;}
+.service-row{display:grid;grid-template-columns:180px 1fr 160px;align-items:start;padding:36px 0;border-top:0.5px solid var(--border);gap:60px;}
+.svc-num{font-family:var(--mono);font-size:12px;color:var(--text3);letter-spacing:0.06em;padding-top:3px;}
+.svc-title{font-size:20px;font-weight:300;color:var(--text);margin-bottom:12px;letter-spacing:-0.01em;}
+.svc-desc{font-size:14px;font-weight:300;color:var(--text2);line-height:1.75;max-width:520px;}
+.svc-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px;}
+.svc-tag{font-family:var(--mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text3);border:0.5px solid var(--border);border-radius:2px;padding:4px 8px;}
+.svc-link{font-family:var(--mono);font-size:11px;color:var(--accent);padding-top:3px;text-align:right;white-space:nowrap;}
+
+/* CASE STUDIES */
+.cases{padding:120px 0;border-bottom:0.5px solid var(--border);}
+.cases-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;border:0.5px solid var(--border);margin-top:60px;}
+.case-card{padding:48px 40px;border-right:0.5px solid var(--border);}
+.case-card:last-child{border-right:none;}
+.case-industry{font-family:var(--mono);font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin-bottom:20px;opacity:0.8;}
+.case-title{font-size:22px;font-weight:300;color:var(--text);margin-bottom:16px;line-height:1.25;letter-spacing:-0.01em;}
+.case-body{font-size:14px;font-weight:300;color:var(--text2);line-height:1.8;margin-bottom:32px;}
+.case-results{display:flex;gap:32px;}
+.cr-val{font-size:28px;font-weight:200;color:var(--text);display:block;line-height:1;margin-bottom:4px;letter-spacing:-0.03em;}
+.cr-label{font-family:var(--mono);font-size:10px;color:var(--text3);letter-spacing:0.08em;text-transform:uppercase;}
+
+/* TESTIMONIAL */
+.testimonial{padding:120px 0;border-bottom:0.5px solid var(--border);}
+.t-inner{max-width:680px;margin:0 auto;text-align:center;}
+.t-quote{font-size:clamp(20px,2.5vw,28px);font-weight:300;font-style:italic;color:var(--text);line-height:1.55;margin-bottom:36px;letter-spacing:-0.01em;}
+.t-quote::before{content:'\201C';color:var(--accent);}
+.t-quote::after{content:'\201D';color:var(--accent);}
+.t-author{display:flex;align-items:center;justify-content:center;gap:14px;}
+.t-avatar{width:40px;height:40px;border-radius:50%;background:var(--accent-dim);border:0.5px solid var(--accent-mid);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:400;color:var(--accent);}
+.t-name{font-size:14px;font-weight:400;color:var(--text);}
+.t-role{font-size:12px;font-weight:300;color:var(--text3);}
+
+/* ABOUT */
+.about{padding:120px 0;border-bottom:0.5px solid var(--border);}
+.about-inner{display:grid;grid-template-columns:1fr 1fr;gap:100px;align-items:center;}
+.about-body{font-size:15px;font-weight:300;color:var(--text2);line-height:1.8;margin-bottom:20px;}
+.about-vals{margin-top:40px;display:flex;flex-direction:column;gap:20px;}
+.about-val{display:flex;gap:16px;align-items:flex-start;}
+.av-marker{font-family:var(--mono);font-size:10px;color:var(--accent);margin-top:4px;letter-spacing:0.04em;flex-shrink:0;}
+.av-text{font-size:14px;font-weight:300;color:var(--text2);line-height:1.65;}
+.av-text strong{color:var(--text);font-weight:400;}
+.about-graphic{background:var(--bg2);border:0.5px solid var(--border);border-radius:4px;aspect-ratio:4/5;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
+.about-graphic::before{content:'';position:absolute;inset:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:32px 32px;}
+.ag-initials{font-size:52px;font-weight:200;color:var(--text3);position:relative;z-index:1;letter-spacing:-0.04em;}
+
+/* CTA */
+.cta-section{padding:140px 0;border-bottom:0.5px solid var(--border);}
+.cta-inner{max-width:600px;margin:0 auto;text-align:center;}
+.cta-inner h2{margin-bottom:20px;}
+.cta-inner p{font-size:16px;font-weight:300;color:var(--text2);line-height:1.7;margin-bottom:40px;}
+.cta-btns{display:flex;gap:12px;justify-content:center;}
+
+/* FOOTER */
+footer{padding:60px 0 40px;}
+.footer-top{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:48px;padding-bottom:48px;border-bottom:0.5px solid var(--border);}
+.footer-tagline{font-size:13px;font-weight:300;color:var(--text3);letter-spacing:0.04em;}
+.footer-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:40px;margin-bottom:48px;}
+.footer-col h4{font-family:var(--mono);font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--text3);margin-bottom:16px;}
+.footer-col a{display:block;font-size:13px;font-weight:300;color:var(--text3);margin-bottom:8px;transition:color 0.2s;}
+.footer-col a:hover{color:var(--text);}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:24px;border-top:0.5px solid var(--border);}
+.footer-bottom p{font-size:12px;color:var(--text3);font-weight:300;}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  .hero-inner,.about-inner{grid-template-columns:1fr;}
+  .audit-card{max-width:480px;}
+  .figs-grid,.cases-grid{grid-template-columns:1fr;}
+  .fig-cell{border-right:none;border-bottom:0.5px solid var(--border);}
+  .case-card{border-right:none;border-bottom:0.5px solid var(--border);}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:32px;}
+  .service-row{grid-template-columns:1fr;gap:12px;}
+  .svc-link{text-align:left;}
+}
+@media(max-width:768px){
+  .container{padding:0 24px;}
+  .nav-links{display:none;}
+  .hero{padding:100px 0 70px;}
+  .pb-items{gap:20px;}
+  .hero-proof{flex-direction:column;gap:12px;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="container nav-inner">
+    <div class="logo">TRAILMARK <span>OPS</span></div>
+    <div class="nav-links">
+      <a href="#services">Services</a>
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+      <a href="tel:7402742424" class="nav-cta">Book a Call</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-tag">AI Operations Consulting — Columbus, Ohio</div>
+        <h1>You've worked hard to build this. Now let's make it work <em>smarter for you.</em></h1>
+        <p class="hero-sub">AI is changing how every business operates. Most owners don't know where to start. We've walked this trail — and we'll guide you down it faster than you thought possible.</p>
+        <div class="hero-btns">
+          <a href="/audit"><button class="btn-primary">Take the Free AI Audit →</button></a>
+          <a href="tel:7402742424"><button class="btn-ghost">Book a Call</button></a>
+        </div>
+        <div class="hero-proof">
+          <div class="proof-item"><div class="proof-dot"></div>Free — 5 minutes</div>
+          <div class="proof-item"><div class="proof-dot"></div>Personalized report</div>
+          <div class="proof-item"><div class="proof-dot"></div>No pitch. No pressure.</div>
+        </div>
+      </div>
+
+      <div class="audit-card">
+        <div class="ac-header">
+          <div class="ac-label">Free Audit Tool</div>
+          <div class="ac-title">AI Opportunity Report</div>
+          <div class="ac-sub">15 questions. A personalized report showing exactly where AI saves you time and money.</div>
+        </div>
+        <div class="ac-body">
+          <div class="ac-q"><div class="ac-qn">Q4 →</div><div class="ac-qt">What's the most time-consuming task that feels like it shouldn't be?</div></div>
+          <div class="ac-q"><div class="ac-qn">Q7 →</div><div class="ac-qt">Which operational bottleneck stings the most right now?</div></div>
+          <div class="ac-q"><div class="ac-qn">Q13 →</div><div class="ac-qt">If a solution saved 10 hrs/week, how fast could you move on it?</div></div>
+        </div>
+        <div class="ac-footer">
+          <div class="ac-stats">
+            <div class="ac-stat"><span class="ac-stat-val">5</span><span class="ac-stat-label">Minutes</span></div>
+            <div class="ac-stat"><span class="ac-stat-val">15</span><span class="ac-stat-label">Questions</span></div>
+            <div class="ac-stat"><span class="ac-stat-val">Free</span><span class="ac-stat-label">Always</span></div>
+          </div>
+          <a href="/audit"><button class="ac-btn">Start My Free Audit →</button></a>
+          <p class="ac-disclaimer">No credit card. No spam. Just answers.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROOF BAR -->
+<div class="proof-bar">
+  <div class="container pb-inner">
+    <span class="pb-label">Working with</span>
+    <div class="pb-div"></div>
+    <div class="pb-items">
+      <span class="pb-item">Med Spas</span>
+      <span class="pb-item">Restaurant Groups</span>
+      <span class="pb-item">Professional Services</span>
+      <span class="pb-item">Construction & Trades</span>
+      <span class="pb-item">Retail Operations</span>
+    </div>
+  </div>
+</div>
+
+<!-- FIGS -->
+<section class="figs">
+  <div class="container">
+    <div class="figs-grid">
+
+      <div class="fig-cell">
+        <div class="fig-label">FIG 0.1</div>
+        <div class="fig-illustration">
+          <svg viewBox="0 0 260 220" width="385" height="329" xmlns="http://www.w3.org/2000/svg">
+            <!-- Layer 0 -->
+            <polygon points="130,185 198,224 158,248 90,209" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.25)" stroke-width="0.5"/>
+            <polygon points="130,185 198,224 198,231 130,192" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.16)" stroke-width="0.5"/>
+            <polygon points="130,185 90,209 90,216 130,192" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.14)" stroke-width="0.5"/>
+            <!-- Layer 1 -->
+            <polygon points="130,165 198,204 158,228 90,189" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.28)" stroke-width="0.5"/>
+            <polygon points="130,165 198,204 198,211 130,172" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.18)" stroke-width="0.5"/>
+            <polygon points="130,165 90,189 90,196 130,172" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.14)" stroke-width="0.5"/>
+            <!-- Layer 2 -->
+            <polygon points="130,145 198,184 158,208 90,169" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.32)" stroke-width="0.5"/>
+            <polygon points="130,145 198,184 198,191 130,152" fill="rgba(255,255,255,0.035)" stroke="rgba(255,255,255,0.20)" stroke-width="0.5"/>
+            <polygon points="130,145 90,169 90,176 130,152" fill="rgba(255,255,255,0.025)" stroke="rgba(255,255,255,0.16)" stroke-width="0.5"/>
+            <!-- Layer 3 -->
+            <polygon points="130,125 198,164 158,188 90,149" fill="rgba(255,255,255,0.07)" stroke="rgba(255,255,255,0.36)" stroke-width="0.5"/>
+            <polygon points="130,125 198,164 198,171 130,132" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.22)" stroke-width="0.5"/>
+            <polygon points="130,125 90,149 90,156 130,132" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.18)" stroke-width="0.5"/>
+            <!-- Layer 4 top accent blue -->
+            <polygon points="130,105 198,144 158,168 90,129" fill="rgba(43,127,255,0.1)" stroke="rgba(43,127,255,0.45)" stroke-width="0.5"/>
+            <polygon points="130,105 198,144 198,151 130,112" fill="rgba(43,127,255,0.05)" stroke="rgba(43,127,255,0.25)" stroke-width="0.5"/>
+            <polygon points="130,105 90,129 90,136 130,112" fill="rgba(43,127,255,0.04)" stroke="rgba(43,127,255,0.2)" stroke-width="0.5"/>
+            <!-- Bars on top -->
+            <line x1="142" y1="127" x2="148" y2="123" stroke="rgba(43,127,255,0.7)" stroke-width="0.75"/>
+            <line x1="142" y1="131" x2="154" y2="124" stroke="rgba(43,127,255,0.5)" stroke-width="0.75"/>
+            <line x1="142" y1="135" x2="160" y2="125" stroke="rgba(43,127,255,0.3)" stroke-width="0.75"/>
+            <!-- Vertical connectors -->
+            <line x1="130" y1="105" x2="130" y2="185" stroke="rgba(255,255,255,0.05)" stroke-width="0.5" stroke-dasharray="2,4"/>
+            <line x1="198" y1="144" x2="198" y2="224" stroke="rgba(255,255,255,0.05)" stroke-width="0.5" stroke-dasharray="2,4"/>
+          </svg>
+        </div>
+        <div class="fig-title">Built for your business</div>
+        <div class="fig-desc">Trailmark Ops is shaped by the operational realities of real small businesses — not hypothetical enterprise workflows.</div>
+      </div>
+
+      <div class="fig-cell">
+        <div class="fig-label">FIG 0.2</div>
+        <div class="fig-illustration">
+          <svg viewBox="0 0 260 220" width="385" height="329" xmlns="http://www.w3.org/2000/svg">
+            <!-- Cube A large center - blue accent -->
+            <polygon points="130,65 161,83 130,101 99,83" fill="rgba(43,127,255,0.1)" stroke="rgba(43,127,255,0.4)" stroke-width="0.5"/>
+            <polygon points="130,65 161,83 161,129 130,111" fill="rgba(43,127,255,0.05)" stroke="rgba(43,127,255,0.22)" stroke-width="0.5"/>
+            <polygon points="130,65 99,83 99,129 130,111" fill="rgba(43,127,255,0.03)" stroke="rgba(43,127,255,0.17)" stroke-width="0.5"/>
+            <!-- Cube B right -->
+            <polygon points="178,130 201,144 178,158 155,144" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.35)" stroke-width="0.5"/>
+            <polygon points="178,130 201,144 201,178 178,164" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.22)" stroke-width="0.5"/>
+            <polygon points="178,130 155,144 155,178 178,164" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.18)" stroke-width="0.5"/>
+            <!-- Cube C left -->
+            <polygon points="82,135 105,149 82,163 59,149" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.35)" stroke-width="0.5"/>
+            <polygon points="82,135 105,149 105,183 82,169" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.22)" stroke-width="0.5"/>
+            <polygon points="82,135 59,149 59,183 82,169" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.18)" stroke-width="0.5"/>
+            <!-- Cube D bottom -->
+            <polygon points="130,163 149,174 130,185 111,174" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.28)" stroke-width="0.5"/>
+            <polygon points="130,163 149,174 149,202 130,191" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.18)" stroke-width="0.5"/>
+            <polygon points="130,163 111,174 111,202 130,191" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.14)" stroke-width="0.5"/>
+            <!-- Connections -->
+            <line x1="130" y1="111" x2="130" y2="163" stroke="rgba(43,127,255,0.3)" stroke-width="0.5" stroke-dasharray="3,3"/>
+            <line x1="155" y1="101" x2="178" y2="130" stroke="rgba(255,255,255,0.1)" stroke-width="0.5" stroke-dasharray="2,3"/>
+            <line x1="105" y1="101" x2="82" y2="135" stroke="rgba(255,255,255,0.1)" stroke-width="0.5" stroke-dasharray="2,3"/>
+            <line x1="155" y1="158" x2="140" y2="163" stroke="rgba(255,255,255,0.07)" stroke-width="0.5" stroke-dasharray="2,3"/>
+            <line x1="105" y1="158" x2="120" y2="163" stroke="rgba(255,255,255,0.07)" stroke-width="0.5" stroke-dasharray="2,3"/>
+            <!-- Nodes -->
+            <circle cx="130" cy="111" r="2" fill="rgba(43,127,255,0.6)"/>
+            <circle cx="130" cy="163" r="2" fill="rgba(43,127,255,0.4)"/>
+            <circle cx="178" cy="130" r="1.5" fill="rgba(255,255,255,0.25)"/>
+            <circle cx="82" cy="135" r="1.5" fill="rgba(255,255,255,0.25)"/>
+          </svg>
+        </div>
+        <div class="fig-title">Powered by AI</div>
+        <div class="fig-desc">Designed for operations where AI handles the repetitive and your team handles the judgment. End to end.</div>
+      </div>
+
+      <div class="fig-cell">
+        <div class="fig-label">FIG 0.3</div>
+        <div class="fig-illustration">
+          <svg viewBox="0 0 260 220" width="385" height="329" xmlns="http://www.w3.org/2000/svg">
+            <!-- Fanning cards -->
+            <polygon points="58,172 115,205 79,226 22,193" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.16)" stroke-width="0.5"/>
+            <polygon points="58,172 115,205 115,208 58,175" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.11)" stroke-width="0.5"/>
+            <polygon points="67,166 124,199 88,220 31,187" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.19)" stroke-width="0.5"/>
+            <polygon points="67,166 124,199 124,202 67,169" fill="rgba(255,255,255,0.025)" stroke="rgba(255,255,255,0.13)" stroke-width="0.5"/>
+            <polygon points="76,160 133,193 97,214 40,181" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.22)" stroke-width="0.5"/>
+            <polygon points="76,160 133,193 133,196 76,163" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.15)" stroke-width="0.5"/>
+            <polygon points="85,154 142,187 106,208 49,175" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.26)" stroke-width="0.5"/>
+            <polygon points="85,154 142,187 142,190 85,157" fill="rgba(255,255,255,0.035)" stroke="rgba(255,255,255,0.17)" stroke-width="0.5"/>
+            <polygon points="94,148 151,181 115,202 58,169" fill="rgba(255,255,255,0.07)" stroke="rgba(255,255,255,0.30)" stroke-width="0.5"/>
+            <polygon points="94,148 151,181 151,184 94,151" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.19)" stroke-width="0.5"/>
+            <polygon points="103,142 160,175 124,196 67,163" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.34)" stroke-width="0.5"/>
+            <polygon points="103,142 160,175 160,178 103,145" fill="rgba(255,255,255,0.045)" stroke="rgba(255,255,255,0.22)" stroke-width="0.5"/>
+            <polygon points="112,136 169,169 133,190 76,157" fill="rgba(255,255,255,0.09)" stroke="rgba(255,255,255,0.38)" stroke-width="0.5"/>
+            <polygon points="112,136 169,169 169,172 112,139" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.24)" stroke-width="0.5"/>
+            <!-- Front card blue -->
+            <polygon points="121,130 178,163 142,184 85,151" fill="rgba(43,127,255,0.1)" stroke="rgba(43,127,255,0.45)" stroke-width="0.5"/>
+            <polygon points="121,130 178,163 178,166 121,133" fill="rgba(43,127,255,0.05)" stroke="rgba(43,127,255,0.25)" stroke-width="0.5"/>
+            <polygon points="121,130 85,151 85,154 121,133" fill="rgba(43,127,255,0.035)" stroke="rgba(43,127,255,0.18)" stroke-width="0.5"/>
+            <!-- Arrow -->
+            <polyline points="136,150 143,142 151,145" fill="none" stroke="rgba(43,127,255,0.7)" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="fig-title">Built to compound</div>
+        <div class="fig-desc">Every system we build saves time today and generates leverage tomorrow. Results that stack, not solutions that stall.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="container">
+    <div class="services-header">
+      <div class="section-label">What We Do</div>
+      <h2>From audit to running system.<br><em>In four steps.</em></h2>
+    </div>
+    <div class="services-grid">
+      <div class="service-row">
+        <div class="svc-num">1.0 Audit →</div>
+        <div>
+          <div class="svc-title">AI Opportunity Audit</div>
+          <div class="svc-desc">Take the free 15-question audit. We analyze your answers and identify your highest-ROI starting point — with specific dollar figures attached to each opportunity. Free, takes 5 minutes, no pitch on the other end.</div>
+          <div class="svc-tags"><span class="svc-tag">Free</span><span class="svc-tag">15 Questions</span><span class="svc-tag">Personalized Report</span></div>
+        </div>
+        <div class="svc-link"><a href="/audit" style="color:var(--accent);">Start Audit →</a></div>
+      </div>
+      <div class="service-row">
+        <div class="svc-num">2.0 Strategy →</div>
+        <div>
+          <div class="svc-title">AI Strategy & Roadmap</div>
+          <div class="svc-desc">We walk through your audit results together, validate the findings on a 20-minute call, and build a prioritized 90-day roadmap. Clear sequencing. ROI anchored to real numbers. No vague recommendations.</div>
+          <div class="svc-tags"><span class="svc-tag">90-Day Roadmap</span><span class="svc-tag">ROI Analysis</span><span class="svc-tag">Prioritized</span></div>
+        </div>
+        <div class="svc-link"></div>
+      </div>
+      <div class="service-row">
+        <div class="svc-num">3.0 Build →</div>
+        <div>
+          <div class="svc-title">Process Automation & Integration</div>
+          <div class="svc-desc">We implement the highest-impact systems first. Automation workflows, system integrations, AI voice agents, CEO dashboards. Everything connected to the tools you already use — no ripping out and replacing.</div>
+          <div class="svc-tags"><span class="svc-tag">Automation</span><span class="svc-tag">Integrations</span><span class="svc-tag">AI Voice Agents</span><span class="svc-tag">Dashboards</span></div>
+        </div>
+        <div class="svc-link"></div>
+      </div>
+      <div class="service-row">
+        <div class="svc-num">4.0 Train →</div>
+        <div>
+          <div class="svc-title">Team Training & Handoff</div>
+          <div class="svc-desc">We train your team to run everything we built. You own the systems. We stay as your strategic guide — not a dependency. The goal is always your independence, not our continued billability.</div>
+          <div class="svc-tags"><span class="svc-tag">Team Training</span><span class="svc-tag">Documentation</span><span class="svc-tag">Ongoing Support</span></div>
+        </div>
+        <div class="svc-link"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CASE STUDIES -->
+<section class="cases" id="work">
+  <div class="container">
+    <div class="section-label">Case Studies</div>
+    <h2>Real businesses.<br><em>Real results.</em></h2>
+    <div class="cases-grid">
+      <div class="case-card">
+        <div class="case-industry">Healthcare / Med Spa</div>
+        <div class="case-title">Full patient data migration in 72 hours — not 6 weeks.</div>
+        <div class="case-body">A Columbus med spa switching practice management platforms faced weeks of manual patient record migration. We built an automated extraction and transfer tool that completed the migration in 72 hours with zero data loss — giving their team their time back before they even launched on the new platform.</div>
+        <div class="case-results">
+          <div><span class="cr-val">72hrs</span><span class="cr-label">Migration complete</span></div>
+          <div><span class="cr-val">100%</span><span class="cr-label">Data integrity</span></div>
+          <div><span class="cr-val">6 wks</span><span class="cr-label">Timeline saved</span></div>
+        </div>
+      </div>
+      <div class="case-card">
+        <div class="case-industry">Restaurant Group</div>
+        <div class="case-title">18 hours a week back. 32% increase in return visits.</div>
+        <div class="case-body">A multi-location restaurant group was drowning in manual reporting, inconsistent staff communication, and missed customer follow-up. We connected their POS to an automated operations layer — weekly reporting, scheduling alerts, post-visit outreach — all running without anyone touching it.</div>
+        <div class="case-results">
+          <div><span class="cr-val">18hrs</span><span class="cr-label">Saved per week</span></div>
+          <div><span class="cr-val">3×</span><span class="cr-label">Faster reporting</span></div>
+          <div><span class="cr-val">+32%</span><span class="cr-label">Return visits</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIAL -->
+<section class="testimonial">
+  <div class="container">
+    <div class="t-inner">
+      <div class="t-quote">James didn't just build us a system — he made sure we actually understood it. Six months later we're running everything ourselves and it's still saving us 15 hours a week.</div>
+      <div class="t-author">
+        <div class="t-avatar">S</div>
+        <div>
+          <div class="t-name">Sarah K.</div>
+          <div class="t-role">Owner, Columbus Med Spa</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="container">
+    <div class="about-inner">
+      <div class="about-graphic">
+        <div class="ag-initials">JF</div>
+      </div>
+      <div>
+        <div class="section-label">About</div>
+        <h2>The guide,<br>not the <em>dev shop.</em></h2>
+        <br>
+        <p class="about-body">I'm James Francis, founder of Trailmark Ops. I started this business because I kept seeing the same thing: small businesses spending enormous amounts of time on work that AI could handle — and nobody helping them figure out where to start.</p>
+        <p class="about-body">My approach is different. I don't build things for you and disappear. I find the highest-leverage opportunities in your specific operation, build the systems, and teach your team to own them.</p>
+        <div class="about-vals">
+          <div class="about-val"><div class="av-marker">01 →</div><div class="av-text"><strong>Pricing anchored to ROI.</strong> You know exactly what you're getting and what it's worth before we start.</div></div>
+          <div class="about-val"><div class="av-marker">02 →</div><div class="av-text"><strong>Teach, don't just build.</strong> Every system comes with training so your team runs it without us.</div></div>
+          <div class="about-val"><div class="av-marker">03 →</div><div class="av-text"><strong>Practical over flashy.</strong> AI that solves real problems — not technology for technology's sake.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container">
+    <div class="cta-inner">
+      <div class="section-label">Get Started</div>
+      <h2>Find out where your business can work <em>smarter.</em></h2>
+      <p>Take the free 5-minute AI Opportunity Audit. You'll get a personalized report — and a follow-up from James within 24 hours with a specific recommendation.</p>
+      <div class="cta-btns">
+        <a href="/audit"><button class="btn-primary">Take the Free Audit →</button></a>
+        <a href="tel:7402742424"><button class="btn-ghost">Book a Call</button></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div class="logo">TRAILMARK <span>OPS</span></div>
+      <div class="footer-tagline">Built for the future. Available today.</div>
+    </div>
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>Services</h4>
+        <a href="#services">AI Audit</a>
+        <a href="#services">Strategy & Roadmap</a>
+        <a href="#services">Process Automation</a>
+        <a href="#services">AI Voice Agents</a>
+        <a href="#services">Team Training</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="#about">About</a>
+        <a href="#work">Case Studies</a>
+        <a href="#">Blog</a>
+        <a href="/audit">Free Audit</a>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <a href="#">LinkedIn</a>
+        <a href="mailto:james@trailmarkops.com">james@trailmarkops.com</a>
+        <a href="tel:7402742424">(740) 274-2424</a>
+      </div>
+      <div class="footer-col">
+        <h4>Columbus, Ohio</h4>
+        <a href="https://trailmarkops.com">trailmarkops.com</a>
+        <a href="/audit">Free AI Audit →</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Trailmark Ops. All rights reserved.</p>
+      <p>AI Operations Consulting — Columbus, Ohio</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
 .section-heading em { font-style: italic; color: var(--accent); }
 .section-sub { font-size: 17px; color: var(--text-mid); max-width: 540px; line-height: 1.75; }
 
