@@ -27,8 +27,7 @@ html,body{min-height:100%;background:var(--bg);color:var(--text);font-family:var
 a{text-decoration:none;color:inherit;}
 
 body::before{
-  content:'';
-  position:fixed;inset:0;
+  content:'';position:fixed;inset:0;
   background-image:
     linear-gradient(rgba(43,127,255,0.018) 1px,transparent 1px),
     linear-gradient(90deg,rgba(43,127,255,0.018) 1px,transparent 1px);
@@ -37,8 +36,7 @@ body::before{
 }
 
 .wrapper{
-  position:relative;z-index:1;
-  min-height:100vh;
+  position:relative;z-index:1;min-height:100vh;
   display:flex;flex-direction:column;align-items:center;
   padding:24px 20px 60px;
 }
@@ -46,8 +44,7 @@ body::before{
 .header{
   width:100%;max-width:680px;
   display:flex;align-items:center;justify-content:space-between;
-  margin-bottom:28px;
-  padding-bottom:16px;
+  margin-bottom:28px;padding-bottom:16px;
   border-bottom:0.5px solid var(--border);
 }
 .logo{font-family:var(--sans);font-size:14px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--text);}
@@ -68,12 +65,10 @@ body::before{
   border:0.5px solid var(--border2);
   border-radius:8px;
   padding:36px 48px;
-  position:relative;
-  overflow:hidden;
+  position:relative;overflow:hidden;
 }
 .card::before{
-  content:'';
-  position:absolute;top:0;left:15%;right:15%;height:0.5px;
+  content:'';position:absolute;top:0;left:15%;right:15%;height:0.5px;
   background:linear-gradient(90deg,transparent,var(--accent),transparent);
 }
 
@@ -81,65 +76,43 @@ body::before{
   display:inline-flex;align-items:center;gap:6px;
   font-family:var(--mono);font-size:10px;font-weight:300;
   letter-spacing:0.14em;text-transform:uppercase;
-  color:var(--accent);
-  background:var(--accent-dim);
+  color:var(--accent);background:var(--accent-dim);
   border:0.5px solid var(--accent-mid);
-  padding:5px 12px;border-radius:3px;
-  margin-bottom:24px;
+  padding:5px 12px;border-radius:3px;margin-bottom:24px;
 }
 .section-tag::before{content:'';width:4px;height:4px;background:var(--accent);border-radius:50%;}
 
 .question-number{font-family:var(--mono);font-size:10px;font-weight:300;color:var(--text3);letter-spacing:0.08em;margin-bottom:12px;}
-.question-text{font-family:var(--sans);font-size:26px;font-weight:300;color:var(--text);line-height:1.25;margin-bottom:10px;letter-spacing:-0.015em;}
+.question-text{font-size:26px;font-weight:300;color:var(--text);line-height:1.25;margin-bottom:10px;letter-spacing:-0.015em;}
 .question-sub{font-size:14px;font-weight:300;color:var(--text3);margin-bottom:36px;line-height:1.6;}
 
 .options{display:flex;flex-direction:column;gap:8px;margin-bottom:40px;}
 .option{
   display:flex;align-items:center;gap:14px;
-  padding:15px 20px;
-  background:var(--surface2);
-  border:0.5px solid var(--border);
-  border-radius:6px;
-  cursor:pointer;
-  transition:all 0.2s ease;
+  padding:15px 20px;background:var(--surface2);
+  border:0.5px solid var(--border);border-radius:6px;
+  cursor:pointer;transition:all 0.2s ease;
 }
 .option:hover{border-color:rgba(43,127,255,0.4);background:rgba(43,127,255,0.04);}
 .option.selected{border-color:var(--accent);background:var(--accent-dim);}
 .option.selected .option-dot{background:var(--accent);border-color:var(--accent);}
 .option.selected .option-dot::after{opacity:1;}
 .option-dot{
-  width:16px;height:16px;
-  border:0.5px solid var(--border2);
-  border-radius:50%;flex-shrink:0;
-  position:relative;transition:all 0.2s;
+  width:16px;height:16px;border:0.5px solid var(--border2);
+  border-radius:50%;flex-shrink:0;position:relative;transition:all 0.2s;
   display:flex;align-items:center;justify-content:center;
 }
 .option-dot::after{content:'';width:6px;height:6px;background:var(--bg);border-radius:50%;opacity:0;transition:opacity 0.2s;}
 .option-label{font-size:14px;font-weight:300;color:var(--text2);transition:color 0.2s;flex:1;}
 .option.selected .option-label{color:var(--text);font-weight:400;}
 
-.option-check{
-  width:16px;height:16px;
-  border:0.5px solid var(--border2);
-  border-radius:3px;flex-shrink:0;
-  display:flex;align-items:center;justify-content:center;
-  transition:all 0.2s;
-}
-.option.selected .option-check{background:var(--accent);border-color:var(--accent);}
-.option.selected .option-check::after{content:'✓';font-size:10px;font-weight:600;color:var(--bg);}
-
 .text-input{
-  width:100%;
-  background:var(--surface2);
-  border:0.5px solid var(--border);
-  border-radius:6px;
+  width:100%;background:var(--surface2);
+  border:0.5px solid var(--border);border-radius:6px;
   padding:16px 20px;
   font-family:var(--sans);font-size:14px;font-weight:300;
-  color:var(--text);outline:none;
-  transition:border-color 0.2s;
-  resize:none;min-height:100px;
-  margin-bottom:40px;
-  line-height:1.6;
+  color:var(--text);outline:none;transition:border-color 0.2s;
+  resize:none;min-height:100px;margin-bottom:40px;line-height:1.6;
 }
 .text-input::placeholder{color:var(--text3);}
 .text-input:focus{border-color:rgba(43,127,255,0.5);background:rgba(43,127,255,0.03);}
@@ -150,10 +123,8 @@ body::before{
 .field input{
   width:100%;background:var(--surface2);
   border:0.5px solid var(--border);border-radius:6px;
-  padding:14px 18px;
-  font-family:var(--sans);font-size:14px;font-weight:300;
-  color:var(--text);outline:none;
-  transition:border-color 0.2s;
+  padding:14px 18px;font-family:var(--sans);font-size:14px;font-weight:300;
+  color:var(--text);outline:none;transition:border-color 0.2s;
 }
 .field input::placeholder{color:var(--text3);}
 .field input:focus{border-color:rgba(43,127,255,0.5);}
@@ -170,11 +141,9 @@ body::before{
 .btn-back:hover{border-color:var(--border2);color:var(--text2);}
 .btn-next{
   display:flex;align-items:center;gap:10px;
-  background:var(--accent);border:none;
-  border-radius:4px;padding:12px 28px;
-  font-family:var(--sans);font-size:14px;font-weight:500;
-  color:#fff;cursor:pointer;
-  transition:all 0.2s;letter-spacing:0.01em;
+  background:var(--accent);border:none;border-radius:4px;
+  padding:12px 28px;font-family:var(--sans);font-size:14px;font-weight:500;
+  color:#fff;cursor:pointer;transition:all 0.2s;letter-spacing:0.01em;
 }
 .btn-next:hover{background:#1a6ef0;transform:translateY(-1px);}
 .btn-next:disabled{opacity:0.3;cursor:not-allowed;transform:none;}
@@ -183,16 +152,11 @@ body::before{
 .step.active{display:block;animation:slideIn 0.3s cubic-bezier(0.4,0,0.2,1);}
 @keyframes slideIn{from{opacity:0;transform:translateX(16px);}to{opacity:1;transform:translateX(0);}}
 
-/* INTRO */
-.trail-sign{
-  display:flex;
-  justify-content:center;
-  margin-bottom:24px;
-}
+.trail-sign{display:flex;justify-content:center;margin-bottom:24px;}
 
 .intro-eyebrow{font-family:var(--mono);font-size:11px;font-weight:300;letter-spacing:0.16em;text-transform:uppercase;color:var(--accent);margin-bottom:14px;display:flex;align-items:center;gap:10px;}
 .intro-eyebrow::before{content:'';width:20px;height:0.5px;background:var(--accent);}
-.intro-title{font-family:var(--sans);font-size:clamp(24px,4vw,38px);font-weight:300;color:var(--text);line-height:1.1;margin-bottom:14px;letter-spacing:-0.02em;}
+.intro-title{font-size:clamp(24px,4vw,38px);font-weight:300;color:var(--text);line-height:1.1;margin-bottom:14px;letter-spacing:-0.02em;}
 .intro-title em{font-style:italic;color:var(--text2);}
 .intro-body{font-size:14px;font-weight:300;color:var(--text3);line-height:1.7;margin-bottom:24px;max-width:520px;}
 .intro-stats{
@@ -206,26 +170,23 @@ body::before{
 .btn-start{
   display:inline-flex;align-items:center;gap:12px;
   background:var(--accent);border:none;border-radius:4px;
-  padding:14px 32px;
-  font-family:var(--sans);font-size:15px;font-weight:500;
+  padding:14px 32px;font-family:var(--sans);font-size:15px;font-weight:500;
   color:#fff;cursor:pointer;transition:all 0.2s;letter-spacing:0.01em;
 }
 .btn-start:hover{background:#1a6ef0;transform:translateY(-1px);}
 .disclaimer{font-family:var(--mono);font-size:10px;font-weight:300;color:var(--text3);margin-top:16px;letter-spacing:0.04em;}
 
-/* THANK YOU */
 .ty-icon{
-  width:56px;height:56px;
-  background:var(--accent-dim);border:0.5px solid var(--accent-mid);
-  border-radius:50%;display:flex;align-items:center;justify-content:center;
+  width:56px;height:56px;background:var(--accent-dim);
+  border:0.5px solid var(--accent-mid);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
   margin-bottom:28px;font-size:22px;
 }
-.ty-title{font-family:var(--sans);font-size:30px;font-weight:300;color:var(--text);margin-bottom:16px;line-height:1.2;letter-spacing:-0.015em;}
+.ty-title{font-size:30px;font-weight:300;color:var(--text);margin-bottom:16px;line-height:1.2;letter-spacing:-0.015em;}
 .ty-body{font-size:15px;font-weight:300;color:var(--text3);line-height:1.75;margin-bottom:32px;}
 .ty-next{padding:20px 24px;background:var(--surface2);border:0.5px solid var(--border);border-radius:6px;margin-bottom:28px;}
 .ty-next-label{font-family:var(--mono);font-size:9px;font-weight:300;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin-bottom:10px;}
 .ty-next-text{font-size:14px;font-weight:300;color:var(--text2);line-height:1.6;}
-
 .error-msg{font-size:13px;color:#ff6b6b;margin-top:-28px;margin-bottom:20px;display:none;font-weight:300;}
 
 .footer{margin-top:40px;font-family:var(--mono);font-size:10px;font-weight:300;color:var(--text3);text-align:center;letter-spacing:0.06em;}
@@ -254,7 +215,7 @@ body::before{
   <div class="progress-wrap" id="progressWrap" style="display:none;">
     <div class="progress-meta">
       <span class="progress-label">AI Opportunity Audit</span>
-      <span class="progress-step" id="progressStep">Question 1 of 15</span>
+      <span class="progress-step" id="progressStep">Question 1 of 12</span>
     </div>
     <div class="progress-track">
       <div class="progress-fill" id="progressFill" style="width:0%"></div>
@@ -265,81 +226,23 @@ body::before{
 
     <!-- INTRO -->
     <div class="step active" id="step-intro">
-
-      <!-- Trail marker sign SVG -->
       <div class="trail-sign">
         <svg viewBox="0 0 160 220" width="100" height="138" xmlns="http://www.w3.org/2000/svg">
-
-          <!-- Post -->
-          <line x1="80" y1="162" x2="80" y2="215"
-            stroke="rgba(43,127,255,0.3)" stroke-width="1.5" stroke-linecap="round"/>
-          <!-- Ground line -->
-          <line x1="66" y1="215" x2="94" y2="215"
-            stroke="rgba(43,127,255,0.2)" stroke-width="1" stroke-linecap="round"/>
-
-          <!-- Diamond sign background fill -->
-          <!-- Diamond: top(80,8) right(148,76) bottom(80,144) left(12,76) -->
-          <polygon points="80,8 148,76 80,144 12,76"
-            fill="rgba(43,127,255,0.06)"
-            stroke="rgba(43,127,255,0.45)"
-            stroke-width="0.75"/>
-
-          <!-- Inner diamond ring -->
-          <polygon points="80,22 134,76 80,130 26,76"
-            fill="none"
-            stroke="rgba(43,127,255,0.18)"
-            stroke-width="0.5"/>
-
-          <!-- TOP chevron ^ -->
-          <polyline points="65,54 80,40 95,54"
-            fill="none"
-            stroke="rgba(43,127,255,0.85)"
-            stroke-width="1.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"/>
-
-          <!-- BOTTOM chevron v -->
-          <polyline points="65,98 80,112 95,98"
-            fill="none"
-            stroke="rgba(43,127,255,0.85)"
-            stroke-width="1.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"/>
-
-          <!-- LEFT chevron < -->
-          <polyline points="54,61 40,76 54,91"
-            fill="none"
-            stroke="rgba(43,127,255,0.85)"
-            stroke-width="1.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"/>
-
-          <!-- RIGHT chevron > -->
-          <polyline points="106,61 120,76 106,91"
-            fill="none"
-            stroke="rgba(43,127,255,0.85)"
-            stroke-width="1.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"/>
-
-          <!-- T letterform — centered at (80,76) -->
-          <!-- Horizontal bar -->
-          <line x1="68" y1="68" x2="92" y2="68"
-            stroke="rgba(43,127,255,0.95)"
-            stroke-width="1.75"
-            stroke-linecap="round"/>
-          <!-- Vertical stem -->
-          <line x1="80" y1="68" x2="80" y2="88"
-            stroke="rgba(43,127,255,0.95)"
-            stroke-width="1.75"
-            stroke-linecap="round"/>
-
+          <line x1="80" y1="162" x2="80" y2="215" stroke="rgba(43,127,255,0.3)" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="66" y1="215" x2="94" y2="215" stroke="rgba(43,127,255,0.2)" stroke-width="1" stroke-linecap="round"/>
+          <polygon points="80,8 148,76 80,144 12,76" fill="rgba(43,127,255,0.06)" stroke="rgba(43,127,255,0.45)" stroke-width="0.75"/>
+          <polygon points="80,22 134,76 80,130 26,76" fill="none" stroke="rgba(43,127,255,0.18)" stroke-width="0.5"/>
+          <polyline points="65,54 80,40 95,54" fill="none" stroke="rgba(43,127,255,0.85)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <polyline points="65,98 80,112 95,98" fill="none" stroke="rgba(43,127,255,0.85)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <polyline points="54,61 40,76 54,91" fill="none" stroke="rgba(43,127,255,0.85)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <polyline points="106,61 120,76 106,91" fill="none" stroke="rgba(43,127,255,0.85)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <line x1="68" y1="68" x2="92" y2="68" stroke="rgba(43,127,255,0.95)" stroke-width="1.75" stroke-linecap="round"/>
+          <line x1="80" y1="68" x2="80" y2="88" stroke="rgba(43,127,255,0.95)" stroke-width="1.75" stroke-linecap="round"/>
         </svg>
       </div>
-
       <div class="intro-eyebrow">Free — Takes 5 Minutes</div>
       <h1 class="intro-title">The trail to a <em>smarter</em> business starts here.</h1>
-      <p class="intro-body">Answer 15 questions about your business. We'll generate a personalized AI Opportunity Report showing exactly where you're losing time and money — and what to do about it.</p>
+      <p class="intro-body">Answer 12 questions about your business. We'll generate a personalized AI Opportunity Report showing exactly where you're losing time and money — and what to do about it.</p>
       <div class="intro-stats">
         <div class="stat"><span class="stat-val">5 min</span><span class="stat-label">To complete</span></div>
         <div class="stat"><span class="stat-val">100%</span><span class="stat-label">Personalized</span></div>
@@ -355,17 +258,17 @@ body::before{
     <!-- Q1: Industry -->
     <div class="step" id="step-1">
       <div class="section-tag">Your Business</div>
-      <div class="question-number">Question 1 of 15</div>
+      <div class="question-number">Question 1 of 12</div>
       <h2 class="question-text">What industry are you in?</h2>
       <p class="question-sub">This shapes every example and ROI estimate in your report.</p>
       <div class="options" id="opts-1">
-        <div class="option" onclick="selectOption(1, 'Healthcare / Med Spa')"><div class="option-dot"></div><span class="option-label">Healthcare / Med Spa</span></div>
-        <div class="option" onclick="selectOption(1, 'Restaurant / Food Service')"><div class="option-dot"></div><span class="option-label">Restaurant / Food Service</span></div>
-        <div class="option" onclick="selectOption(1, 'Retail')"><div class="option-dot"></div><span class="option-label">Retail</span></div>
-        <div class="option" onclick="selectOption(1, 'Professional Services')"><div class="option-dot"></div><span class="option-label">Professional Services</span></div>
-        <div class="option" onclick="selectOption(1, 'Real Estate')"><div class="option-dot"></div><span class="option-label">Real Estate</span></div>
-        <div class="option" onclick="selectOption(1, 'Construction / Trades')"><div class="option-dot"></div><span class="option-label">Construction / Trades</span></div>
-        <div class="option" onclick="selectOption(1, 'Other')"><div class="option-dot"></div><span class="option-label">Other</span></div>
+        <div class="option" onclick="selectOption(1,'Healthcare / Med Spa')"><div class="option-dot"></div><span class="option-label">Healthcare / Med Spa</span></div>
+        <div class="option" onclick="selectOption(1,'Restaurant / Food Service')"><div class="option-dot"></div><span class="option-label">Restaurant / Food Service</span></div>
+        <div class="option" onclick="selectOption(1,'Retail')"><div class="option-dot"></div><span class="option-label">Retail</span></div>
+        <div class="option" onclick="selectOption(1,'Professional Services')"><div class="option-dot"></div><span class="option-label">Professional Services</span></div>
+        <div class="option" onclick="selectOption(1,'Real Estate')"><div class="option-dot"></div><span class="option-label">Real Estate</span></div>
+        <div class="option" onclick="selectOption(1,'Construction / Trades')"><div class="option-dot"></div><span class="option-label">Construction / Trades</span></div>
+        <div class="option" onclick="selectOption(1,'Other')"><div class="option-dot"></div><span class="option-label">Other</span></div>
       </div>
       <div class="nav">
         <button class="btn-back" onclick="goBack()">← Back</button>
@@ -373,17 +276,17 @@ body::before{
       </div>
     </div>
 
-    <!-- Q2: Who does manual work -->
+    <!-- Q2: Business stage -->
     <div class="step" id="step-2">
       <div class="section-tag">Your Business</div>
-      <div class="question-number">Question 2 of 15</div>
-      <h2 class="question-text">Who in your business spends the most time on repetitive tasks?</h2>
-      <p class="question-sub">This helps us calculate the real cost of your manual work.</p>
+      <div class="question-number">Question 2 of 12</div>
+      <h2 class="question-text">Which best describes your business right now?</h2>
+      <p class="question-sub">Helps us calibrate our recommendations to where you actually are.</p>
       <div class="options" id="opts-2">
-        <div class="option" onclick="selectOption(2, 'Me personally — I\'m doing most of it')"><div class="option-dot"></div><span class="option-label">Me personally — I'm doing most of it</span></div>
-        <div class="option" onclick="selectOption(2, 'My staff — it\'s eating their hours')"><div class="option-dot"></div><span class="option-label">My staff — it's eating their hours</span></div>
-        <div class="option" onclick="selectOption(2, 'Both me and my staff equally')"><div class="option-dot"></div><span class="option-label">Both me and my staff equally</span></div>
-        <div class="option" onclick="selectOption(2, 'Honestly not sure — it\'s spread everywhere')"><div class="option-dot"></div><span class="option-label">Honestly not sure — it's spread everywhere</span></div>
+        <div class="option" onclick="selectOption(2,'Early stage — building toward profitability')"><div class="option-dot"></div><span class="option-label">Early stage — building toward profitability</span></div>
+        <div class="option" onclick="selectOption(2,'Established — stable revenue, focused on growth')"><div class="option-dot"></div><span class="option-label">Established — stable revenue, focused on growth</span></div>
+        <div class="option" onclick="selectOption(2,'Growth stage — scaling fast, feeling the strain')"><div class="option-dot"></div><span class="option-label">Growth stage — scaling fast, feeling the strain</span></div>
+        <div class="option" onclick="selectOption(2,'Mature — optimizing and protecting margins')"><div class="option-dot"></div><span class="option-label">Mature — optimizing and protecting margins</span></div>
       </div>
       <div class="nav">
         <button class="btn-back" onclick="goBack()">← Back</button>
@@ -391,61 +294,64 @@ body::before{
       </div>
     </div>
 
-    <!-- Q3: Business stage -->
+    <!-- Q3: Painful task -->
     <div class="step" id="step-3">
-      <div class="section-tag">Your Business</div>
-      <div class="question-number">Question 3 of 15</div>
-      <h2 class="question-text">Which best describes your business right now?</h2>
-      <p class="question-sub">Helps us calibrate ROI estimates to where you actually are.</p>
-      <div class="options" id="opts-3">
-        <div class="option" onclick="selectOption(3, 'Early stage — building toward profitability')"><div class="option-dot"></div><span class="option-label">Early stage — building toward profitability</span></div>
-        <div class="option" onclick="selectOption(3, 'Established — stable revenue, focused on growth')"><div class="option-dot"></div><span class="option-label">Established — stable revenue, focused on growth</span></div>
-        <div class="option" onclick="selectOption(3, 'Growth stage — scaling fast, feeling the strain')"><div class="option-dot"></div><span class="option-label">Growth stage — scaling fast, feeling the strain</span></div>
-        <div class="option" onclick="selectOption(3, 'Mature — optimizing and protecting margins')"><div class="option-dot"></div><span class="option-label">Mature — optimizing and protecting margins</span></div>
-      </div>
+      <div class="section-tag">Where Time Goes</div>
+      <div class="question-number">Question 3 of 12</div>
+      <h2 class="question-text">What's the most time-consuming task your business does that feels like it shouldn't be?</h2>
+      <p class="question-sub">Be specific — this will appear directly in your report.</p>
+      <textarea class="text-input" id="input-3" placeholder="e.g. We manually reconcile two scheduling systems every morning and it takes over an hour…" oninput="checkTextInput(3)"></textarea>
       <div class="nav">
         <button class="btn-back" onclick="goBack()">← Back</button>
         <button class="btn-next" id="next-3" onclick="goNext(3)" disabled>Continue →</button>
       </div>
     </div>
 
-    <!-- Q4: Painful task -->
+    <!-- Q4: Should be doing -->
     <div class="step" id="step-4">
       <div class="section-tag">Where Time Goes</div>
-      <div class="question-number">Question 4 of 15</div>
-      <h2 class="question-text">What's the most time-consuming task your business does that feels like it shouldn't be?</h2>
-      <p class="question-sub">Be specific — this will appear directly in your report.</p>
-      <textarea class="text-input" id="input-4" placeholder="e.g. We manually reconcile two scheduling systems every morning and it takes over an hour…" oninput="checkTextInput(4)"></textarea>
+      <div class="question-number">Question 4 of 12</div>
+      <h2 class="question-text">What's something you know you should be doing in your business but never have time for?</h2>
+      <p class="question-sub">This is usually where the real growth opportunity is hiding.</p>
+      <textarea class="text-input" id="input-4" placeholder="e.g. Following up with past customers, posting consistently on social media, building a referral program…" oninput="checkTextInput(4)"></textarea>
       <div class="nav">
         <button class="btn-back" onclick="goBack()">← Back</button>
         <button class="btn-next" id="next-4" onclick="goNext(4)" disabled>Continue →</button>
       </div>
     </div>
 
-    <!-- Q5: What should you be doing -->
+    <!-- Q5: Manual hours -->
     <div class="step" id="step-5">
       <div class="section-tag">Where Time Goes</div>
-      <div class="question-number">Question 5 of 15</div>
-      <h2 class="question-text">What's something you know you should be doing in your business but never have time for?</h2>
-      <p class="question-sub">This is usually where the real growth opportunity is hiding.</p>
-      <textarea class="text-input" id="input-5" placeholder="e.g. Following up with past customers, posting consistently on social media, building out a referral program…" oninput="checkTextInput(5)"></textarea>
+      <div class="question-number">Question 5 of 12</div>
+      <h2 class="question-text">Think about just last week. How many hours did you or your team spend on tasks you wish someone — or something — else could handle?</h2>
+      <p class="question-sub">Think concretely about last week, not a general estimate.</p>
+      <div class="options" id="opts-5">
+        <div class="option" onclick="selectOption(5,'Less than 5 hours')"><div class="option-dot"></div><span class="option-label">Less than 5 hours</span></div>
+        <div class="option" onclick="selectOption(5,'5–15 hours')"><div class="option-dot"></div><span class="option-label">5–15 hours</span></div>
+        <div class="option" onclick="selectOption(5,'15–30 hours')"><div class="option-dot"></div><span class="option-label">15–30 hours</span></div>
+        <div class="option" onclick="selectOption(5,'30+ hours')"><div class="option-dot"></div><span class="option-label">30+ hours</span></div>
+      </div>
       <div class="nav">
         <button class="btn-back" onclick="goBack()">← Back</button>
         <button class="btn-next" id="next-5" onclick="goNext(5)" disabled>Continue →</button>
       </div>
     </div>
 
-    <!-- Q6: Manual hours -->
+    <!-- Q6: Biggest bottleneck -->
     <div class="step" id="step-6">
       <div class="section-tag">Where Time Goes</div>
-      <div class="question-number">Question 6 of 15</div>
-      <h2 class="question-text">Think about just last week. How many hours did you or your team spend on tasks you wish someone — or something — else could handle?</h2>
-      <p class="question-sub">Think concretely about last week specifically, not a general estimate.</p>
+      <div class="question-number">Question 6 of 12</div>
+      <h2 class="question-text">Which of these is your biggest operational bottleneck right now?</h2>
+      <p class="question-sub">Pick the one that stings most.</p>
       <div class="options" id="opts-6">
-        <div class="option" onclick="selectOption(6, 'Less than 5 hours')"><div class="option-dot"></div><span class="option-label">Less than 5 hours</span></div>
-        <div class="option" onclick="selectOption(6, '5–15 hours')"><div class="option-dot"></div><span class="option-label">5–15 hours</span></div>
-        <div class="option" onclick="selectOption(6, '15–30 hours')"><div class="option-dot"></div><span class="option-label">15–30 hours</span></div>
-        <div class="option" onclick="selectOption(6, '30+ hours')"><div class="option-dot"></div><span class="option-label">30+ hours</span></div>
+        <div class="option" onclick="selectOption(6,'Customer follow-up and communication')"><div class="option-dot"></div><span class="option-label">Customer follow-up and communication</span></div>
+        <div class="option" onclick="selectOption(6,'Scheduling and coordination')"><div class="option-dot"></div><span class="option-label">Scheduling and coordination</span></div>
+        <div class="option" onclick="selectOption(6,'Tracking performance and reporting')"><div class="option-dot"></div><span class="option-label">Tracking performance and reporting</span></div>
+        <div class="option" onclick="selectOption(6,'Staff onboarding and training')"><div class="option-dot"></div><span class="option-label">Staff onboarding and training</span></div>
+        <div class="option" onclick="selectOption(6,'Inventory or order management')"><div class="option-dot"></div><span class="option-label">Inventory or order management</span></div>
+        <div class="option" onclick="selectOption(6,'Missed calls and lost leads')"><div class="option-dot"></div><span class="option-label">Missed calls and lost leads</span></div>
+        <div class="option" onclick="selectOption(6,'None — operations run smoothly')"><div class="option-dot"></div><span class="option-label">None — operations run smoothly</span></div>
       </div>
       <div class="nav">
         <button class="btn-back" onclick="goBack()">← Back</button>
@@ -453,20 +359,17 @@ body::before{
       </div>
     </div>
 
-    <!-- Q7: Biggest bottleneck -->
+    <!-- Q7: Performance tracking -->
     <div class="step" id="step-7">
-      <div class="section-tag">Where Time Goes</div>
-      <div class="question-number">Question 7 of 15</div>
-      <h2 class="question-text">Which of these is your biggest operational bottleneck right now?</h2>
-      <p class="question-sub">Pick the one that stings most.</p>
+      <div class="section-tag">Data & Technology</div>
+      <div class="question-number">Question 7 of 12</div>
+      <h2 class="question-text">When you want to know how your business performed last month, what do you actually do?</h2>
+      <p class="question-sub">Be honest — there's no wrong answer.</p>
       <div class="options" id="opts-7">
-        <div class="option" onclick="selectOption(7, 'Customer follow-up and communication')"><div class="option-dot"></div><span class="option-label">Customer follow-up and communication</span></div>
-        <div class="option" onclick="selectOption(7, 'Scheduling and coordination')"><div class="option-dot"></div><span class="option-label">Scheduling and coordination</span></div>
-        <div class="option" onclick="selectOption(7, 'Tracking performance and reporting')"><div class="option-dot"></div><span class="option-label">Tracking performance and reporting</span></div>
-        <div class="option" onclick="selectOption(7, 'Staff onboarding and training')"><div class="option-dot"></div><span class="option-label">Staff onboarding and training</span></div>
-        <div class="option" onclick="selectOption(7, 'Inventory or order management')"><div class="option-dot"></div><span class="option-label">Inventory or order management</span></div>
-        <div class="option" onclick="selectOption(7, 'Missed calls and lost leads')"><div class="option-dot"></div><span class="option-label">Missed calls and lost leads</span></div>
-        <div class="option" onclick="selectOption(7, 'None — operations run smoothly')"><div class="option-dot"></div><span class="option-label">None — operations run smoothly</span></div>
+        <div class="option" onclick="selectOption(7,'Pull a report from my software in minutes')"><div class="option-dot"></div><span class="option-label">Pull a report from my software in minutes</span></div>
+        <div class="option" onclick="selectOption(7,'Piece it together from a few different places')"><div class="option-dot"></div><span class="option-label">Piece it together from a few different places</span></div>
+        <div class="option" onclick="selectOption(7,'Rely on memory or gut feel')"><div class="option-dot"></div><span class="option-label">Rely on memory or gut feel</span></div>
+        <div class="option" onclick="selectOption(7,'I honestly don\'t look at it that often')"><div class="option-dot"></div><span class="option-label">I honestly don't look at it that often</span></div>
       </div>
       <div class="nav">
         <button class="btn-back" onclick="goBack()">← Back</button>
@@ -474,48 +377,50 @@ body::before{
       </div>
     </div>
 
-    <!-- Q8: Performance tracking -->
+    <!-- Q8: Key software -->
     <div class="step" id="step-8">
       <div class="section-tag">Data & Technology</div>
-      <div class="question-number">Question 8 of 15</div>
-      <h2 class="question-text">When you want to know how your business performed last month, what do you actually do?</h2>
-      <p class="question-sub">Be honest — there's no wrong answer.</p>
-      <div class="options" id="opts-8">
-        <div class="option" onclick="selectOption(8, 'Pull a report from my software in minutes')"><div class="option-dot"></div><span class="option-label">Pull a report from my software in minutes</span></div>
-        <div class="option" onclick="selectOption(8, 'Piece it together from a few different places')"><div class="option-dot"></div><span class="option-label">Piece it together from a few different places</span></div>
-        <div class="option" onclick="selectOption(8, 'Rely on memory or gut feel')"><div class="option-dot"></div><span class="option-label">Rely on memory or gut feel</span></div>
-        <div class="option" onclick="selectOption(8, 'I honestly don\'t look at it that often')"><div class="option-dot"></div><span class="option-label">I honestly don't look at it that often</span></div>
-      </div>
+      <div class="question-number">Question 8 of 12</div>
+      <h2 class="question-text">What's the one piece of software your business absolutely could not run without?</h2>
+      <p class="question-sub">Just name the most critical one — the thing everything depends on.</p>
+      <textarea class="text-input" id="input-8" placeholder="e.g. Jane App, Toast POS, Jobber, QuickBooks, HubSpot…" oninput="checkTextInput(8)" style="min-height:70px;"></textarea>
       <div class="nav">
         <button class="btn-back" onclick="goBack()">← Back</button>
         <button class="btn-next" id="next-8" onclick="goNext(8)" disabled>Continue →</button>
       </div>
     </div>
 
-    <!-- Q9: Key software -->
+    <!-- Q9: AI usage -->
     <div class="step" id="step-9">
       <div class="section-tag">Data & Technology</div>
-      <div class="question-number">Question 9 of 15</div>
-      <h2 class="question-text">What's the one piece of software your business absolutely could not run without?</h2>
-      <p class="question-sub">Just name the most critical one — the thing everything depends on.</p>
-      <textarea class="text-input" id="input-9" placeholder="e.g. Jane App, Toast POS, Jobber, QuickBooks, HubSpot…" oninput="checkTextInput(9)" style="min-height:70px;"></textarea>
+      <div class="question-number">Question 9 of 12</div>
+      <h2 class="question-text">Are you currently using any AI tools in your business?</h2>
+      <p class="question-sub">No judgment either way — this helps us calibrate where to start.</p>
+      <div class="options" id="opts-9">
+        <div class="option" onclick="selectOption(9,'No — not sure where to start')"><div class="option-dot"></div><span class="option-label">No — not sure where to start</span></div>
+        <div class="option" onclick="selectOption(9,'Tried a couple things but nothing stuck')"><div class="option-dot"></div><span class="option-label">Tried a couple things but nothing stuck</span></div>
+        <div class="option" onclick="selectOption(9,'Yes, informally (ChatGPT occasionally, etc.)')"><div class="option-dot"></div><span class="option-label">Yes, informally (ChatGPT occasionally, etc.)</span></div>
+        <div class="option" onclick="selectOption(9,'Yes — we have real AI workflows in place')"><div class="option-dot"></div><span class="option-label">Yes — we have real AI workflows in place</span></div>
+      </div>
       <div class="nav">
         <button class="btn-back" onclick="goBack()">← Back</button>
         <button class="btn-next" id="next-9" onclick="goNext(9)" disabled>Continue →</button>
       </div>
     </div>
 
-    <!-- Q10: Current AI usage -->
+    <!-- Q10: Customer acquisition -->
     <div class="step" id="step-10">
-      <div class="section-tag">Data & Technology</div>
-      <div class="question-number">Question 10 of 15</div>
-      <h2 class="question-text">Are you currently using any AI tools in your business?</h2>
-      <p class="question-sub">No judgment either way — this helps us calibrate where to start.</p>
+      <div class="section-tag">Growth</div>
+      <div class="question-number">Question 10 of 12</div>
+      <h2 class="question-text">How do most new customers find you right now?</h2>
+      <p class="question-sub">Pick the primary source — where most of your business actually comes from.</p>
       <div class="options" id="opts-10">
-        <div class="option" onclick="selectOption(10, 'No — not sure where to start')"><div class="option-dot"></div><span class="option-label">No — not sure where to start</span></div>
-        <div class="option" onclick="selectOption(10, 'Tried a couple things but nothing stuck')"><div class="option-dot"></div><span class="option-label">Tried a couple things but nothing stuck</span></div>
-        <div class="option" onclick="selectOption(10, 'Yes, informally (ChatGPT occasionally, etc.)')"><div class="option-dot"></div><span class="option-label">Yes, informally (ChatGPT occasionally, etc.)</span></div>
-        <div class="option" onclick="selectOption(10, 'Yes — we have real AI workflows in place')"><div class="option-dot"></div><span class="option-label">Yes — we have real AI workflows in place</span></div>
+        <div class="option" onclick="selectOption(10,'Word of mouth and referrals')"><div class="option-dot"></div><span class="option-label">Word of mouth and referrals</span></div>
+        <div class="option" onclick="selectOption(10,'Google search and online reviews')"><div class="option-dot"></div><span class="option-label">Google search and online reviews</span></div>
+        <div class="option" onclick="selectOption(10,'Social media')"><div class="option-dot"></div><span class="option-label">Social media</span></div>
+        <div class="option" onclick="selectOption(10,'Paid advertising')"><div class="option-dot"></div><span class="option-label">Paid advertising</span></div>
+        <div class="option" onclick="selectOption(10,'Walk-in and foot traffic')"><div class="option-dot"></div><span class="option-label">Walk-in and foot traffic</span></div>
+        <div class="option" onclick="selectOption(10,'It\'s inconsistent — I\'m not sure')"><div class="option-dot"></div><span class="option-label">It's inconsistent — I'm not sure</span></div>
       </div>
       <div class="nav">
         <button class="btn-back" onclick="goBack()">← Back</button>
@@ -523,19 +428,19 @@ body::before{
       </div>
     </div>
 
-    <!-- Q11: Customer acquisition -->
+    <!-- Q11: 12-month priority -->
     <div class="step" id="step-11">
-      <div class="section-tag">Growth</div>
-      <div class="question-number">Question 11 of 15</div>
-      <h2 class="question-text">How do most new customers find you right now?</h2>
-      <p class="question-sub">Pick the primary source — where most of your business actually comes from.</p>
+      <div class="section-tag">Vision</div>
+      <div class="question-number">Question 11 of 12</div>
+      <h2 class="question-text">What's your #1 business priority for the next 12 months?</h2>
+      <p class="question-sub">This will open your personalized report.</p>
       <div class="options" id="opts-11">
-        <div class="option" onclick="selectOption(11, 'Word of mouth and referrals')"><div class="option-dot"></div><span class="option-label">Word of mouth and referrals</span></div>
-        <div class="option" onclick="selectOption(11, 'Google search and online reviews')"><div class="option-dot"></div><span class="option-label">Google search and online reviews</span></div>
-        <div class="option" onclick="selectOption(11, 'Social media')"><div class="option-dot"></div><span class="option-label">Social media</span></div>
-        <div class="option" onclick="selectOption(11, 'Paid advertising')"><div class="option-dot"></div><span class="option-label">Paid advertising</span></div>
-        <div class="option" onclick="selectOption(11, 'Walk-in and foot traffic')"><div class="option-dot"></div><span class="option-label">Walk-in and foot traffic</span></div>
-        <div class="option" onclick="selectOption(11, 'It\'s inconsistent — I\'m not sure')"><div class="option-dot"></div><span class="option-label">It's inconsistent — I'm not sure</span></div>
+        <div class="option" onclick="selectOption(11,'Grow revenue and bring in more customers')"><div class="option-dot"></div><span class="option-label">Grow revenue and bring in more customers</span></div>
+        <div class="option" onclick="selectOption(11,'Improve margins and reduce costs')"><div class="option-dot"></div><span class="option-label">Improve margins and reduce costs</span></div>
+        <div class="option" onclick="selectOption(11,'Scale without hiring more people')"><div class="option-dot"></div><span class="option-label">Scale without hiring more people</span></div>
+        <div class="option" onclick="selectOption(11,'Get my time back and stop being the bottleneck')"><div class="option-dot"></div><span class="option-label">Get my time back and stop being the bottleneck</span></div>
+        <div class="option" onclick="selectOption(11,'Improve the customer experience')"><div class="option-dot"></div><span class="option-label">Improve the customer experience</span></div>
+        <div class="option" onclick="selectOption(11,'Just stabilize — it\'s been a rough stretch')"><div class="option-dot"></div><span class="option-label">Just stabilize — it's been a rough stretch</span></div>
       </div>
       <div class="nav">
         <button class="btn-back" onclick="goBack()">← Back</button>
@@ -543,77 +448,21 @@ body::before{
       </div>
     </div>
 
-    <!-- Q12: Decision maker -->
+    <!-- Q12: Vision -->
     <div class="step" id="step-12">
-      <div class="section-tag">Decision Making</div>
-      <div class="question-number">Question 12 of 15</div>
-      <h2 class="question-text">When it comes to adopting new technology, who has the final say?</h2>
-      <p class="question-sub">Helps us frame recommendations for your situation.</p>
-      <div class="options" id="opts-12">
-        <div class="option" onclick="selectOption(12, 'Me — I make the call')"><div class="option-dot"></div><span class="option-label">Me — I make the call</span></div>
-        <div class="option" onclick="selectOption(12, 'Me, but I\'d want input from a partner or key employee')"><div class="option-dot"></div><span class="option-label">Me, but I'd want input from a partner or key employee</span></div>
-        <div class="option" onclick="selectOption(12, 'I\'d need to bring it to ownership or a board')"><div class="option-dot"></div><span class="option-label">I'd need to bring it to ownership or a board</span></div>
-        <div class="option" onclick="selectOption(12, 'It\'s complicated')"><div class="option-dot"></div><span class="option-label">It's complicated</span></div>
-      </div>
+      <div class="section-tag">Vision</div>
+      <div class="question-number">Question 12 of 12</div>
+      <h2 class="question-text">What would it honestly mean for your business if your team got 20% of their time back?</h2>
+      <p class="question-sub">Your answer will appear in your report's closing section. Be specific.</p>
+      <textarea class="text-input" id="input-12" placeholder="e.g. I could finally focus on opening our second location instead of putting out fires every day…" oninput="checkTextInput(12)"></textarea>
       <div class="nav">
         <button class="btn-back" onclick="goBack()">← Back</button>
         <button class="btn-next" id="next-12" onclick="goNext(12)" disabled>Continue →</button>
       </div>
     </div>
 
-    <!-- Q13: Urgency -->
-    <div class="step" id="step-13">
-      <div class="section-tag">Decision Making</div>
-      <div class="question-number">Question 13 of 15</div>
-      <h2 class="question-text">If you found a solution that demonstrably saved your team 10 hours a week, how quickly could you realistically move on it?</h2>
-      <p class="question-sub">Be honest — there's no wrong answer.</p>
-      <div class="options" id="opts-13">
-        <div class="option" onclick="selectOption(13, 'Within a month if the ROI was clear')"><div class="option-dot"></div><span class="option-label">Within a month if the ROI was clear</span></div>
-        <div class="option" onclick="selectOption(13, '1–3 months — need to think it through')"><div class="option-dot"></div><span class="option-label">1–3 months — need to think it through</span></div>
-        <div class="option" onclick="selectOption(13, 'Longer — budget or buy-in takes time')"><div class="option-dot"></div><span class="option-label">Longer — budget or buy-in takes time</span></div>
-        <div class="option" onclick="selectOption(13, 'Not sure — depends on cost')"><div class="option-dot"></div><span class="option-label">Not sure — depends on cost</span></div>
-      </div>
-      <div class="nav">
-        <button class="btn-back" onclick="goBack()">← Back</button>
-        <button class="btn-next" id="next-13" onclick="goNext(13)" disabled>Continue →</button>
-      </div>
-    </div>
-
-    <!-- Q14: 12-month priority -->
-    <div class="step" id="step-14">
-      <div class="section-tag">Vision</div>
-      <div class="question-number">Question 14 of 15</div>
-      <h2 class="question-text">What's your #1 business priority for the next 12 months?</h2>
-      <p class="question-sub">This will open your personalized report.</p>
-      <div class="options" id="opts-14">
-        <div class="option" onclick="selectOption(14, 'Grow revenue and bring in more customers')"><div class="option-dot"></div><span class="option-label">Grow revenue and bring in more customers</span></div>
-        <div class="option" onclick="selectOption(14, 'Improve margins and reduce costs')"><div class="option-dot"></div><span class="option-label">Improve margins and reduce costs</span></div>
-        <div class="option" onclick="selectOption(14, 'Scale without hiring more people')"><div class="option-dot"></div><span class="option-label">Scale without hiring more people</span></div>
-        <div class="option" onclick="selectOption(14, 'Get my time back and stop being the bottleneck')"><div class="option-dot"></div><span class="option-label">Get my time back and stop being the bottleneck</span></div>
-        <div class="option" onclick="selectOption(14, 'Improve the customer experience')"><div class="option-dot"></div><span class="option-label">Improve the customer experience</span></div>
-        <div class="option" onclick="selectOption(14, 'Just stabilize — it\'s been a rough stretch')"><div class="option-dot"></div><span class="option-label">Just stabilize — it's been a rough stretch</span></div>
-      </div>
-      <div class="nav">
-        <button class="btn-back" onclick="goBack()">← Back</button>
-        <button class="btn-next" id="next-14" onclick="goNext(14)" disabled>Continue →</button>
-      </div>
-    </div>
-
-    <!-- Q15: Vision -->
-    <div class="step" id="step-15">
-      <div class="section-tag">Vision</div>
-      <div class="question-number">Question 15 of 15</div>
-      <h2 class="question-text">What would it honestly mean for your business if your team got 20% of their time back?</h2>
-      <p class="question-sub">Your answer will appear in your report's closing section. Be specific.</p>
-      <textarea class="text-input" id="input-15" placeholder="e.g. I could finally focus on opening our second location instead of putting out fires every day…" oninput="checkTextInput(15)"></textarea>
-      <div class="nav">
-        <button class="btn-back" onclick="goBack()">← Back</button>
-        <button class="btn-next" id="next-15" onclick="goNext(15)" disabled>Continue →</button>
-      </div>
-    </div>
-
     <!-- LEAD GATE -->
-    <div class="step" id="step-16">
+    <div class="step" id="step-13">
       <div class="section-tag">Almost There</div>
       <div class="question-number">Your Report</div>
       <h2 class="question-text">Where should we send your AI Opportunity Report?</h2>
@@ -639,7 +488,7 @@ body::before{
       <div class="error-msg" id="error-msg">Please fill in your name, business name, and a valid email address.</div>
       <div class="nav">
         <button class="btn-back" onclick="goBack()">← Back</button>
-        <button class="btn-next" id="next-16" onclick="submitAudit()" disabled>
+        <button class="btn-next" id="next-13" onclick="submitAudit()" disabled>
           <span id="submit-label">Generate My Report →</span>
         </button>
       </div>
@@ -667,26 +516,24 @@ body::before{
 
 <script>
   const answers = {};
-  const multiAnswers = {};
   let currentStep = 'intro';
-  const stepOrder = ['intro', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 'thanks'];
-  const totalQuestions = 15;
-
+  const stepOrder = ['intro',1,2,3,4,5,6,7,8,9,10,11,12,13,'thanks'];
+  const totalQuestions = 12;
   const N8N_WEBHOOK_URL = 'https://james-francis.app.n8n.cloud/webhook/trailmarkops_audit';
 
   function showStep(step) {
     document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
     document.getElementById(`step-${step}`).classList.add('active');
     currentStep = step;
-    const progressWrap = document.getElementById('progressWrap');
+    const pw = document.getElementById('progressWrap');
     if (step === 'intro' || step === 'thanks') {
-      progressWrap.style.display = 'none';
+      pw.style.display = 'none';
     } else {
-      progressWrap.style.display = 'block';
-      const qNum = typeof step === 'number' ? step : 15;
+      pw.style.display = 'block';
+      const qNum = typeof step === 'number' ? step : 12;
       const pct = ((qNum - 1) / totalQuestions) * 100;
       document.getElementById('progressFill').style.width = pct + '%';
-      const label = step === 16 ? 'Your Info' : `Question ${step} of ${totalQuestions}`;
+      const label = step === 13 ? 'Your Info' : `Question ${step} of ${totalQuestions}`;
       document.getElementById('progressStep').textContent = label;
     }
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -706,11 +553,10 @@ body::before{
 
   function selectOption(step, value) {
     answers[step] = value;
-    const opts = document.querySelectorAll(`#opts-${step} .option`);
-    opts.forEach(o => o.classList.remove('selected'));
+    document.querySelectorAll(`#opts-${step} .option`).forEach(o => o.classList.remove('selected'));
     event.currentTarget.classList.add('selected');
-    const nextBtn = document.getElementById(`next-${step}`);
-    if (nextBtn) nextBtn.disabled = false;
+    const btn = document.getElementById(`next-${step}`);
+    if (btn) btn.disabled = false;
   }
 
   function checkTextInput(step) {
@@ -720,11 +566,10 @@ body::before{
   }
 
   function checkLeadGate() {
-    const name = document.getElementById('lead-name').value.trim();
-    const biz  = document.getElementById('lead-business').value.trim();
+    const name  = document.getElementById('lead-name').value.trim();
+    const biz   = document.getElementById('lead-business').value.trim();
     const email = document.getElementById('lead-email').value.trim();
-    const valid = name.length > 0 && biz.length > 0 && /\S+@\S+\.\S+/.test(email);
-    document.getElementById('next-16').disabled = !valid;
+    document.getElementById('next-13').disabled = !(name && biz && /\S+@\S+\.\S+/.test(email));
   }
 
   async function submitAudit() {
@@ -738,8 +583,7 @@ body::before{
       return;
     }
     document.getElementById('error-msg').style.display = 'none';
-
-    const btn = document.getElementById('next-16');
+    const btn = document.getElementById('next-13');
     btn.disabled = true;
     document.getElementById('submit-label').textContent = 'Generating…';
 
@@ -747,20 +591,17 @@ body::before{
       lead: { name, business: biz, email, phone },
       answers: {
         q1_industry:              answers[1]  || '',
-        q2_manual_work_owner:     answers[2]  || '',
-        q3_business_stage:        answers[3]  || '',
-        q4_painful_task:          answers[4]  || '',
-        q5_should_be_doing:       answers[5]  || '',
-        q6_manual_hours:          answers[6]  || '',
-        q7_bottleneck:            answers[7]  || '',
-        q8_performance_tracking:  answers[8]  || '',
-        q9_key_software:          answers[9]  || '',
-        q10_ai_usage:             answers[10] || '',
-        q11_customer_acquisition: answers[11] || '',
-        q12_decision_maker:       answers[12] || '',
-        q13_urgency:              answers[13] || '',
-        q14_priority:             answers[14] || '',
-        q15_vision:               answers[15] || '',
+        q2_business_stage:        answers[2]  || '',
+        q3_painful_task:          answers[3]  || '',
+        q4_should_be_doing:       answers[4]  || '',
+        q5_manual_hours:          answers[5]  || '',
+        q6_bottleneck:            answers[6]  || '',
+        q7_performance_tracking:  answers[7]  || '',
+        q8_key_software:          answers[8]  || '',
+        q9_ai_usage:              answers[9]  || '',
+        q10_customer_acquisition: answers[10] || '',
+        q11_priority:             answers[11] || '',
+        q12_vision:               answers[12] || '',
       },
       submitted_at: new Date().toISOString()
     };
@@ -771,9 +612,7 @@ body::before{
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
       });
-    } catch (e) {
-      console.error('Webhook error:', e);
-    }
+    } catch(e) { console.error('Webhook error:', e); }
 
     showStep('thanks');
   }
