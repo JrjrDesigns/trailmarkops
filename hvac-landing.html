@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The HVAC AI Playbook — Free Guide + AI Audit | Trailmark Ops</title>
+<meta name="description" content="Download the free HVAC AI Playbook and take the 5-minute HVAC AI Opportunity Audit. See exactly where your business is losing time and money.">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,300&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --bg:#0A0A0A;
+  --surface:#0F0F0F;
+  --surface2:#141418;
+  --surface3:#1A1A22;
+  --border:rgba(255,255,255,0.07);
+  --border2:rgba(255,255,255,0.12);
+  --border3:rgba(255,255,255,0.18);
+  --text:#F0F0ED;
+  --text2:rgba(255,255,255,0.72);
+  --text3:rgba(255,255,255,0.50);
+  --text4:rgba(255,255,255,0.32);
+  --accent:#2B7FFF;
+  --accent-dim:rgba(43,127,255,0.08);
+  --accent-mid:rgba(43,127,255,0.22);
+  --accent-glow:rgba(43,127,255,0.15);
+  --sans:'DM Sans',sans-serif;
+  --mono:'DM Mono',monospace;
+}
+html{scroll-behavior:smooth;}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+a{text-decoration:none;color:inherit;}
+
+/* Grid texture */
+body::before{
+  content:'';position:fixed;inset:0;
+  background-image:
+    linear-gradient(rgba(43,127,255,0.015) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(43,127,255,0.015) 1px,transparent 1px);
+  background-size:56px 56px;
+  pointer-events:none;z-index:0;
+}
+
+/* Glow */
+.glow-top{
+  position:fixed;top:-250px;left:50%;transform:translateX(-50%);
+  width:700px;height:500px;
+  background:radial-gradient(ellipse,rgba(43,127,255,0.06) 0%,transparent 70%);
+  pointer-events:none;z-index:0;
+}
+
+.wrapper{position:relative;z-index:1;}
+.container{max-width:1100px;margin:0 auto;padding:0 32px;}
+
+/* ─── NAV ─── */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;border-bottom:0.5px solid var(--border);background:rgba(10,10,10,0.92);backdrop-filter:blur(16px);}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:56px;}
+.logo{font-size:14px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;}
+.logo span{color:var(--accent);}
+.nav-right{display:flex;align-items:center;gap:24px;}
+.nav-link{font-size:13px;color:var(--text3);font-weight:300;transition:color 0.2s;}
+.nav-link:hover{color:var(--text);}
+.nav-cta{font-size:13px;font-weight:500;color:var(--text);border:0.5px solid var(--border2);border-radius:4px;padding:7px 16px;transition:all 0.2s;}
+.nav-cta:hover{border-color:rgba(255,255,255,0.3);}
+
+/* ─── TWO CARDS ─── */
+.cards-section{padding:90px 0 100px;}
+.cards-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+
+.cta-card{
+  background:var(--surface);
+  border:0.5px solid var(--border2);
+  border-radius:10px;
+  padding:40px 36px;
+  position:relative;
+  overflow:hidden;
+  transition:border-color 0.3s;
+}
+.cta-card:hover{border-color:rgba(43,127,255,0.3);}
+.cta-card::before{
+  content:'';position:absolute;top:0;left:15%;right:15%;height:0.5px;
+  background:linear-gradient(90deg,transparent,var(--accent),transparent);
+}
+
+.card-icon{
+  width:48px;height:48px;
+  background:var(--accent-dim);border:0.5px solid var(--accent-mid);
+  border-radius:10px;display:flex;align-items:center;justify-content:center;
+  margin-bottom:20px;
+}
+.card-eyebrow{font-family:var(--mono);font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin-bottom:14px;}
+.card-title{font-size:22px;font-weight:400;color:var(--text);line-height:1.25;margin-bottom:12px;letter-spacing:-0.01em;}
+.card-body{font-size:14px;font-weight:300;color:var(--text3);line-height:1.7;margin-bottom:28px;}
+
+.card-features{list-style:none;margin-bottom:28px;}
+.card-features li{font-size:13px;font-weight:300;color:var(--text2);padding:8px 0;border-bottom:0.5px solid var(--border);display:flex;align-items:center;gap:10px;}
+.card-features li:last-child{border-bottom:none;}
+.card-features li::before{content:'→';color:var(--accent);font-size:11px;flex-shrink:0;}
+
+.card-btn{
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  width:100%;padding:14px;
+  background:var(--accent);color:#fff;border:none;border-radius:6px;
+  font-family:var(--sans);font-size:14px;font-weight:500;
+  cursor:pointer;transition:all 0.2s;letter-spacing:0.01em;
+}
+.card-btn:hover{background:#1a6ef0;transform:translateY(-1px);}
+.card-btn.ghost{background:transparent;border:0.5px solid var(--accent);color:var(--accent);}
+.card-btn.ghost:hover{background:var(--accent-dim);}
+
+.card-disclaimer{text-align:center;font-family:var(--mono);font-size:10px;color:var(--text4);margin-top:12px;letter-spacing:0.04em;}
+
+/* ─── PREVIEW SECTION ─── */
+.preview{padding:100px 0;border-top:0.5px solid var(--border);border-bottom:0.5px solid var(--border);}
+.preview-label{font-family:var(--mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--text3);margin-bottom:20px;}
+.preview h2{font-size:clamp(26px,3.5vw,40px);font-weight:300;line-height:1.12;letter-spacing:-0.02em;margin-bottom:48px;}
+.preview h2 em{font-style:italic;color:var(--text2);}
+
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;border:0.5px solid var(--border2);border-radius:8px;overflow:hidden;}
+.toc-item{padding:22px 28px;border-bottom:0.5px solid var(--border);border-right:0.5px solid var(--border);display:flex;gap:14px;align-items:flex-start;}
+.toc-item:nth-child(even){border-right:none;}
+.toc-item:nth-last-child(-n+2){border-bottom:none;}
+.toc-num{font-family:var(--mono);font-size:11px;color:var(--accent);flex-shrink:0;margin-top:2px;letter-spacing:0.04em;}
+.toc-text{font-size:14px;font-weight:300;color:var(--text2);line-height:1.4;}
+
+/* ─── EBOOK MODAL/FORM ─── */
+.overlay{
+  display:none;position:fixed;inset:0;
+  background:rgba(0,0,0,0.8);backdrop-filter:blur(8px);
+  z-index:200;align-items:center;justify-content:center;
+}
+.overlay.active{display:flex;}
+.modal{
+  background:var(--surface);border:0.5px solid var(--border2);
+  border-radius:12px;padding:48px;max-width:460px;width:90%;
+  position:relative;
+}
+.modal::before{content:'';position:absolute;top:0;left:15%;right:15%;height:0.5px;background:linear-gradient(90deg,transparent,var(--accent),transparent);}
+.modal-close{position:absolute;top:16px;right:16px;background:none;border:none;color:var(--text3);font-size:20px;cursor:pointer;padding:4px 8px;transition:color 0.2s;}
+.modal-close:hover{color:var(--text);}
+.modal-title{font-size:22px;font-weight:400;color:var(--text);margin-bottom:8px;letter-spacing:-0.01em;}
+.modal-sub{font-size:14px;font-weight:300;color:var(--text3);margin-bottom:28px;line-height:1.6;}
+.form-field{display:flex;flex-direction:column;gap:6px;margin-bottom:16px;}
+.form-field label{font-family:var(--mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--text3);}
+.form-field input{
+  width:100%;background:var(--surface2);border:0.5px solid var(--border);
+  border-radius:6px;padding:13px 16px;
+  font-family:var(--sans);font-size:14px;font-weight:300;color:var(--text);outline:none;
+  transition:border-color 0.2s;
+}
+.form-field input::placeholder{color:var(--text4);}
+.form-field input:focus{border-color:rgba(43,127,255,0.5);}
+.form-submit{
+  width:100%;padding:14px;margin-top:8px;
+  background:var(--accent);color:#fff;border:none;border-radius:6px;
+  font-family:var(--sans);font-size:14px;font-weight:500;cursor:pointer;
+  transition:all 0.2s;
+}
+.form-submit:hover{background:#1a6ef0;}
+.form-submit:disabled{opacity:0.35;cursor:not-allowed;}
+.form-note{text-align:center;font-size:11px;color:var(--text4);margin-top:12px;}
+
+/* Ebook success state */
+.ebook-success{display:none;text-align:center;}
+.ebook-success.active{display:block;}
+.ebook-form.hidden{display:none;}
+.success-icon{font-size:36px;margin-bottom:16px;}
+.success-title{font-size:20px;font-weight:400;color:var(--text);margin-bottom:10px;}
+.success-body{font-size:14px;color:var(--text3);line-height:1.6;margin-bottom:24px;}
+.success-nudge{
+  padding:20px;background:var(--surface2);border:0.5px solid var(--accent-mid);
+  border-radius:8px;text-align:left;
+}
+.success-nudge-label{font-family:var(--mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:8px;}
+.success-nudge-text{font-size:13px;color:var(--text2);line-height:1.5;margin-bottom:14px;}
+
+/* ─── AUDIT SECTION ─── */
+.audit-section{padding:100px 0;border-bottom:0.5px solid var(--border);}
+.audit-wrap{max-width:680px;margin:0 auto;}
+
+.audit-header{text-align:center;margin-bottom:48px;}
+.audit-header h2{font-size:clamp(26px,3.5vw,40px);font-weight:300;line-height:1.12;letter-spacing:-0.02em;margin-bottom:14px;}
+.audit-header h2 em{font-style:italic;color:var(--text2);}
+.audit-header p{font-size:15px;color:var(--text3);font-weight:300;max-width:500px;margin:0 auto;}
+
+.audit-card{
+  background:var(--surface);border:0.5px solid var(--border2);
+  border-radius:10px;padding:48px;position:relative;overflow:hidden;
+}
+.audit-card::before{content:'';position:absolute;top:0;left:15%;right:15%;height:0.5px;background:linear-gradient(90deg,transparent,var(--accent),transparent);}
+
+/* Progress */
+.audit-progress{margin-bottom:36px;}
+.audit-progress-meta{display:flex;justify-content:space-between;margin-bottom:8px;}
+.audit-progress-label{font-family:var(--mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--text3);}
+.audit-progress-step{font-family:var(--mono);font-size:10px;color:var(--accent);letter-spacing:0.06em;}
+.audit-progress-track{height:2px;background:var(--border2);border-radius:2px;overflow:hidden;}
+.audit-progress-fill{height:100%;background:var(--accent);border-radius:2px;transition:width 0.5s cubic-bezier(0.4,0,0.2,1);box-shadow:0 0 10px var(--accent-glow);}
+
+/* Section tag */
+.section-tag{
+  display:inline-flex;align-items:center;gap:6px;
+  font-family:var(--mono);font-size:10px;letter-spacing:0.14em;text-transform:uppercase;
+  color:var(--accent);background:var(--accent-dim);border:0.5px solid var(--accent-mid);
+  padding:5px 12px;border-radius:3px;margin-bottom:20px;
+}
+.section-tag::before{content:'';width:4px;height:4px;background:var(--accent);border-radius:50%;}
+
+.q-number{font-family:var(--mono);font-size:10px;color:var(--text3);letter-spacing:0.08em;margin-bottom:10px;}
+.q-text{font-size:22px;font-weight:400;color:var(--text);line-height:1.3;margin-bottom:8px;letter-spacing:-0.01em;}
+.q-sub{font-size:13px;color:var(--text3);margin-bottom:32px;line-height:1.5;font-weight:300;}
+
+.options{display:flex;flex-direction:column;gap:8px;margin-bottom:36px;}
+.option{
+  display:flex;align-items:center;gap:14px;
+  padding:15px 20px;background:var(--surface2);border:0.5px solid var(--border);
+  border-radius:6px;cursor:pointer;transition:all 0.2s;
+}
+.option:hover{border-color:rgba(43,127,255,0.4);background:rgba(43,127,255,0.04);}
+.option.selected{border-color:var(--accent);background:var(--accent-dim);}
+.option-dot{
+  width:16px;height:16px;border:0.5px solid var(--border2);border-radius:50%;
+  flex-shrink:0;position:relative;transition:all 0.2s;
+  display:flex;align-items:center;justify-content:center;
+}
+.option.selected .option-dot{background:var(--accent);border-color:var(--accent);}
+.option.selected .option-dot::after{content:'';width:6px;height:6px;background:var(--bg);border-radius:50%;}
+.option-label{font-size:14px;font-weight:300;color:var(--text2);transition:color 0.2s;}
+.option.selected .option-label{color:var(--text);font-weight:400;}
+
+.text-input{
+  width:100%;background:var(--surface2);border:0.5px solid var(--border);
+  border-radius:6px;padding:16px 20px;
+  font-family:var(--sans);font-size:14px;font-weight:300;color:var(--text);
+  outline:none;resize:none;min-height:100px;margin-bottom:36px;line-height:1.6;
+  transition:border-color 0.2s;
+}
+.text-input::placeholder{color:var(--text4);}
+.text-input:focus{border-color:rgba(43,127,255,0.5);background:rgba(43,127,255,0.03);}
+
+.audit-nav{display:flex;align-items:center;justify-content:space-between;}
+.btn-back{
+  display:flex;align-items:center;gap:8px;
+  background:none;border:0.5px solid var(--border);border-radius:4px;
+  padding:11px 20px;font-family:var(--sans);font-size:13px;font-weight:300;
+  color:var(--text3);cursor:pointer;transition:all 0.2s;
+}
+.btn-back:hover{border-color:var(--border2);color:var(--text2);}
+.btn-next{
+  display:flex;align-items:center;gap:10px;
+  background:var(--accent);border:none;border-radius:4px;
+  padding:12px 28px;font-family:var(--sans);font-size:14px;font-weight:500;
+  color:#fff;cursor:pointer;transition:all 0.2s;
+}
+.btn-next:hover{background:#1a6ef0;transform:translateY(-1px);}
+.btn-next:disabled{opacity:0.3;cursor:not-allowed;transform:none;}
+
+.a-step{display:none;}
+.a-step.active{display:block;animation:slideIn 0.3s cubic-bezier(0.4,0,0.2,1);}
+@keyframes slideIn{from{opacity:0;transform:translateX(16px);}to{opacity:1;transform:translateX(0);}}
+
+/* Lead gate fields */
+.lead-fields{display:flex;flex-direction:column;gap:14px;margin-bottom:36px;}
+.lead-field{display:flex;flex-direction:column;gap:6px;}
+.lead-field label{font-family:var(--mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--text3);}
+.lead-field .optional{font-size:10px;color:var(--text4);font-weight:300;text-transform:none;letter-spacing:0;margin-left:6px;font-family:var(--sans);}
+.lead-field input{
+  width:100%;background:var(--surface2);border:0.5px solid var(--border);
+  border-radius:6px;padding:13px 16px;
+  font-family:var(--sans);font-size:14px;font-weight:300;color:var(--text);outline:none;
+  transition:border-color 0.2s;
+}
+.lead-field input::placeholder{color:var(--text4);}
+.lead-field input:focus{border-color:rgba(43,127,255,0.5);}
+
+/* Thank you */
+.ty-icon{width:56px;height:56px;background:var(--accent-dim);border:0.5px solid var(--accent-mid);border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:24px;font-size:22px;}
+.ty-title{font-size:26px;font-weight:400;color:var(--text);margin-bottom:14px;line-height:1.2;}
+.ty-body{font-size:14px;color:var(--text3);line-height:1.7;margin-bottom:28px;}
+.ty-next{padding:20px 24px;background:var(--surface2);border:0.5px solid var(--border);border-radius:8px;margin-bottom:20px;}
+.ty-next-label{font-family:var(--mono);font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin-bottom:8px;}
+.ty-next-text{font-size:13px;color:var(--text2);line-height:1.5;}
+
+.error-msg{font-size:13px;color:#ff6b6b;margin-top:-24px;margin-bottom:16px;display:none;font-weight:300;}
+
+/* ─── FOOTER ─── */
+footer{padding:60px 0 40px;border-top:0.5px solid var(--border);}
+.footer-inner{display:flex;align-items:baseline;justify-content:space-between;}
+.footer-left{font-size:12px;color:var(--text4);}
+.footer-right{display:flex;gap:24px;}
+.footer-right a{font-size:12px;color:var(--text3);transition:color 0.2s;}
+.footer-right a:hover{color:var(--accent);}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:768px){
+  .container{padding:0 20px;}
+  .cards-grid{grid-template-columns:1fr;}
+  .toc-grid{grid-template-columns:1fr;}
+  .toc-item{border-right:none!important;}
+  .toc-item:last-child{border-bottom:none;}
+  .audit-card{padding:32px 24px;}
+  .nav-right .nav-link{display:none;}
+  .modal{padding:32px 24px;}
+}
+</style>
+</head>
+<body>
+
+<div class="glow-top"></div>
+
+<div class="wrapper">
+
+<!-- NAV -->
+<nav>
+  <div class="container nav-inner">
+    <div class="logo">TRAILMARK <span>OPS</span></div>
+    <div class="nav-right">
+      <a href="https://trailmarkops.com" class="nav-link">← trailmarkops.com</a>
+      <a href="tel:7402742424" class="nav-cta">Book a Call</a>
+    </div>
+  </div>
+</nav>
+
+<!-- TWO CARDS -->
+<section class="cards-section">
+  <div class="container">
+    <div class="cards-grid">
+
+      <!-- EBOOK CARD -->
+      <div class="cta-card">
+        <div class="card-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2B7FFF" stroke-width="1.5"><path d="M12 2v13M5 12l7 7 7-7"/><path d="M5 20h14"/></svg>
+        </div>
+        <div class="card-eyebrow">Free Download</div>
+        <div class="card-title">The HVAC AI Playbook</div>
+        <div class="card-body">A 21-page guide showing where HVAC companies are losing time and money — and exactly what to do about it. Problem-first, with real tools and ROI math.</div>
+        <ul class="card-features">
+          <li>Where 27% of your revenue is walking to competitors</li>
+          <li>Dispatch, estimates, retention — with real ROI math</li>
+          <li>Crawl-Walk-Run roadmap you can start this week</li>
+        </ul>
+        <button class="card-btn" onclick="openEbookModal()">Download Free Playbook →</button>
+        <div class="card-disclaimer">PDF delivered to your inbox instantly</div>
+      </div>
+
+      <!-- AUDIT CARD -->
+      <div class="cta-card">
+        <div class="card-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2B7FFF" stroke-width="1.5"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/><rect x="9" y="2" width="6" height="4" rx="1"/><path d="M9 14l2 2 4-4"/></svg>
+        </div>
+        <div class="card-eyebrow">Free Personalized Report</div>
+        <div class="card-title">HVAC AI Opportunity Audit</div>
+        <div class="card-body">Answer 10 questions about your HVAC operation. Get a personalized AI Opportunity Report showing your specific revenue leaks — with dollar figures attached.</div>
+        <ul class="card-features">
+          <li>10 HVAC-specific questions, 5 minutes</li>
+          <li>Personalized AI report with dollar figures</li>
+          <li>Free 20-min follow-up call with James</li>
+        </ul>
+        <a href="#audit"><button class="card-btn">Start My Free Audit →</button></a>
+        <div class="card-disclaimer">No credit card. No spam. Just answers.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PREVIEW: What's Inside -->
+<section class="preview">
+  <div class="container">
+    <div class="preview-label">What's Inside the Playbook</div>
+    <h2>Every chapter starts with a problem <em>costing you money.</em></h2>
+    <div class="toc-grid">
+      <div class="toc-item"><div class="toc-num">01 →</div><div class="toc-text">The $180 Phone Call You Never Answered</div></div>
+      <div class="toc-item"><div class="toc-num">02 →</div><div class="toc-text">Your Dispatcher Is Your Most Expensive Bottleneck</div></div>
+      <div class="toc-item"><div class="toc-num">03 →</div><div class="toc-text">The Estimate That Took Too Long (and Lost the Job)</div></div>
+      <div class="toc-item"><div class="toc-num">04 →</div><div class="toc-text">You're Sitting on a Gold Mine of Customer Data</div></div>
+      <div class="toc-item"><div class="toc-num">05 →</div><div class="toc-text">Your Techs Know More Than Your Systems Do</div></div>
+      <div class="toc-item"><div class="toc-num">06 →</div><div class="toc-text">You Can't Improve What You Can't See</div></div>
+      <div class="toc-item"><div class="toc-num">07 →</div><div class="toc-text">The Crawl-Walk-Run Roadmap</div></div>
+      <div class="toc-item"><div class="toc-num">08 →</div><div class="toc-text">What This Looks Like With a Guide</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- AUDIT SECTION -->
+<section class="audit-section" id="audit">
+  <div class="container">
+    <div class="audit-wrap">
+
+      <div class="audit-header">
+        <h2>Find out where <em>your</em> HVAC business can work smarter.</h2>
+        <p>10 questions. 5 minutes. A personalized report in your inbox.</p>
+      </div>
+
+      <div class="audit-card">
+
+        <!-- Progress -->
+        <div class="audit-progress" id="auditProgress" style="display:none;">
+          <div class="audit-progress-meta">
+            <span class="audit-progress-label">HVAC AI Opportunity Audit</span>
+            <span class="audit-progress-step" id="auditProgressStep">Question 1 of 10</span>
+          </div>
+          <div class="audit-progress-track">
+            <div class="audit-progress-fill" id="auditProgressFill" style="width:0%"></div>
+          </div>
+        </div>
+
+        <!-- INTRO -->
+        <div class="a-step active" id="a-step-intro">
+          <div class="card-eyebrow">HVAC-Specific · Free · 5 Minutes</div>
+          <h2 class="q-text" style="font-size:26px;margin-bottom:14px;">See exactly where AI can save your HVAC business time and money.</h2>
+          <p class="q-sub" style="margin-bottom:28px;">Answer 10 questions about your operation. We'll generate a personalized AI Opportunity Report — built specifically for HVAC — with dollar figures attached to every recommendation.</p>
+          <button class="card-btn" onclick="startAudit()" style="max-width:280px;">Start My Audit →</button>
+          <div class="card-disclaimer" style="text-align:left;margin-top:14px;">Your report will be emailed to you. We don't sell your information.</div>
+        </div>
+
+        <!-- Q1 -->
+        <div class="a-step" id="a-step-1">
+          <div class="section-tag">Your Operation</div>
+          <div class="q-number">Question 1 of 10</div>
+          <h2 class="q-text">How many trucks or techs are you running?</h2>
+          <p class="q-sub">Helps us size recommendations to your operation.</p>
+          <div class="options" id="a-opts-1">
+            <div class="option" onclick="aSelect(1,'1–3 trucks/techs')"><div class="option-dot"></div><span class="option-label">1–3 trucks/techs</span></div>
+            <div class="option" onclick="aSelect(1,'4–10 trucks/techs')"><div class="option-dot"></div><span class="option-label">4–10 trucks/techs</span></div>
+            <div class="option" onclick="aSelect(1,'11–25 trucks/techs')"><div class="option-dot"></div><span class="option-label">11–25 trucks/techs</span></div>
+            <div class="option" onclick="aSelect(1,'25+ trucks/techs')"><div class="option-dot"></div><span class="option-label">25+ trucks/techs</span></div>
+          </div>
+          <div class="audit-nav">
+            <button class="btn-back" onclick="aBack()">← Back</button>
+            <button class="btn-next" id="a-next-1" onclick="aNext(1)" disabled>Continue →</button>
+          </div>
+        </div>
+
+        <!-- Q2 -->
+        <div class="a-step" id="a-step-2">
+          <div class="section-tag">Your Operation</div>
+          <div class="q-number">Question 2 of 10</div>
+          <h2 class="q-text">What FSM platform are you on?</h2>
+          <p class="q-sub">Determines what integrations are available for your business.</p>
+          <div class="options" id="a-opts-2">
+            <div class="option" onclick="aSelect(2,'ServiceTitan')"><div class="option-dot"></div><span class="option-label">ServiceTitan</span></div>
+            <div class="option" onclick="aSelect(2,'Housecall Pro')"><div class="option-dot"></div><span class="option-label">Housecall Pro</span></div>
+            <div class="option" onclick="aSelect(2,'Jobber')"><div class="option-dot"></div><span class="option-label">Jobber</span></div>
+            <div class="option" onclick="aSelect(2,'FieldEdge')"><div class="option-dot"></div><span class="option-label">FieldEdge</span></div>
+            <div class="option" onclick="aSelect(2,'Something else')"><div class="option-dot"></div><span class="option-label">Something else</span></div>
+            <div class="option" onclick="aSelect(2,'None — no FSM platform')"><div class="option-dot"></div><span class="option-label">None — no FSM platform</span></div>
+          </div>
+          <div class="audit-nav">
+            <button class="btn-back" onclick="aBack()">← Back</button>
+            <button class="btn-next" id="a-next-2" onclick="aNext(2)" disabled>Continue →</button>
+          </div>
+        </div>
+
+        <!-- Q3 -->
+        <div class="a-step" id="a-step-3">
+          <div class="section-tag">Call Handling</div>
+          <div class="q-number">Question 3 of 10</div>
+          <h2 class="q-text">What happens when a call comes in after hours or on weekends?</h2>
+          <p class="q-sub">After-hours calls carry the highest ticket values — $500 to $900+.</p>
+          <div class="options" id="a-opts-3">
+            <div class="option" onclick="aSelect(3,'Goes to voicemail')"><div class="option-dot"></div><span class="option-label">Goes to voicemail</span></div>
+            <div class="option" onclick="aSelect(3,'Answering service picks up')"><div class="option-dot"></div><span class="option-label">Answering service picks up</span></div>
+            <div class="option" onclick="aSelect(3,'AI or automated system handles it')"><div class="option-dot"></div><span class="option-label">AI or automated system handles it</span></div>
+            <div class="option" onclick="aSelect(3,'We don\'t get many after-hours calls')"><div class="option-dot"></div><span class="option-label">We don't get many after-hours calls</span></div>
+          </div>
+          <div class="audit-nav">
+            <button class="btn-back" onclick="aBack()">← Back</button>
+            <button class="btn-next" id="a-next-3" onclick="aNext(3)" disabled>Continue →</button>
+          </div>
+        </div>
+
+        <!-- Q4 -->
+        <div class="a-step" id="a-step-4">
+          <div class="section-tag">Operations</div>
+          <div class="q-number">Question 4 of 10</div>
+          <h2 class="q-text">How is dispatching handled today?</h2>
+          <p class="q-sub">Even 15% better routing across 10 trucks = thousands per month in recovered capacity.</p>
+          <div class="options" id="a-opts-4">
+            <div class="option" onclick="aSelect(4,'One person manages the board manually')"><div class="option-dot"></div><span class="option-label">One person manages the board manually</span></div>
+            <div class="option" onclick="aSelect(4,'We use our FSM\'s dispatch tools')"><div class="option-dot"></div><span class="option-label">We use our FSM's dispatch tools</span></div>
+            <div class="option" onclick="aSelect(4,'Techs mostly self-manage their schedules')"><div class="option-dot"></div><span class="option-label">Techs mostly self-manage their schedules</span></div>
+            <div class="option" onclick="aSelect(4,'It\'s chaos — we\'re constantly reshuffling')"><div class="option-dot"></div><span class="option-label">It's chaos — we're constantly reshuffling</span></div>
+          </div>
+          <div class="audit-nav">
+            <button class="btn-back" onclick="aBack()">← Back</button>
+            <button class="btn-next" id="a-next-4" onclick="aNext(4)" disabled>Continue →</button>
+          </div>
+        </div>
+
+        <!-- Q5 (open text) -->
+        <div class="a-step" id="a-step-5">
+          <div class="section-tag">Operations</div>
+          <div class="q-number">Question 5 of 10</div>
+          <h2 class="q-text">What's the most time-consuming task your team does that feels like it shouldn't be?</h2>
+          <p class="q-sub">Be specific — this will appear directly in your personalized report.</p>
+          <textarea class="text-input" id="a-input-5" placeholder="e.g. We manually reconcile two scheduling systems every morning and it takes over an hour…" oninput="aCheckText(5)"></textarea>
+          <div class="audit-nav">
+            <button class="btn-back" onclick="aBack()">← Back</button>
+            <button class="btn-next" id="a-next-5" onclick="aNext(5)" disabled>Continue →</button>
+          </div>
+        </div>
+
+        <!-- Q6 -->
+        <div class="a-step" id="a-step-6">
+          <div class="section-tag">Customers</div>
+          <div class="q-number">Question 6 of 10</div>
+          <h2 class="q-text">How do you handle customers with aging equipment who haven't called in a while?</h2>
+          <p class="q-sub">The average HVAC contractor loses 36% of customers annually. Best-in-class: 8%.</p>
+          <div class="options" id="a-opts-6">
+            <div class="option" onclick="aSelect(6,'We proactively reach out')"><div class="option-dot"></div><span class="option-label">We proactively reach out</span></div>
+            <div class="option" onclick="aSelect(6,'We wait for them to call us')"><div class="option-dot"></div><span class="option-label">We wait for them to call us</span></div>
+            <div class="option" onclick="aSelect(6,'We don\'t track equipment age')"><div class="option-dot"></div><span class="option-label">We don't track equipment age</span></div>
+            <div class="option" onclick="aSelect(6,'We have a system but it\'s inconsistent')"><div class="option-dot"></div><span class="option-label">We have a system but it's inconsistent</span></div>
+          </div>
+          <div class="audit-nav">
+            <button class="btn-back" onclick="aBack()">← Back</button>
+            <button class="btn-next" id="a-next-6" onclick="aNext(6)" disabled>Continue →</button>
+          </div>
+        </div>
+
+        <!-- Q7 -->
+        <div class="a-step" id="a-step-7">
+          <div class="section-tag">Pain Points</div>
+          <div class="q-number">Question 7 of 10</div>
+          <h2 class="q-text">What's your biggest operational pain right now?</h2>
+          <p class="q-sub">Pick the one that stings most.</p>
+          <div class="options" id="a-opts-7">
+            <div class="option" onclick="aSelect(7,'Missed calls and lost leads')"><div class="option-dot"></div><span class="option-label">Missed calls and lost leads</span></div>
+            <div class="option" onclick="aSelect(7,'Dispatch and scheduling')"><div class="option-dot"></div><span class="option-label">Dispatch and scheduling</span></div>
+            <div class="option" onclick="aSelect(7,'Slow estimates losing jobs')"><div class="option-dot"></div><span class="option-label">Slow estimates losing jobs</span></div>
+            <div class="option" onclick="aSelect(7,'Customer retention and follow-up')"><div class="option-dot"></div><span class="option-label">Customer retention and follow-up</span></div>
+            <div class="option" onclick="aSelect(7,'Reporting and visibility')"><div class="option-dot"></div><span class="option-label">Reporting and visibility</span></div>
+            <div class="option" onclick="aSelect(7,'Hiring and training')"><div class="option-dot"></div><span class="option-label">Hiring and training</span></div>
+          </div>
+          <div class="audit-nav">
+            <button class="btn-back" onclick="aBack()">← Back</button>
+            <button class="btn-next" id="a-next-7" onclick="aNext(7)" disabled>Continue →</button>
+          </div>
+        </div>
+
+        <!-- Q8 -->
+        <div class="a-step" id="a-step-8">
+          <div class="section-tag">Technology</div>
+          <div class="q-number">Question 8 of 10</div>
+          <h2 class="q-text">Are you using any AI tools in your business today?</h2>
+          <p class="q-sub">No judgment — this helps us calibrate where to start.</p>
+          <div class="options" id="a-opts-8">
+            <div class="option" onclick="aSelect(8,'No — not sure where to start')"><div class="option-dot"></div><span class="option-label">No — not sure where to start</span></div>
+            <div class="option" onclick="aSelect(8,'Tried a couple things but nothing stuck')"><div class="option-dot"></div><span class="option-label">Tried a couple things but nothing stuck</span></div>
+            <div class="option" onclick="aSelect(8,'Yes, informally (ChatGPT occasionally, etc.)')"><div class="option-dot"></div><span class="option-label">Yes, informally (ChatGPT occasionally, etc.)</span></div>
+            <div class="option" onclick="aSelect(8,'Yes — we have real AI workflows in place')"><div class="option-dot"></div><span class="option-label">Yes — we have real AI workflows in place</span></div>
+          </div>
+          <div class="audit-nav">
+            <button class="btn-back" onclick="aBack()">← Back</button>
+            <button class="btn-next" id="a-next-8" onclick="aNext(8)" disabled>Continue →</button>
+          </div>
+        </div>
+
+        <!-- Q9 -->
+        <div class="a-step" id="a-step-9">
+          <div class="section-tag">Decision Making</div>
+          <div class="q-number">Question 9 of 10</div>
+          <h2 class="q-text">If a solution saved your team 10+ hours a week, how quickly could you realistically move on it?</h2>
+          <p class="q-sub">Be honest — there's no wrong answer.</p>
+          <div class="options" id="a-opts-9">
+            <div class="option" onclick="aSelect(9,'Within a month if the ROI was clear')"><div class="option-dot"></div><span class="option-label">Within a month if the ROI was clear</span></div>
+            <div class="option" onclick="aSelect(9,'1–3 months — need to think it through')"><div class="option-dot"></div><span class="option-label">1–3 months — need to think it through</span></div>
+            <div class="option" onclick="aSelect(9,'Longer — budget or buy-in takes time')"><div class="option-dot"></div><span class="option-label">Longer — budget or buy-in takes time</span></div>
+            <div class="option" onclick="aSelect(9,'Not sure — depends on cost')"><div class="option-dot"></div><span class="option-label">Not sure — depends on cost</span></div>
+          </div>
+          <div class="audit-nav">
+            <button class="btn-back" onclick="aBack()">← Back</button>
+            <button class="btn-next" id="a-next-9" onclick="aNext(9)" disabled>Continue →</button>
+          </div>
+        </div>
+
+        <!-- Q10 (open text) -->
+        <div class="a-step" id="a-step-10">
+          <div class="section-tag">Vision</div>
+          <div class="q-number">Question 10 of 10</div>
+          <h2 class="q-text">What would it honestly mean for your business if your team got 20% of their time back?</h2>
+          <p class="q-sub">Your answer will appear in your report's closing section. Be specific.</p>
+          <textarea class="text-input" id="a-input-10" placeholder="e.g. I could finally focus on growing our commercial division instead of putting out fires every day…" oninput="aCheckText(10)"></textarea>
+          <div class="audit-nav">
+            <button class="btn-back" onclick="aBack()">← Back</button>
+            <button class="btn-next" id="a-next-10" onclick="aNext(10)" disabled>Continue →</button>
+          </div>
+        </div>
+
+        <!-- LEAD GATE -->
+        <div class="a-step" id="a-step-11">
+          <div class="section-tag">Almost There</div>
+          <div class="q-number">Your Report</div>
+          <h2 class="q-text">Where should we send your HVAC AI Opportunity Report?</h2>
+          <p class="q-sub">Your personalized report will be in your inbox within minutes. We don't sell your information.</p>
+          <div class="lead-fields">
+            <div class="lead-field">
+              <label>First Name</label>
+              <input type="text" id="a-lead-name" placeholder="James" oninput="aCheckLead()">
+            </div>
+            <div class="lead-field">
+              <label>Business Name</label>
+              <input type="text" id="a-lead-biz" placeholder="Acme HVAC" oninput="aCheckLead()">
+            </div>
+            <div class="lead-field">
+              <label>Email Address</label>
+              <input type="email" id="a-lead-email" placeholder="you@yourhvac.com" oninput="aCheckLead()">
+            </div>
+            <div class="lead-field">
+              <label>Phone Number <span class="optional">(optional — for your free 20-min consult)</span></label>
+              <input type="tel" id="a-lead-phone" placeholder="(614) 555-0100">
+            </div>
+          </div>
+          <div class="error-msg" id="a-error">Please fill in your name, business name, and a valid email address.</div>
+          <div class="audit-nav">
+            <button class="btn-back" onclick="aBack()">← Back</button>
+            <button class="btn-next" id="a-next-11" onclick="aSubmit()" disabled><span id="a-submit-label">Generate My Report →</span></button>
+          </div>
+        </div>
+
+        <!-- THANK YOU -->
+        <div class="a-step" id="a-step-thanks">
+          <div class="ty-icon">✦</div>
+          <h2 class="ty-title">Your report is being generated.</h2>
+          <p class="ty-body">Check your inbox in the next few minutes. We've analyzed your answers and your personalized HVAC AI Opportunity Report is on its way.</p>
+          <div class="ty-next">
+            <div class="ty-next-label">What Happens Next</div>
+            <div class="ty-next-text">James Francis from Trailmark Ops will personally review your results and follow up within 24 hours with a specific recommendation for your HVAC operation.</div>
+          </div>
+          <!-- Playbook nudge if they haven't downloaded it -->
+          <div id="audit-playbook-nudge" style="display:none;">
+            <div class="ty-next" style="border-color:rgba(43,127,255,0.25);margin-top:12px;">
+              <div class="ty-next-label">While You Wait</div>
+              <div class="ty-next-text" style="margin-bottom:12px;">Download the free HVAC AI Playbook — the full guide behind the questions you just answered.</div>
+              <button class="card-btn ghost" onclick="openEbookModal()" style="max-width:260px;font-size:13px;padding:10px 20px;">Download Playbook →</button>
+            </div>
+          </div>
+          <p style="font-size:12px;color:var(--text4);margin-top:16px;">Questions? <a href="mailto:james@trailmarkops.com" style="color:var(--accent);">james@trailmarkops.com</a></p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container footer-inner">
+    <div class="footer-left">
+      <span class="logo" style="font-size:12px;">TRAILMARK <span>OPS</span></span>
+      <span style="margin-left:16px;">© 2026 Trailmark Ops</span>
+    </div>
+    <div class="footer-right">
+      <a href="https://trailmarkops.com">trailmarkops.com</a>
+      <a href="tel:7402742424">(740) 274-2424</a>
+      <a href="mailto:james@trailmarkops.com">james@trailmarkops.com</a>
+    </div>
+  </div>
+</footer>
+
+</div><!-- /wrapper -->
+
+<!-- EBOOK DOWNLOAD MODAL -->
+<div class="overlay" id="ebookOverlay" onclick="if(event.target===this)closeEbookModal()">
+  <div class="modal">
+    <button class="modal-close" onclick="closeEbookModal()">×</button>
+
+    <div id="ebookForm" class="ebook-form">
+      <div class="modal-title">Download the HVAC AI Playbook</div>
+      <div class="modal-sub">Enter your email and we'll send the full 21-page guide straight to your inbox.</div>
+      <div class="form-field">
+        <label>First Name</label>
+        <input type="text" id="eb-name" placeholder="James" oninput="checkEbookForm()">
+      </div>
+      <div class="form-field">
+        <label>Email Address</label>
+        <input type="email" id="eb-email" placeholder="you@yourhvac.com" oninput="checkEbookForm()">
+      </div>
+      <div class="form-field">
+        <label>Company <span style="font-size:10px;color:var(--text4);text-transform:none;letter-spacing:0;font-family:var(--sans);margin-left:4px;">(optional)</span></label>
+        <input type="text" id="eb-company" placeholder="Acme HVAC">
+      </div>
+      <button class="form-submit" id="eb-submit" onclick="submitEbook()" disabled>Send Me the Playbook →</button>
+      <div class="form-note">Free. No spam. We don't sell your information.</div>
+    </div>
+
+    <div id="ebookSuccess" class="ebook-success">
+      <div class="success-icon">✦</div>
+      <div class="success-title">Check your inbox.</div>
+      <div class="success-body">The HVAC AI Playbook is on its way. If you don't see it in a few minutes, check your spam folder.</div>
+      <div class="success-nudge">
+        <div class="success-nudge-label">Next Step</div>
+        <div class="success-nudge-text">Now see how the playbook's insights apply specifically to YOUR business. Take the free 5-minute HVAC AI Audit.</div>
+        <a href="#audit"><button class="card-btn" onclick="closeEbookModal()" style="max-width:240px;font-size:13px;padding:10px 20px;">Start My Free Audit →</button></a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+// ─── State ───
+let ebookDownloaded = false;
+let auditCompleted = false;
+const aAnswers = {};
+let aCurrentStep = 'intro';
+const aSteps = ['intro',1,2,3,4,5,6,7,8,9,10,11,'thanks'];
+const aTotalQ = 10;
+
+// REPLACE with your n8n webhook URLs
+const EBOOK_WEBHOOK = 'https://james-francis.app.n8n.cloud/webhook/hvac_playbook_download';
+const AUDIT_WEBHOOK = 'https://james-francis.app.n8n.cloud/webhook/hvac_audit';
+
+// ─── Ebook Modal ───
+function openEbookModal() {
+  document.getElementById('ebookOverlay').classList.add('active');
+  // If they already submitted audit, pre-fill
+  if (auditCompleted) {
+    const n = document.getElementById('a-lead-name');
+    const e = document.getElementById('a-lead-email');
+    const b = document.getElementById('a-lead-biz');
+    if (n && n.value) document.getElementById('eb-name').value = n.value;
+    if (e && e.value) document.getElementById('eb-email').value = e.value;
+    if (b && b.value) document.getElementById('eb-company').value = b.value;
+    checkEbookForm();
+  }
+}
+function closeEbookModal() {
+  document.getElementById('ebookOverlay').classList.remove('active');
+}
+function checkEbookForm() {
+  const name = document.getElementById('eb-name').value.trim();
+  const email = document.getElementById('eb-email').value.trim();
+  document.getElementById('eb-submit').disabled = !(name.length > 0 && /\S+@\S+\.\S+/.test(email));
+}
+async function submitEbook() {
+  const name = document.getElementById('eb-name').value.trim();
+  const email = document.getElementById('eb-email').value.trim();
+  const company = document.getElementById('eb-company').value.trim();
+
+  document.getElementById('eb-submit').disabled = true;
+  document.getElementById('eb-submit').textContent = 'Sending…';
+
+  try {
+    await fetch(EBOOK_WEBHOOK, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, email, company, asset: 'hvac_ai_playbook', submitted_at: new Date().toISOString() })
+    });
+  } catch (e) { console.error('Ebook webhook error:', e); }
+
+  ebookDownloaded = true;
+  document.getElementById('ebookForm').classList.add('hidden');
+  document.getElementById('ebookSuccess').classList.add('active');
+}
+
+// ─── Audit Logic ───
+function aShowStep(step) {
+  document.querySelectorAll('.a-step').forEach(s => s.classList.remove('active'));
+  document.getElementById(`a-step-${step}`).classList.add('active');
+  aCurrentStep = step;
+
+  const prog = document.getElementById('auditProgress');
+  if (step === 'intro' || step === 'thanks') {
+    prog.style.display = 'none';
+  } else {
+    prog.style.display = 'block';
+    const qNum = typeof step === 'number' ? Math.min(step, 10) : 10;
+    document.getElementById('auditProgressFill').style.width = ((qNum - 1) / aTotalQ * 100) + '%';
+    document.getElementById('auditProgressStep').textContent = step === 11 ? 'Your Info' : `Question ${qNum} of ${aTotalQ}`;
+  }
+
+  // Show playbook nudge on thanks if they haven't downloaded
+  if (step === 'thanks' && !ebookDownloaded) {
+    document.getElementById('audit-playbook-nudge').style.display = 'block';
+  }
+
+  document.getElementById('audit').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function startAudit() { aShowStep(1); }
+function aBack() {
+  const idx = aSteps.indexOf(aCurrentStep);
+  if (idx > 0) aShowStep(aSteps[idx - 1]);
+}
+function aNext(step) {
+  const idx = aSteps.indexOf(step);
+  if (idx < aSteps.length - 1) aShowStep(aSteps[idx + 1]);
+}
+
+function aSelect(step, value) {
+  aAnswers[step] = value;
+  document.querySelectorAll(`#a-opts-${step} .option`).forEach(o => o.classList.remove('selected'));
+  event.currentTarget.classList.add('selected');
+  const btn = document.getElementById(`a-next-${step}`);
+  if (btn) btn.disabled = false;
+}
+
+function aCheckText(step) {
+  const val = document.getElementById(`a-input-${step}`).value.trim();
+  aAnswers[step] = val;
+  document.getElementById(`a-next-${step}`).disabled = val.length < 3;
+}
+
+function aCheckLead() {
+  const name = document.getElementById('a-lead-name').value.trim();
+  const biz = document.getElementById('a-lead-biz').value.trim();
+  const email = document.getElementById('a-lead-email').value.trim();
+  document.getElementById('a-next-11').disabled = !(name.length > 0 && biz.length > 0 && /\S+@\S+\.\S+/.test(email));
+}
+
+async function aSubmit() {
+  const name  = document.getElementById('a-lead-name').value.trim();
+  const biz   = document.getElementById('a-lead-biz').value.trim();
+  const email = document.getElementById('a-lead-email').value.trim();
+  const phone = document.getElementById('a-lead-phone').value.trim();
+
+  if (!name || !biz || !/\S+@\S+\.\S+/.test(email)) {
+    document.getElementById('a-error').style.display = 'block';
+    return;
+  }
+  document.getElementById('a-error').style.display = 'none';
+
+  const btn = document.getElementById('a-next-11');
+  btn.disabled = true;
+  document.getElementById('a-submit-label').textContent = 'Generating…';
+
+  const payload = {
+    lead: { name, business: biz, email, phone },
+    answers: {
+      q1_fleet_size:        aAnswers[1]  || '',
+      q2_fsm_platform:      aAnswers[2]  || '',
+      q3_after_hours:       aAnswers[3]  || '',
+      q4_dispatching:       aAnswers[4]  || '',
+      q5_painful_task:      aAnswers[5]  || '',
+      q6_aging_equipment:   aAnswers[6]  || '',
+      q7_biggest_pain:      aAnswers[7]  || '',
+      q8_ai_usage:          aAnswers[8]  || '',
+      q9_urgency:           aAnswers[9]  || '',
+      q10_vision:           aAnswers[10] || '',
+    },
+    source: 'hvac_playbook_landing_page',
+    submitted_at: new Date().toISOString()
+  };
+
+  try {
+    await fetch(AUDIT_WEBHOOK, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+  } catch (e) { console.error('Audit webhook error:', e); }
+
+  auditCompleted = true;
+  aShowStep('thanks');
+}
+</script>
+</body>
+</html>
